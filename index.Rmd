@@ -6,21 +6,29 @@ output:
     toc_float: true
     theme: cerulean
 ---
+<!-- https://fontawesome.com/v5.15/icons?d=gallery&p=2 -->  <!-- font and icon -->
 
-# About Me
+## About Me
 
-Data Scientist: Quality Control, DB Construction, Statistical Analysis, Statistical Learning, Machine Learning, Deep Learning, Web App Develeopment (R shiny App, Stream Lit)
+<!-- <img src="images/image.jpg" style="width:75%"> -->
+
+Data Scientist: Data Quality Control, DB Construction, Statistical Analysis, Statistical Learning, Machine Learning, Deep Learning, Web App Development (R shiny App, Stream Lit)
 Programming Language: R, Python, SAS, MS SQL
 
-# Educational Background
+## Educational Background
 
 * Bachelor's degree (2012): biochemistry at KNU (Kangwon National University)
-* Bachelor's degree (2017): Mathematics at Baruch College in CUNY ( the City University of New York)
+* Bachelor's degree (2017): Mathematics at Baruch College in CUNY (the City University of New York)
 * Master's degree (2019): Biostatistics at CU (Columbia University in the City of New York)
 
-# My previous project
+## My previous project
 
-1) Conducted experiments and identified the efficacy of a phellinus linteus extract for an atopic disease - KNU
-2) Developed a mathematical kinetic model of absorbing metal ion from tea leave - CUNY
-3) Built a analysis pipeline to identify metabolic profiles that are associated with Alzheimer's disease Status from blood samples of the patients collected in Long Life Family Study (LLFS) - CUMC (Columbia University Medical Center)
-4) Developed a diagnostic instrument Quality Control platform through making a noise test algorithm advanced and optimized
+* Conducted experiments and identified the efficacy of a phellinus linteus extract for an atopic disease - KNU
+* Developed a mathematical kinetic model of absorbing metal ion from tea leave - CUNY
+* Built a analysis pipeline to identify metabolic profiles that are associated with Alzheimer's disease Status from blood samples of the patients collected in Long Life Family Study (LLFS) - CUMC (Columbia University Medical Center)
+* Developed a diagnostic instrument Quality Control platform with a noise test algorithm advanced and optimized
+
+## Links to other website
+
+* [Google](https:://www.google.com/)
+* [Naver](https:://www.naver.com/)

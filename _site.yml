@@ -1,0 +1,14 @@
+name: "Yay internet!"
+output_dir: "."
+navbar:
+  title: "kmink3225 Website"
+  right:
+    - text: "about"
+      href: about.html
+    - icon: fa-envelope fa-lg
+      href: mailto:<kmink3225@gmail.com>
+    - icon: fa-github fa-lg
+      href: http://github.com/kmink3225/
+output:
+  html_document:
+    theme: cerulean
