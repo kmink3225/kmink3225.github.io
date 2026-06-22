@@ -1,0 +1,127 @@
+cv:
+  name: Kwangmin Kim
+  label: AI Engineer / Data Scientist
+  email: kmink3225@gmail.com
+  location: South Korea
+  image: ""
+  summary: >-
+    AI Engineer / Data Scientist with 7+ years of experience architecting and building
+    enterprise AI platforms (RAG, LLM agents, NLP) end-to-end, backed by statistically
+    rigorous evaluation. Specialties: LLM agents, RAG/Graph RAG, deep learning / NLP,
+    machine learning, experiment design, and statistical analysis.
+
+  social_networks:
+    - network: GitHub
+      username: kmink3225
+    - network: LinkedIn
+      username: kwangmin-kim-a5241b200
+
+  sections:
+    Education:
+      - institution: Columbia University in the City of New York
+        location: New York, NY, US
+        url: https://www.columbia.edu/
+        area: Biostatistics
+        studyType: M.S.
+        start_date: 2017
+        end_date: 2019
+        highlights:
+          - "Chair's Award — Graduation Practicum Research Competition winner"
+
+      - institution: Baruch College, The City University of New York (CUNY)
+        location: New York, NY, US
+        area: Mathematics
+        studyType: B.A.
+        start_date: 2015
+        end_date: 2017
+
+      - institution: Kangwon National University (KNU)
+        location: South Korea
+        area: Biochemistry
+        studyType: B.S.
+        start_date: 2006
+        end_date: 2012
+        highlights:
+          - "Valedictorian; Dean's Award"
+
+    Experience:
+      - company: Seegene
+        position: Data Scientist / AI Engineer
+        location: South Korea
+        start_date: 2020-12
+        end_date: Present
+        summary: >-
+          Architecting and building enterprise AI agent / RAG platforms and the
+          statistical evaluation systems behind them; previously led ML and statistical
+          modeling for diagnostics. Technical lead / architect on a company-wide
+          multi-agent platform.
+        highlights:
+          - "Architected a domain-specific multi-agent RAG knowledge platform end-to-end and led it from a single-agent pilot to a company-wide initiative (~30 initial users, expanding company-wide)."
+          - "Designed a knowledge QnA chatbot (9 sub-agent Self-RAG/CRAG loop, token streaming, source citation): ~98% user satisfaction, 4.66s avg response, 96.9% citation rate, 5.0/5.0 factuality & reasoning on a 4-model LLM-as-judge evaluation."
+          - "Built a self-developed agent orchestration that benchmarked up to ~17x lower cost per query vs. a general-purpose CLI, validated with paired t-test / McNemar / bootstrap CI on a 6-metric composite."
+          - "Delivered an NLP-based data standardization system: validation time 8h -> 0.73s (99% reduction), metadata consistency 8.4% -> 98.7%; an 8-model classifier benchmark (14 classes, 95% CI, McNemar+Holm) selected KLUE-RoBERTa at 96.88% and proved a 671K-param BiLSTM statistically on par with a 110M model."
+          - "Redesigned a hard-coded PCR signal baseline algorithm into a data-driven model, cutting the false-negative rate 0.47% -> 0.04% (91.49% improvement)."
+          - "Automated diagnostic-equipment QC with a two-stage LSTM + 10 quality metrics over 61,248 signals, cutting QC time ~93% (~13x annual operating-cost reduction) — R&D President's Award."
+          - "Established a model evaluation & MLOps baseline: LLM-as-judge auto-scoring + architecture A/B benchmarking (paired t-test, McNemar, Cohen's d, bootstrap CI) + metric logging; mentored 20+ engineers across IT/BT."
+
+      - company: Columbia University Irving Medical Center — Taub Institute
+        position: Statistical Research Assistant
+        location: New York, NY, US
+        start_date: 2018-12
+        end_date: 2020-05
+        summary: Large-scale multi-omics analysis for Alzheimer's disease biomarker discovery.
+        highlights:
+          - "Integrated genomic, metabolomic, and clinical data to surface 13 key biomarkers (p<0.01) from ~3,000 metabolites; uncovered a previously missed confounder."
+          - "Handled 146 samples x 3,000 high-dimensional variables; compared 10+ ML algorithms and selected sPLS (84% accuracy with interpretability); built 20-year onset-risk models with Cox hazard / GEE."
+
+    Skills:
+      - name: LLM Agent / GenAI
+        icon: fa-solid fa-robot
+        keywords: "RAG, Agentic RAG, Graph RAG, Self-RAG/CRAG, LangChain, LangGraph, Azure OpenAI, Azure AI Search, OpenAI/Claude API, Prompt Engineering"
+
+      - name: NLP / Deep Learning
+        icon: fa-solid fa-brain
+        keywords: "KLUE-RoBERTa, KoBERT, ALBERT, BiLSTM/LSTM, Hugging Face Transformers, PyTorch, KiwiPiePy/KoNLPy"
+
+      - name: Machine Learning / Statistics
+        icon: fa-solid fa-chart-line
+        keywords: "scikit-learn, HDBSCAN, regression/survival analysis, time series, causal inference (A/B test), experiment design"
+
+      - name: Data / Backend Engineering
+        icon: fa-solid fa-server
+        keywords: "Python, R, SQL (PostgreSQL), SAS, FastAPI, Streamlit, Apache Airflow, Parquet, AST, Docker, Azure DevOps"
+
+    Awards:
+      - title: Patents filed (7 total; first inventor on 4)
+        awarder: Seegene (2021-2022)
+        summary: >-
+          First inventor — Ct-based customized treatment method; medical-platform subscription
+          system; diagnostic-equipment noise-test automation; medical-equipment noise-level
+          measurement algorithm. Co-inventor — molecular-diagnostics prediction model / negative
+          certificate / community-group diagnostics system.
+
+      - title: President's Award (R&D)
+        awarder: Seegene
+        date: 2021-01-01
+        summary: For the diagnostic-equipment noise-test automation system.
+
+      - title: Chair's Award — Graduation Practicum Research Competition
+        awarder: Columbia University, Biostatistics
+        date: 2019-01-01
+
+    Certificates:
+      - name: Microsoft Azure — DP-203 (Data Engineering), DP-100 (Data Science), DP-300 (Database)
+        date: 2025-01-01
+        issuer: Microsoft
+        icon: fa-solid fa-cloud
+
+      - name: SAS Certified Base Programmer
+        date: 2018-01-01
+        issuer: SAS
+        icon: fa-solid fa-certificate
+
+    Languages:
+      - name: Korean
+        summary: "Native"
+      - name: English
+        summary: "Fluent"
