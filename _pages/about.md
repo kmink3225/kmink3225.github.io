@@ -26,6 +26,8 @@ latest_posts:
   limit: 3
 ---
 
+<div style="text-align: right; margin-bottom: 1rem;"><strong>English</strong> · <a href="/ko/">한국어</a></div>
+
 I am an **AI Engineer / Data Scientist** with 7+ years of experience. I architect and build **enterprise AI platforms** end-to-end — RAG, LLM agents, and NLP — and I back them with **statistically rigorous evaluation**. My foundation is biostatistics (M.S., Columbia) applied to diagnostics, so I care as much about *measuring* a system as building it.
 
 - **AI/LLM Engineering** — multi-agent RAG platforms (Self-RAG / CRAG / Graph RAG), self-built orchestration harnesses, and LLM-as-judge evaluation pipelines. I build systems that are *grounded and measured*, not demos.
