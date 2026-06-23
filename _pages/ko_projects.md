@@ -16,7 +16,7 @@ toc:
 
 *역할: 기술 리드 / 아키텍트 · 스택: Python, LangChain, LangGraph, Azure OpenAI, Azure AI Search, FastAPI*
 
-도메인 특화 **멀티 에이전트 RAG 지식 플랫폼**을 아키텍처부터 총괄 설계·구축하고, 단일 에이전트 파일럿에서 전사 과제로 확장했다(초기 ~30명 배포, 전사 확장 중).
+도메인 특화 **멀티 에이전트 RAG 지식 플랫폼**을 아키텍처부터 총괄 설계·구축하고, 단일 에이전트 파일럿에서 전사 과제로 확장했다(전사 확장 중).
 
 - **지식 QnA 챗봇** — 9개 sub-agent Self-RAG/CRAG 루프 + 토큰 스트리밍 + 출처 인용. 151건 질의 10개 지표 전수 통과(만족도 ~98%, 4.66초, 인용률 96.9%, 성공률 100%), 4모델 LLM-as-judge에서 사실·추론 5.0/5.0.
 - **자체 오케스트레이션 vs 범용 CLI** — 최상위 구성에서 건당 비용 **최대 ~17배 절감**(paired t-test/McNemar/Cohen's d/bootstrap CI, 6지표 Composite).
@@ -43,4 +43,4 @@ toc:
 *역할: Statistical Research Assistant, 컬럼비아 의대 Taub Institute · 스택: R, Cox/GEE, sPLS, Lasso/Ridge/RF/SVM/GBM*
 
 - 유전체·대사체·임상데이터 통합으로 약 3,000개 대사물질 중 **핵심 바이오마커 13개(p<0.01)** 발견, 8개월간 미발견 교란자 규명.
-- 고차원 소표본(146 샘플 × 3,000 변수), 10+ ML 비교 후 sPLS 선정(정확도 84% + 해석력), Cox/GEE로 20년 발병 위험 모델 구축. 연구 경진대회 top-3, Chair's Award, Taub Institute 정규직 제안.
+- 고차원 소표본(변수 약 3,000개, 표본보다 변수가 훨씬 많은 환경), 10+ ML 비교 후 sPLS 선정(정확도 84% + 해석력), Cox/GEE로 20년 발병 위험 모델 구축. 연구 경진대회 top-3, Chair's Award, Taub Institute 정규직 제안.

@@ -26,7 +26,7 @@ AI Engineer / Data Scientist with 7+ years of experience architecting and buildi
 
 Technical lead / architect on a company-wide multi-agent platform; architecting enterprise AI agent / RAG platforms and the statistical evaluation systems behind them. Previously led ML and statistical modeling for diagnostics.
 
-- Architected a domain-specific **multi-agent RAG knowledge platform** end-to-end and led it from a single-agent pilot to a company-wide initiative (~30 initial users, expanding company-wide).
+- Architected a domain-specific **multi-agent RAG knowledge platform** end-to-end and led it from a single-agent pilot to a company-wide initiative.
 - Designed a **knowledge QnA chatbot** (9 sub-agent **Self-RAG/CRAG** loop, token streaming, source citation): ~98% user satisfaction, 4.66s avg response, 96.9% citation rate, 100% system success; 5.0/5.0 factuality & reasoning on a 4-model LLM-as-judge evaluation.
 - Built a **self-developed agent orchestration** that benchmarked **up to ~17× lower cost per query** vs. a general-purpose CLI (paired t-test / McNemar / bootstrap CI on a 6-metric composite).
 - Delivered an **NLP-based data standardization system**: validation time **8h → 0.73s (99%↓)**, metadata consistency 8.4% → 98.7%; an 8-model classifier benchmark (14 classes, 95% CI, McNemar+Holm) selected KLUE-RoBERTa at 96.88% and proved a 671K-param BiLSTM statistically on par with a 110M model.
@@ -41,7 +41,7 @@ Technical lead / architect on a company-wide multi-agent platform; architecting 
 Large-scale multi-omics analysis for Alzheimer's disease biomarker discovery.
 
 - Integrated genomic, metabolomic, and clinical data to surface **13 key biomarkers (p<0.01)** from ~3,000 metabolites; uncovered a confounder missed for eight months.
-- Handled 146 samples × 3,000 high-dimensional variables; compared 10+ ML algorithms and selected sPLS (84% accuracy with interpretability); built 20-year onset-risk models with Cox hazard / GEE.
+- Handled a high-dimensional, small-sample regime (~3,000 variables, far more features than samples); compared 10+ ML algorithms and selected sPLS (84% accuracy with interpretability); built 20-year onset-risk models with Cox hazard / GEE.
 
 ## Education
 

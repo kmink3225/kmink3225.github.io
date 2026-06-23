@@ -15,6 +15,6 @@ A graduate-level biostatistics project on **large-scale multi-omics analysis** f
 ### Highlights
 
 - Integrated **genomic, metabolomic, and clinical** data to surface **13 key biomarkers (p < 0.01)** from ~3,000 metabolites, and uncovered a confounder that had gone undetected for eight months.
-- Handled a high-dimensional, small-sample setting (**146 samples × 3,000 variables**) with MCAR/MAR/MNAR-aware missing-data treatment and a 3-stage EDA → statistics → ML validation.
+- Handled a high-dimensional, small-sample setting (**~3,000 variables, far more features than samples**) with MCAR/MAR/MNAR-aware missing-data treatment and a 3-stage EDA → statistics → ML validation.
 - Compared 10+ ML algorithms and selected **sPLS** (84% classification accuracy with interpretability); built 20-year onset-risk models with Cox hazard and family-based GEE, and characterized GWAS + metabolite associations.
 - Research competition top-3; Chair's Award; full-time offer from the Taub Institute.

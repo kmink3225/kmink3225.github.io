@@ -15,7 +15,7 @@ mermaid:
 
 **Role:** Technical Lead / Architect &nbsp;·&nbsp; **Stack:** Python, LangChain, LangGraph, Azure OpenAI, Azure AI Search, FastAPI
 
-I architected an enterprise, domain-specific **multi-agent RAG platform** end-to-end, taking it from a single-agent pilot to a company-wide initiative (~30 initial users, expanding company-wide). The platform turns fragmented internal knowledge into a queryable, cited assistant.
+I architected an enterprise, domain-specific **multi-agent RAG platform** end-to-end, taking it from a single-agent pilot to a company-wide initiative. The platform turns fragmented internal knowledge into a queryable, cited assistant.
 
 ### Highlights
 
