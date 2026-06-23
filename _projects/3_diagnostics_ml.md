@@ -11,6 +11,8 @@ mermaid:
   zoomable: false
 ---
 
+<div style="text-align: right; margin-bottom: 1rem;"><strong>English</strong> · <a href="/ko/projects/3_diagnostics_ml/">한국어</a></div>
+
 **Role:** Project PM / Data Scientist &nbsp;·&nbsp; **Stack:** Python, R, LSTM, linear/basis-function modeling, PCA/t-SNE/DBSCAN, R Shiny
 
 Two diagnostics projects where statistical rigor drove measurable safety and cost outcomes.

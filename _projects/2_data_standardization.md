@@ -11,6 +11,8 @@ mermaid:
   zoomable: false
 ---
 
+<div style="text-align: right; margin-bottom: 1rem;"><strong>English</strong> · <a href="/ko/projects/2_data_standardization/">한국어</a></div>
+
 **Role:** Technical Lead (mentored 20+ engineers across IT/BT) &nbsp;·&nbsp; **Stack:** Python, PyTorch, Transformers, KLUE-RoBERTa, BiLSTM, HDBSCAN, RAG, pytest, Docker
 
 I defined and led an **NLP-based data standardization system** to resolve cross-team metadata inconsistency. A successful pilot was promoted to a company-wide rollout and became the starting point for the later AI agent platform.

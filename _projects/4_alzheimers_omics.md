@@ -11,6 +11,8 @@ mermaid:
   zoomable: false
 ---
 
+<div style="text-align: right; margin-bottom: 1rem;"><strong>English</strong> · <a href="/ko/projects/4_alzheimers_omics/">한국어</a></div>
+
 **Role:** Statistical Research Assistant, Columbia University Irving Medical Center — Taub Institute &nbsp;·&nbsp; **Stack:** R, Cox / GEE, sPLS, Lasso/Ridge/RF/SVM/GBM, PCA/K-means/DBSCAN
 
 A graduate-level biostatistics project on **large-scale multi-omics analysis** for Alzheimer's disease biomarker discovery.
