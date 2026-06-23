@@ -1,0 +1,159 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> 엔터프라이즈 멀티 에이전트 RAG 플랫폼 | Kwangmin Kim </title> <meta name="author" content="Kwangmin Kim"> <meta name="description" content="Kwangmin Kim — AI Engineer / Data Scientist. Enterprise AI platforms (RAG, LLM agents, NLP) backed by rigorous evaluation. "> <meta name="keywords" content="AI Engineer, Data Scientist, RAG, LLM agents, LangGraph, NLP, machine learning, biostatistics"> <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> <style>
+  :root {
+    --max-content-width: 930px;
+  }
+</style> <link rel="stylesheet" href="/assets/css/tailwind.css?v=50c64c15cbb9fd1ce6056fdb8bcb4b62"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.5/css/academicons.min.css" integrity="sha256-SzrCOBJbGVFMahewkgjwnApaV2+av1DwMAA+/QGLyZw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css" integrity="sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%F0%9F%A7%A0&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/assets/css/main.css?v=f0b101217084a90093badfe99ff9a7d1"> <link rel="canonical" href="https://kmink3225.github.io/ko/projects/1_ai_platform/"> <script src="/assets/js/theme.js?v=7af685e2ba20b37fef545c97b8064050"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> <span class="font-weight-bold">Kwangmin</span> Kim </a> <button class="navbar-toggler collapsed navbar-toggler-main" type="button" data-nav-toggle="navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav"> <ul class="navbar-nav navbar-menu-list flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">about </a> </li> <li class="nav-item active"> <a class="nav-link" href="/projects/">projects <span class="sr-only">(current)</span> </a> </li> <li class="nav-item "> <a class="nav-link" href="/cv/">CV </a> </li> <li class="nav-item"> <button id="search-toggle" type="button" title="Search" aria-label="Open search"> <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" type="button" title="Change theme" aria-label="Change color theme"> <i class="fa-half-sun-moon" id="light-toggle-system"></i> <i class="fa-solid fa-moon" id="light-toggle-dark"></i> <i class="fa-solid fa-sun" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">엔터프라이즈 멀티 에이전트 RAG 플랫폼</h1> <p class="post-description"></p> </header> <article> <div style="text-align: right; margin-bottom: 1rem;"> <a href="/projects/1_ai_platform/">English</a> · <strong>한국어</strong> </div> <blockquote> <p>아키텍처와 방법론은 상위 수준으로만 기술한다. 운영 코드와 내부 데이터는 비공개다.</p> </blockquote> <p><strong>역할:</strong> 기술 리드 / 아키텍트  ·  <strong>스택:</strong> Python, LangChain, LangGraph, Azure OpenAI, Azure AI Search, FastAPI</p> <p>도메인 특화 <strong>멀티 에이전트 RAG 플랫폼</strong>을 아키텍처부터 총괄 설계·구축하고, 단일 에이전트 파일럿에서 전사 과제로 확장했다. 파편화된 내부 지식을 인용 가능한 어시스턴트로 바꾸며, <strong>지식 QnA·데이터 표준화 도우미·코드 분석</strong> 등 여러 협업 sub-agent가 Azure 공유 인프라 위에서 동작한다.</p> <h3 id="주요-성과">주요 성과</h3> <ul> <li> <strong>지식 QnA 챗봇</strong> — 9개 sub-agent <strong>Self-RAG / CRAG</strong> 루프 + 토큰 스트리밍 + 출처 인용. 151건 질의에서 10개 운영 지표 전수 통과: 사용자 만족도 ~98%, 평균 응답 <strong>4.66초</strong>, 인용률 96.9%, 시스템 성공률 100%. 50문항·4모델 <strong>LLM-as-judge</strong> 평가에서 사실성·추론 5.0/5.0.</li> <li> <strong>데이터 표준화 도우미 Agent</strong> — Rule + ALBERT 분류기 + RAG 하이브리드(LangGraph Reflexion 루프)로 메타데이터 자동 추천. 101건 질의 10개 지표 전수 통과: 만족도 <strong>90.4%</strong>, 평균 3.75초, fallback 0%.</li> <li> <strong>자체 오케스트레이션 vs 범용 CLI</strong> — 최상위 구성에서 건당 비용 <strong>최대 ~17배 절감</strong>, paired t-test / McNemar / Cohen’s d / bootstrap CI 6지표 Composite로 검증.</li> <li> <strong>RAG 파이프라인</strong> — Parent-Child + Contextual Chunking, 하이브리드 검색(BM25 + Vector), Child→Parent 매핑, 리랭킹으로 환각 억제. LangChain → LangGraph → Agentic 3단계 오케스트레이션 로드맵.</li> <li> <strong>모델 평가·MLOps</strong> — LLM-as-judge 자동 채점(사실·추론·범위외·멀티턴) + 아키텍처 A/B 벤치마크 + 메트릭 로깅. 클라우드 운영비 추정 대비 <strong>~32% 절감</strong>.</li> </ul> <h3 id="아키텍처">아키텍처</h3> <p>플랫폼의 sub-agent들은 공통 기반 — Parent-Child·Contextual Chunking과 리랭킹을 갖춘 하이브리드(BM25 + Vector) RAG 인덱스 — 와 공통 평가 루프를 공유한다. 지식 QnA 어시스턴트는 9개 sub-agent Self-RAG / CRAG 루프로 인용된 답변을 구성하고, 데이터 표준화·코드 분석 에이전트도 동일한 그라운딩·오케스트레이션을 재사용한다. LLM-as-judge 단계가 매 상호작용을 채점해 각 에이전트로 품질 신호를 되먹인다.</p> <pre><code class="language-mermaid">flowchart TB
+    DOCS[Internal knowledge] --&gt; IDX[(Hybrid RAG index&lt;br/&gt;BM25 + vector, parent-child)]
+    Q[User query] --&gt; ORCH[Orchestration / control plane]
+    IDX --&gt; ORCH
+    ORCH --&gt; A1[Knowledge QnA assistant&lt;br/&gt;9 sub-agent Self-RAG / CRAG]
+    ORCH --&gt; A2[Data-standardization assistant&lt;br/&gt;Rule + classifier + RAG]
+    ORCH --&gt; A3[Code-analysis agent&lt;br/&gt;self-built orchestration]
+    A1 --&gt; OUT[Grounded, cited output]
+    A2 --&gt; OUT
+    A3 --&gt; OUT
+    OUT --&gt; EVAL[LLM-as-judge evaluation]
+    EVAL -. quality feedback .-&gt; ORCH
+</code></pre> <p>오케스트레이션은 LangChain → LangGraph → Agentic 로드맵을 따라, 단일 프레임워크에 종속되지 않으면서 통제면(control plane)의 역량을 키운다.</p> <h3 id="사례-연구--자체-오케스트레이션-vs-범용-cli">사례 연구 — 자체 오케스트레이션 vs 범용 CLI</h3> <p><strong>문제.</strong> 범용 CLI 에이전트도 내부 질의에 답할 수 있었지만, 건당 비용 프로파일이 전사 도입으로 확장되지 않았고, “체감상 낫다”는 플랫폼 의사결정의 근거가 될 수 없다.</p> <p><strong>바꾼 것.</strong> RAG 파이프라인을 감싸는 전용 오케스트레이션 하네스를 직접 구축해 통제면을 사내에 두고, 6지표 Composite로 범용 CLI와 정면 비교했다 — 데모가 아니라 설계된 실험으로 다뤘다.</p> <table> <thead> <tr> <th>항목</th> <th>범용 CLI</th> <th>자체 오케스트레이션</th> </tr> </thead> <tbody> <tr> <td>건당 비용</td> <td>기준 (1×)</td> <td>최상위 구성에서 <strong>최대 ~17배 낮음</strong> </td> </tr> <tr> <td>판단 근거</td> <td>일화</td> <td>paired t-test · McNemar · Cohen’s d · bootstrap CI</td> </tr> </tbody> </table> <p><strong>결과.</strong> 답변 품질을 유지하면서 건당 비용 최대 ~17배 절감, 인상이 아니라 통계 검정으로 격차를 입증했다 — 단일 에이전트 파일럿에서 전사 롤아웃으로 넘어가는 근거가 되었다.</p> <h3 id="의의">의의</h3> <p>자체 하네스는 통제면을 사내에 둔다: 벤더 유연성, 비용 통제, 그리고 지식을 단일 공급자에게 빌리는 대신 지속 자산으로 축적한다. 이 주장을 팀 밖에서도 입증했다 — MS 워크숍 2회에서 기술 토론을 주도해 <strong>MS 아키텍트와 엔지니어 7명을 자체 오케스트레이션 방식으로 설득</strong>했다.</p> </article> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Kwangmin Kim. Built with <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> and the <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme, hosted on <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. </div> </footer> <script>
+  window.alFolio = {
+    compatBootstrap: false
+  };
+</script> <script src="/assets/js/nav-toggle.js?v=141bd79a73ebc0f0b6ea58e440ae79fc"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/assets/js/masonry.js?v=e49affc7bd2646f6acdad1dbe02c2359" type="text/javascript"></script> <script defer src="https://cdn.jsdelivr.net/npm/mermaid@10.7.0/dist/mermaid.min.js" integrity="sha256-TtLOdUA8mstPoO6sGvHIGx2ceXrrX4KgIItO06XOn8A=" crossorigin="anonymous"></script> <script defer src="/assets/al_charts/js/mermaid-setup.js" type="text/javascript"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/assets/al_math/js/mathjax-setup.js"></script> <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script> <script src="/assets/js/tooltips-setup.js?v=fe487e99db6c43751e6e7bdb2d6a0611"></script> <script src="/assets/js/no_defer.js?v=53b1b1a645525975c963ce8bf8bfefcf"></script> <script defer src="/assets/js/common.js?v=87baac90f765f2f3362dcf6aaf312a8a"></script> <script defer src="/assets/js/copy_code.js?v=c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?v=896d254890d9b47f0281f63bfccf0dee"></script> <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script> <script async src="https://badge.dimensions.ai/badge.js"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/al_img_tools/js/zoom.js"></script> <script defer src="/assets/js/progress-bar.js?v=499464c5c63ced6cf7ad62509f1e2610" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js" integrity="sha256-uMJJ3EoTyfRBoTbR+lrfu1uRQ87RZG8AR3cVNuQVeFg=" crossorigin="anonymous"></script> <script>
+    addBackToTop();
+  </script> <script type="module" src="/assets/al_search/js/search/ninja-keys.min.js"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/assets/al_search/js/search-setup.js"></script> <script>
+// get the ninja-keys element
+const ninja = document.querySelector('ninja-keys');
+
+// add the home and posts menu items
+ninja.data = [{
+    id: "nav-about",
+    title: "about",
+    section: "Navigation",
+    handler: () => {
+      window.location.href = "/";
+    },
+  },{id: "nav-projects",
+          title: "projects",
+          description: "Selected work in AI/LLM engineering and data science. Production details are abstracted to respect employer IP.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/projects/";
+          },
+        },{id: "nav-cv",
+          title: "CV",
+          description: "Curriculum vitae — Kwangmin Kim, AI Engineer / Data Scientist.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/cv/";
+          },
+        },{id: "post-google-gemini-updates-flash-1-5-gemma-2-and-project-astra",
+        
+          title: 'Google Gemini updates: Flash 1.5, Gemma 2 and Project Astra <svg width="1.2rem" height="1.2rem" top=".5rem" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+        
+        description: "We’re sharing updates across our Gemini family of models and a glimpse of Project Astra, our vision for the future of AI assistants.",
+        section: "Posts",
+        handler: () => {
+          
+            window.open("https://blog.google/technology/ai/google-gemini-update-flash-ai-assistant-io-2024/", "_blank");
+          
+        },
+      },{id: "post-displaying-external-posts-on-your-al-folio-blog",
+        
+          title: 'Displaying External Posts on Your al-folio Blog <svg width="1.2rem" height="1.2rem" top=".5rem" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.open("https://medium.com/@al-folio/displaying-external-posts-on-your-al-folio-blog-b60a1d241a0a?source=rss-17feae71c3c4------2", "_blank");
+          
+        },
+      },{id: "projects-enterprise-multi-agent-rag-platform",
+          title: 'Enterprise Multi-Agent RAG Platform',
+          description: "A company-wide knowledge platform built on multiple cooperating LLM agents — grounded, cited, and continuously evaluated.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/1_ai_platform/";
+            },},{id: "projects-nlp-based-data-standardization-system",
+          title: 'NLP-Based Data Standardization System',
+          description: "A hybrid Rule + classifier + RAG system that standardizes metadata automatically — and the rigorous model benchmark behind it.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/2_data_standardization/";
+            },},{id: "projects-diagnostic-signal-modeling-amp-qc-automation",
+          title: 'Diagnostic Signal Modeling &amp;amp; QC Automation',
+          description: "Data-driven redesign of a PCR signal-correction algorithm, and LSTM-based automation of equipment quality control.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/3_diagnostics_ml/";
+            },},{id: "projects-alzheimer-39-s-multi-omics-biomarker-discovery",
+          title: 'Alzheimer&amp;#39;s Multi-Omics Biomarker Discovery',
+          description: "Integrating genomic, metabolomic, and clinical data at Columbia / Taub Institute to surface candidate Alzheimer&#39;s biomarkers.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/4_alzheimers_omics/";
+            },},{id: "teachings-data-science-fundamentals",
+          title: 'Data Science Fundamentals',
+          description: "This course covers the foundational aspects of data science, including data collection, cleaning, analysis, and visualization. Students will learn practical skills for working with real-world datasets.",
+          section: "Teachings",handler: () => {
+              window.location.href = "/teachings/data-science-fundamentals/";
+            },},{id: "teachings-introduction-to-machine-learning",
+          title: 'Introduction to Machine Learning',
+          description: "This course provides an introduction to machine learning concepts, algorithms, and applications. Students will learn about supervised and unsupervised learning, model evaluation, and practical implementations.",
+          section: "Teachings",handler: () => {
+              window.location.href = "/teachings/introduction-to-machine-learning/";
+            },},{
+        id: 'social-email',
+        title: 'email',
+        section: 'Socials',
+        handler: () => {
+          window.open("mailto:%6B%6D%69%6E%6B%33%32%32%35@%67%6D%61%69%6C.%63%6F%6D", "_blank");
+        },
+      },{
+        id: 'social-github',
+        title: 'GitHub',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://github.com/kmink3225", "_blank");
+        },
+      },{
+        id: 'social-linkedin',
+        title: 'LinkedIn',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.linkedin.com/in/kwangmin-kim-a5241b200", "_blank");
+        },
+      },{
+        id: 'social-rss',
+        title: 'RSS Feed',
+        section: 'Socials',
+        handler: () => {
+          window.open("/feed.xml", "_blank");
+        },
+      },{
+      id: 'light-theme',
+      title: 'Change theme to light',
+      description: 'Change the theme of the site to Light',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("light");
+      },
+    },
+    {
+      id: 'dark-theme',
+      title: 'Change theme to dark',
+      description: 'Change the theme of the site to Dark',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("dark");
+      },
+    },
+    {
+      id: 'system-theme',
+      title: 'Use system default theme',
+      description: 'Change the theme of the site to System Default',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("system");
+      },
+    },];
+
+</script> <script src="/assets/al_search/js/shortcut-key.js"></script> </body> </html>
