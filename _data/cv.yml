@@ -56,10 +56,10 @@ cv:
           modeling for diagnostics. Technical lead / architect on a company-wide
           multi-agent platform.
         highlights:
-          - "Architected a domain-specific multi-agent RAG knowledge platform end-to-end and led it from a single-agent pilot to a company-wide initiative (~30 initial users, expanding company-wide)."
+          - "Architected a domain-specific multi-agent RAG knowledge platform (3 agents on shared Azure infra) end-to-end and led it from a single-agent pilot to a company-wide initiative, delivering 2 agents 2 months ahead of target."
           - "Designed a knowledge QnA chatbot (9 sub-agent Self-RAG/CRAG loop, token streaming, source citation): ~98% user satisfaction, 4.66s avg response, 96.9% citation rate, 5.0/5.0 factuality & reasoning on a 4-model LLM-as-judge evaluation."
-          - "Built a self-developed agent orchestration that benchmarked up to ~17x lower cost per query vs. a general-purpose CLI, validated with paired t-test / McNemar / bootstrap CI on a 6-metric composite."
-          - "Delivered an NLP-based data standardization system: validation time 8h -> 0.73s (99% reduction), metadata consistency 8.4% -> 98.7%; an 8-model classifier benchmark (14 classes, 95% CI, McNemar+Holm) selected KLUE-RoBERTa at 96.88% and proved a 671K-param BiLSTM statistically on par with a 110M model."
+          - "Built a self-developed agent orchestration grounding ~400K lines of Python (40K AST facts, an 11,729-node / 38,783-edge code graph) that won a 7-variant benchmark (composite 0.977) at up to ~17x lower cost per query vs. a general-purpose CLI, validated with paired t-test / McNemar / bootstrap CI on a 6-metric composite."
+          - "Delivered an NLP-based data standardization system: validation time 8h -> 0.73s (99% reduction), metadata consistency 8.4% -> 98.7%, completeness 29.6% -> 100%; an 8-model classifier benchmark (14 classes, 7,698 samples, 95% CI, McNemar+Holm) selected KLUE-RoBERTa at 96.88%, and 5-way robustness checks proved a 671K-param BiLSTM statistically on par with the 110M model at 1.48ms inference."
           - "Redesigned a hard-coded PCR signal baseline algorithm into a data-driven model, cutting the false-negative rate 0.47% -> 0.04% (91.49% improvement)."
           - "Automated diagnostic-equipment QC with a two-stage LSTM + 10 quality metrics over 61,248 signals, cutting QC time ~93% (~13x annual operating-cost reduction) — R&D President's Award."
           - "Established a model evaluation & MLOps baseline: LLM-as-judge auto-scoring + architecture A/B benchmarking (paired t-test, McNemar, Cohen's d, bootstrap CI) + metric logging; mentored 20+ engineers across IT/BT."
@@ -81,15 +81,15 @@ cv:
 
       - name: NLP / Deep Learning
         icon: fa-solid fa-brain
-        keywords: "KLUE-RoBERTa, KoBERT, ALBERT, BiLSTM/LSTM, Hugging Face Transformers, PyTorch, KiwiPiePy/KoNLPy"
+        keywords: "KLUE-RoBERTa, KoBERT, ALBERT, KoSRoBERTa, BiLSTM/LSTM, Hugging Face Transformers, PyTorch, KiwiPiePy/KoNLPy"
 
       - name: Machine Learning / Statistics
         icon: fa-solid fa-chart-line
-        keywords: "scikit-learn, HDBSCAN, regression/survival analysis, time series, causal inference (A/B test), experiment design"
+        keywords: "scikit-learn, HDBSCAN, regression/survival analysis, time series, causal inference (A/B test), experiment design, 95% CI, McNemar/Holm"
 
       - name: Data / Backend Engineering
         icon: fa-solid fa-server
-        keywords: "Python, R, SQL (PostgreSQL), SAS, FastAPI, Streamlit, Apache Airflow, Parquet, AST, Docker, Azure DevOps"
+        keywords: "Python, R, SQL (MySQL/PostgreSQL), SAS, FastAPI, Streamlit, Apache Airflow, Parquet, AST, Docker, Azure DevOps"
 
     Awards:
       - title: Patents filed (7 total; first inventor on 4)

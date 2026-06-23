@@ -21,8 +21,8 @@ I architected an enterprise, domain-specific **multi-agent RAG platform** end-to
 
 ### Highlights
 
-- **Knowledge QnA chatbot** — a 9 sub-agent **Self-RAG / CRAG** loop with token streaming and source citation. On a 151-query suite it passed all 10 operational metrics: ~98% user satisfaction, **4.66s** average response, 96.9% citation rate, 100% system success. A 50-question, 4-model **LLM-as-judge** evaluation scored 5.0/5.0 on factuality and reasoning.
-- **Data-standardization assistant** — a Rule + ALBERT classifier + RAG hybrid (LangGraph Reflexion loop) that auto-recommends metadata fields. On a 101-query suite it passed all 10 operational metrics: **90.4%** user satisfaction, 3.75s average response, 0% fallback.
+- **Knowledge QnA chatbot** — a 9 sub-agent **Self-RAG / CRAG** loop with token streaming and source citation. It passed all 10 operational metrics: ~98% user satisfaction, **4.66s** average response, 96.9% citation rate, 100% system success. A 4-model **LLM-as-judge** evaluation scored 5.0/5.0 on factuality and reasoning.
+- **Data-standardization assistant** — a Rule + ALBERT classifier + RAG hybrid (LangGraph Reflexion loop) that auto-recommends metadata fields. It passed all 10 operational metrics: **90.4%** user satisfaction, 3.75s average response, 0% fallback.
 - **Self-built orchestration vs. general-purpose CLI** — benchmarked **up to ~17× lower cost per query** at the top-performing configuration, validated with paired t-test / McNemar / Cohen's d / bootstrap CI over a 6-metric composite.
 - **RAG pipeline** — Parent-Child + contextual chunking, hybrid search (BM25 + vector), child→parent mapping, and reranking to suppress hallucination; a LangChain → LangGraph → Agentic 3-stage orchestration roadmap.
 - **Evaluation & MLOps** — LLM-as-judge auto-scoring (factuality, reasoning, out-of-scope, multi-turn) + architecture A/B benchmarking + metric logging for operations, cutting estimated cloud operating cost by **~32%**.
