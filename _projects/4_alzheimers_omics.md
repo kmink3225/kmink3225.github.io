@@ -8,7 +8,7 @@ category: work
 related_publications: false
 mermaid:
   enabled: true
-  zoomable: true
+  zoomable: false
 ---
 
 **Role:** Statistical Research Assistant, Columbia University Irving Medical Center — Taub Institute &nbsp;·&nbsp; **Stack:** R, Cox / GEE, sPLS, Lasso/Ridge/RF/SVM/GBM, PCA/K-means/DBSCAN

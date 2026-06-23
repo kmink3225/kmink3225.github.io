@@ -8,7 +8,7 @@ category: work
 related_publications: false
 mermaid:
   enabled: true
-  zoomable: true
+  zoomable: false
 ---
 
 > Architecture and methodology are described at a high level; production code and internal data are proprietary.
@@ -27,19 +27,21 @@ I architected an enterprise, domain-specific **multi-agent RAG platform** end-to
 
 ### Architecture
 
-The platform is a retrieval-grounded, continuously-evaluated agent loop. Documents are chunked with parent-child + contextual strategies into a hybrid (BM25 + vector) index; retrieval reranks and maps children back to parents before a 9 sub-agent Self-RAG / CRAG loop composes a cited answer. An LLM-as-judge stage scores every interaction and feeds quality signals back into the loop.
+The platform's sub-agents share a common foundation — a hybrid (BM25 + vector) RAG index with parent-child + contextual chunking and reranking — and a common evaluation loop. The knowledge QnA assistant runs a 9 sub-agent Self-RAG / CRAG loop with token streaming and citation; the data-standardization and code-analysis agents reuse the same grounding and orchestration. An LLM-as-judge stage scores every interaction and feeds quality signals back to each agent.
 
 ```mermaid
 flowchart TB
-    DOC[Internal documents] --> CHUNK[Parent-Child + contextual chunking]
-    CHUNK --> IDX[(Hybrid index<br/>BM25 + vector)]
-    Q[User query] --> R[Retrieval]
-    IDX --> R
-    R --> MAP[Child-to-parent mapping + rerank]
-    MAP --> LOOP[9 sub-agent<br/>Self-RAG / CRAG loop]
-    LOOP --> ANS[Cited answer<br/>+ token streaming]
-    LOOP --> EVAL[LLM-as-judge evaluation<br/>factuality · reasoning · out-of-scope · multi-turn]
-    EVAL -. quality feedback .-> LOOP
+    DOCS[Internal knowledge] --> IDX[(Hybrid RAG index<br/>BM25 + vector, parent-child)]
+    Q[User query] --> ORCH[Orchestration / control plane]
+    IDX --> ORCH
+    ORCH --> A1[Knowledge QnA assistant<br/>9 sub-agent Self-RAG / CRAG]
+    ORCH --> A2[Data-standardization assistant<br/>Rule + classifier + RAG]
+    ORCH --> A3[Code-analysis agent<br/>self-built orchestration]
+    A1 --> OUT[Grounded, cited output]
+    A2 --> OUT
+    A3 --> OUT
+    OUT --> EVAL[LLM-as-judge evaluation]
+    EVAL -. quality feedback .-> ORCH
 ```
 
 Orchestration follows a deliberate LangChain → LangGraph → Agentic roadmap, so the control plane grows in capability without locking into a single framework.

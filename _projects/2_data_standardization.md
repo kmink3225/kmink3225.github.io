@@ -8,7 +8,7 @@ category: work
 related_publications: false
 mermaid:
   enabled: true
-  zoomable: true
+  zoomable: false
 ---
 
 **Role:** Technical Lead (mentored 20+ engineers across IT/BT) &nbsp;·&nbsp; **Stack:** Python, PyTorch, Transformers, KLUE-RoBERTa, BiLSTM, HDBSCAN, RAG, pytest, Docker

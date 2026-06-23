@@ -8,7 +8,7 @@ category: work
 related_publications: false
 mermaid:
   enabled: true
-  zoomable: true
+  zoomable: false
 ---
 
 **Role:** Project PM / Data Scientist &nbsp;·&nbsp; **Stack:** Python, R, LSTM, linear/basis-function modeling, PCA/t-SNE/DBSCAN, R Shiny
@@ -31,7 +31,7 @@ Two diagnostics projects where statistical rigor drove measurable safety and cos
 Both projects replaced a manual or hard-coded baseline with a measured, data-driven model.
 
 ```mermaid
-flowchart LR
+flowchart TB
     subgraph PCR[PCR baseline correction]
       direction TB
       L[Hard-coded legacy algorithm] --> D[Data-driven<br/>mixed-basis-function model]
