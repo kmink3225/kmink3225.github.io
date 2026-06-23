@@ -11,6 +11,8 @@ mermaid:
   zoomable: false
 ---
 
+<div style="text-align: right; margin-bottom: 1rem;"><strong>English</strong> · <a href="/ko/projects/1_ai_platform/">한국어</a></div>
+
 > Architecture and methodology are described at a high level; production code and internal data are proprietary.
 
 **Role:** Technical Lead / Architect &nbsp;·&nbsp; **Stack:** Python, LangChain, LangGraph, Azure OpenAI, Azure AI Search, FastAPI
