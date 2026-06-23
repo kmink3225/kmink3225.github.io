@@ -16,11 +16,14 @@ toc:
 
 *역할: 기술 리드 / 아키텍트 · 스택: Python, LangChain, LangGraph, Azure OpenAI, Azure AI Search, FastAPI*
 
-도메인 특화 **멀티 에이전트 RAG 지식 플랫폼**을 아키텍처부터 총괄 설계·구축하고, 단일 에이전트 파일럿에서 전사 과제로 확장했다(전사 확장 중).
+도메인 특화 **멀티 에이전트 RAG 지식 플랫폼**을 아키텍처부터 총괄 설계·구축하고, 단일 에이전트 파일럿에서 전사 과제로 확장했다(전사 확장 중). 플랫폼은 **지식 QnA·데이터 표준화 도우미·코드 분석** 등 여러 협업 sub-agent로 구성되며 Azure 공유 인프라 위에서 동작한다.
 
 - **지식 QnA 챗봇** — 9개 sub-agent Self-RAG/CRAG 루프 + 토큰 스트리밍 + 출처 인용. 151건 질의 10개 지표 전수 통과(만족도 ~98%, 4.66초, 인용률 96.9%, 성공률 100%), 4모델 LLM-as-judge에서 사실·추론 5.0/5.0.
+- **데이터 표준화 도우미 Agent** — Rule + ALBERT 분류기 + RAG 하이브리드(LangGraph Reflexion 루프)로 메타데이터 자동 추천. 101건 질의 10개 지표 전수 통과(만족도 90.4%, 평균 3.75초, fallback 0%).
 - **자체 오케스트레이션 vs 범용 CLI** — 최상위 구성에서 건당 비용 **최대 ~17배 절감**(paired t-test/McNemar/Cohen's d/bootstrap CI, 6지표 Composite).
 - **RAG 파이프라인** — Parent-Child + Contextual Chunking, 하이브리드 검색(BM25+Vector), Child→Parent 매핑, 리랭킹으로 환각 억제. LangChain → LangGraph → Agentic 3단계 로드맵.
+- **모델 평가·MLOps** — LLM-as-judge 자동 채점(사실·추론·범위외·멀티턴) + 아키텍처 A/B 벤치마크 + 메트릭 로깅, 클라우드 운영비 추정 대비 **~32% 절감**.
+- **자체 하네스 전략** — 벤더 Lock-in 대비 통제 코드 자체 개발. MS 워크숍 2회에서 기술 토론을 주도해 **MS 아키텍트·엔지니어 7명을 자체 오케스트레이션 방식으로 설득**.
 
 ## NLP 기반 데이터 표준화 시스템
 

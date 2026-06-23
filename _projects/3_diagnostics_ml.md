@@ -6,6 +6,9 @@ img: assets/img/3.jpg
 importance: 3
 category: work
 related_publications: false
+mermaid:
+  enabled: true
+  zoomable: true
 ---
 
 **Role:** Project PM / Data Scientist &nbsp;·&nbsp; **Stack:** Python, R, LSTM, linear/basis-function modeling, PCA/t-SNE/DBSCAN, R Shiny
@@ -22,3 +25,21 @@ Two diagnostics projects where statistical rigor drove measurable safety and cos
 - Replaced manual Excel QC with a **two-stage LSTM + 10 graded performance metrics**, cutting QC time ~93% (≈13× annual operating-cost reduction).
 - Trained on 2,201 devices / 2,552 runs / **61,248 signals**: pass-fail classification 94.5%, grade classification 82.7%; anomaly detection via PCA, t-SNE, DBSCAN, 3-sigma with an R Shiny real-time dashboard.
 - Recognized with an **R&D President's Award** and two first-inventor patents.
+
+### Approach
+
+Both projects replaced a manual or hard-coded baseline with a measured, data-driven model.
+
+```mermaid
+flowchart LR
+    subgraph PCR[PCR baseline correction]
+      direction TB
+      L[Hard-coded legacy algorithm] --> D[Data-driven<br/>mixed-basis-function model]
+      D --> FN[False-negative<br/>0.47% to 0.04%]
+    end
+    subgraph QC[Equipment QC automation]
+      direction TB
+      M[Manual Excel QC] --> LSTM[Two-stage LSTM<br/>+ 10 graded metrics]
+      LSTM --> T[QC time ~93% lower]
+    end
+```
