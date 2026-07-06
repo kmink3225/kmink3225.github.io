@@ -15,7 +15,7 @@ mermaid:
 
 **Role:** Technical Lead (mentored 20+ engineers across IT/BT) &nbsp;·&nbsp; **Stack:** Python, PyTorch, Transformers, KLUE-RoBERTa, BiLSTM, HDBSCAN, RAG, pytest, Docker
 
-I defined and led an **NLP-based data standardization system** to resolve cross-team metadata inconsistency. A successful pilot was promoted to a company-wide rollout and became the starting point for the later AI agent platform.
+I defined and led an **NLP-based data standardization system** to resolve cross-team metadata inconsistency. After evaluating commercial data-governance solutions (Databricks, Snowflake, MS Purview) and finding they all presuppose an existing standardization framework, I designed the framework itself first and then automated it. A successful pilot was promoted to a company-wide rollout and became the starting point for the later AI agent platform.
 
 ### Highlights
 

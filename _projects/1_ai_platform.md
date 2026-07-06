@@ -23,7 +23,7 @@ I architected an enterprise, domain-specific **multi-agent RAG platform** end-to
 
 - **Knowledge QnA chatbot** — a 9 sub-agent **Self-RAG / CRAG** loop with token streaming and source citation. It passed all 10 operational metrics: ~98% user satisfaction, **4.66s** average response, 96.9% citation rate, 100% system success. A 4-model **LLM-as-judge** evaluation scored 5.0/5.0 on factuality and reasoning.
 - **Data-standardization assistant** — a Rule + ALBERT classifier + RAG hybrid (LangGraph Reflexion loop) that auto-recommends metadata fields. It passed all 10 operational metrics: **90.4%** user satisfaction, 3.75s average response, 0% fallback.
-- **Self-built orchestration vs. general-purpose CLI** — benchmarked **up to ~17× lower cost per query** at the top-performing configuration, validated with paired t-test / McNemar / Cohen's d / bootstrap CI over a 6-metric composite.
+- **Code-analysis agent & 3-architecture benchmark** — grounded a ~400K-line Python codebase (32 repos, 1,453 files) into **40K AST facts**, a code graph (**11,729 nodes / 38,783 edges**), and a 42K search index; benchmarked **raw Claude Code vs. Claude Code + a metadata/skill harness vs. self-built orchestration** (11 variants) — the self-built orchestration ranked **1st (composite 0.977)** at **up to ~17× lower cost per query**, validated with paired t-test / McNemar / Cohen's d / bootstrap CI over a 6-metric composite.
 - **RAG pipeline** — Parent-Child + contextual chunking, hybrid search (BM25 + vector), child→parent mapping, and reranking to suppress hallucination; a LangChain → LangGraph → Agentic 3-stage orchestration roadmap.
 - **Evaluation & MLOps** — LLM-as-judge auto-scoring (factuality, reasoning, out-of-scope, multi-turn) + architecture A/B benchmarking + metric logging for operations, cutting estimated cloud operating cost by **~32%**.
 
@@ -48,18 +48,19 @@ flowchart TB
 
 Orchestration follows a deliberate LangChain → LangGraph → Agentic roadmap, so the control plane grows in capability without locking into a single framework.
 
-### Case study — self-built orchestration vs. a general-purpose CLI
+### Case study — self-built orchestration vs. Claude Code
 
-**Problem.** A general-purpose CLI agent could already answer internal questions, but its cost-per-query profile did not scale to company-wide adoption, and "it feels better" is not an argument a platform decision can rest on.
+**Problem.** A general-purpose CLI agent (Claude Code) could already answer internal questions, but its cost-per-query profile did not scale to company-wide adoption, and "it feels better" is not an argument a platform decision can rest on.
 
-**What changed.** I built a dedicated orchestration harness around the RAG pipeline — keeping the control plane in-house — and benchmarked it head-to-head against the general-purpose CLI on a 6-metric composite, treating the comparison as a designed experiment rather than a demo.
+**What changed.** I benchmarked **three architectures** head-to-head — raw Claude Code, Claude Code wrapped in a metadata/skill harness, and a dedicated self-built orchestration around the RAG pipeline that keeps the control plane in-house — across **11 variants** (including the latest Claude Sonnet 5 both raw and harnessed) on a 51-question eval set with a 6-metric composite, treating the comparison as a designed experiment rather than a demo.
 
-| Dimension | General-purpose CLI | Self-built orchestration |
-|---|---|---|
-| Cost per query | baseline (1×) | **up to ~17× lower** at the top configuration |
-| Decision basis | anecdote | paired t-test · McNemar · Cohen's d · bootstrap CI |
+| Architecture | Outcome |
+|---|---|
+| Raw Claude Code | capable baseline; cost per query does not scale (costliest variant $1.32) |
+| Claude Code + metadata/skill harness | improved answer usefulness over raw on the same model — cross-validated by blind practitioner review |
+| Self-built orchestration | **composite 0.977 — 1st of 11 variants** · 11.6s · **$0.076/query (up to ~17× lower)** |
 
-**Result.** Up to ~17× lower cost per query while holding answer quality, with the gap established by statistical tests rather than impression — the evidence that justified moving from a single-agent pilot to a company-wide rollout.
+**Result.** The self-built, determinism-first orchestration won overall — up to ~17× lower cost per query while leading on answer quality, with the gap established by paired t-test · McNemar · Cohen's d · bootstrap CI rather than impression — the evidence that justified moving from a single-agent pilot to a company-wide rollout.
 
 ### Why it matters
 
