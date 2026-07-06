@@ -19,11 +19,123 @@ mermaid:
 
 I architected an enterprise, domain-specific **multi-agent RAG platform** end-to-end, taking it from a single-agent pilot to a company-wide initiative — the program grew out of the success of the earlier [data-standardization system](/projects/2_data_standardization/), promoted from a single-agent plan into a multi-agent flagship project. The platform turns fragmented internal knowledge into a queryable, cited assistant, and comprises several cooperating sub-agents — a **knowledge QnA assistant**, a **data-standardization assistant**, and a **code-analysis agent** — over shared Azure infrastructure. It is live with **~30 practitioners** in the initial rollout and expanding company-wide; two of the three agents shipped **two months ahead of target**.
 
-### Highlights
+### The three agents
 
-- **Knowledge QnA chatbot** — a 9 sub-agent **Self-RAG / CRAG** loop with token streaming and source citation. Across a **151-query** operational evaluation it passed all 10 operational metrics: ~98% user satisfaction, **4.66s** average response, 96.9% citation rate, 95.6% RAG retrieval success, 100% system success. A 50-question, 4-model **LLM-as-judge** evaluation scored 5.0/5.0 on factuality and reasoning (gpt-4.1).
-- **Data-standardization assistant** — a Rule + ALBERT classifier + RAG hybrid (LangGraph Reflexion loop) that auto-recommends three metadata fields; the productionized successor of the earlier [data-standardization system](/projects/2_data_standardization/). Across a 101-query evaluation it passed all 10 operational metrics: **90.4%** user satisfaction, 3.75s average response, 0% fallback.
-- **Code-analysis agent & 3-architecture benchmark** — grounded a ~400K-line Python codebase (32 repos, 1,453 files) into **40K AST facts**, a code graph (**11,729 nodes / 38,783 edges**), and a 42K search index; benchmarked **raw Claude Code vs. Claude Code + a metadata/skill harness vs. self-built orchestration** (11 variants) — the self-built orchestration, a determinism-first grounded pipeline on a mini-tier model (GPT-5.4-mini), ranked **1st (composite 0.977)** at **up to ~17× lower cost per query**, validated with paired t-test / McNemar / Cohen's d / bootstrap CI over a 6-metric composite; now nearing production deployment.
+<style>
+.ag-tabs { margin: 1rem 0 1.5rem; }
+.ag-tabs > input { position: absolute; opacity: 0; pointer-events: none; }
+.ag-bar { display: flex; flex-wrap: wrap; gap: .25rem; border-bottom: 1px solid var(--global-divider-color); margin-bottom: 1rem; }
+.ag-bar label { padding: .45rem .9rem; cursor: pointer; font-size: .9rem; font-weight: 500; color: var(--global-text-color-light); border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.ag-bar label:hover { color: var(--global-text-color); }
+.ag-panel { display: none; }
+#ag-qna:checked ~ .ag-bar label[for="ag-qna"],
+#ag-std:checked ~ .ag-bar label[for="ag-std"],
+#ag-code:checked ~ .ag-bar label[for="ag-code"] { color: var(--global-text-color); font-weight: 600; border-bottom-color: var(--global-theme-color); }
+#ag-qna:focus-visible ~ .ag-bar label[for="ag-qna"],
+#ag-std:focus-visible ~ .ag-bar label[for="ag-std"],
+#ag-code:focus-visible ~ .ag-bar label[for="ag-code"] { outline: 2px solid var(--global-theme-color); outline-offset: 2px; }
+#ag-qna:checked ~ #ag-panel-qna,
+#ag-std:checked ~ #ag-panel-std,
+#ag-code:checked ~ #ag-panel-code { display: block; }
+.ag-flow { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem; margin: .9rem 0; }
+.ag-flow .s { border: 1px solid var(--global-divider-color); background: var(--global-card-bg-color); border-radius: 999px; padding: .22rem .7rem; font-size: .78rem; line-height: 1.35; color: var(--global-text-color); }
+.ag-flow .a { color: var(--global-text-color-light); font-size: .8rem; }
+.ag-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .6rem; margin: 1rem 0; }
+.ag-kpi { border: 1px solid var(--global-divider-color); background: var(--global-card-bg-color); border-radius: 8px; padding: .65rem .8rem; }
+.ag-kpi .l { font-size: .75rem; line-height: 1.3; color: var(--global-text-color-light); }
+.ag-kpi .v { font-size: 1.3rem; font-weight: 600; line-height: 1.25; color: var(--global-text-color); margin-top: .1rem; }
+.ag-kpi .d { font-size: .72rem; line-height: 1.3; color: var(--global-text-color-light); margin-top: .1rem; }
+.ag-cost { max-width: 560px; margin: 1rem 0 .25rem; }
+.ag-cost .r { display: grid; grid-template-columns: minmax(8em, 12em) 1fr 3.6em; align-items: center; gap: .55rem; margin: .4rem 0; }
+.ag-cost .n { font-size: .78rem; color: var(--global-text-color); text-align: right; line-height: 1.3; }
+.ag-cost .b { height: 14px; border-radius: 0 4px 4px 0; }
+.ag-cost .b.base { width: 100%; background: var(--global-text-color-light); }
+.ag-cost .b.acc { width: 5.8%; min-width: 4px; background: var(--global-theme-color); }
+.ag-cost .v { font-size: .78rem; font-weight: 600; color: var(--global-text-color); font-variant-numeric: tabular-nums; }
+.ag-cap { display: block; font-size: .74rem; color: var(--global-text-color-light); margin-top: .1rem; }
+@media print {
+  .ag-panel { display: block !important; }
+  .ag-bar { display: none; }
+}
+</style>
+
+<div class="ag-tabs">
+  <input type="radio" name="ag-tabs" id="ag-qna" checked>
+  <input type="radio" name="ag-tabs" id="ag-std">
+  <input type="radio" name="ag-tabs" id="ag-code">
+  <nav class="ag-bar" aria-label="Platform agents">
+    <label for="ag-qna">Knowledge QnA</label>
+    <label for="ag-std">Data standardization</label>
+    <label for="ag-code">Code analysis</label>
+  </nav>
+
+  <section class="ag-panel" id="ag-panel-qna">
+    <p><strong>Knowledge QnA chatbot</strong> — a 9 sub-agent <strong>Self-RAG / CRAG</strong> loop with token streaming and source citation. Across a <strong>151-query</strong> operational evaluation it passed <strong>all 10 operational metrics</strong>; a 50-question, 4-model <strong>LLM-as-judge</strong> evaluation scored <strong>5.0 / 5.0</strong> on factuality and reasoning (gpt-4.1).</p>
+    <div class="ag-flow">
+      <span class="s">User query</span><span class="a" aria-hidden="true">→</span>
+      <span class="s">Hybrid retrieval</span><span class="a" aria-hidden="true">→</span>
+      <span class="s">Self-RAG / CRAG grading loop</span><span class="a" aria-hidden="true">→</span>
+      <span class="s">Cited, streamed answer</span><span class="a" aria-hidden="true">→</span>
+      <span class="s">LLM-as-judge scoring</span>
+    </div>
+    <div class="ag-kpis">
+      <div class="ag-kpi"><div class="l">User satisfaction</div><div class="v">~98%</div></div>
+      <div class="ag-kpi"><div class="l">Avg response</div><div class="v">4.66s</div></div>
+      <div class="ag-kpi"><div class="l">Citation rate</div><div class="v">96.9%</div></div>
+      <div class="ag-kpi"><div class="l">RAG retrieval success</div><div class="v">95.6%</div></div>
+      <div class="ag-kpi"><div class="l">System success</div><div class="v">100%</div></div>
+      <div class="ag-kpi"><div class="l">LLM-judge factuality · reasoning</div><div class="v">5.0/5.0</div></div>
+    </div>
+  </section>
+
+  <section class="ag-panel" id="ag-panel-std">
+    <p><strong>Data-standardization assistant</strong> — a Rule + ALBERT classifier + RAG hybrid (LangGraph Reflexion loop) that auto-recommends three metadata fields; the productionized successor of the earlier <a href="/projects/2_data_standardization/">data-standardization system</a>. Across a <strong>101-query</strong> evaluation it passed <strong>all 10 operational metrics</strong>.</p>
+    <div class="ag-flow">
+      <span class="s">Metadata query</span><span class="a" aria-hidden="true">→</span>
+      <span class="s">Rule engine · ALBERT classifier · RAG lookup</span><span class="a" aria-hidden="true">→</span>
+      <span class="s">Merged recommendation + confidence</span><span class="a" aria-hidden="true">→</span>
+      <span class="s">LangGraph Reflexion check</span>
+    </div>
+    <div class="ag-kpis">
+      <div class="ag-kpi"><div class="l">User satisfaction</div><div class="v">90.4%</div></div>
+      <div class="ag-kpi"><div class="l">Avg response</div><div class="v">3.75s</div></div>
+      <div class="ag-kpi"><div class="l">Fallback rate</div><div class="v">0%</div></div>
+      <div class="ag-kpi"><div class="l">Operational metrics passed</div><div class="v">10/10</div></div>
+    </div>
+  </section>
+
+  <section class="ag-panel" id="ag-panel-code">
+    <p><strong>Code-analysis agent</strong> — grounded a ~400K-line Python codebase (32 repos, 1,453 files) into <strong>40K AST facts</strong>, a code graph (<strong>11,729 nodes / 38,783 edges</strong>), and a 42K search index. A 3-architecture benchmark — <strong>raw Claude Code vs. Claude Code + a metadata/skill harness vs. self-built orchestration</strong>, 11 variants — put the self-built, determinism-first grounded pipeline on a mini-tier model (GPT-5.4-mini) <strong>1st (composite 0.977)</strong>, validated with paired t-test / McNemar / Cohen's d / bootstrap CI over a 6-metric composite; now nearing production deployment. Full comparison in the case study below.</p>
+    <div class="ag-flow">
+      <span class="s">~400K-line codebase</span><span class="a" aria-hidden="true">→</span>
+      <span class="s">40K AST facts · code graph · 42K index</span><span class="a" aria-hidden="true">→</span>
+      <span class="s">Grounded pipeline on GPT-5.4-mini</span><span class="a" aria-hidden="true">→</span>
+      <span class="s">Answer with provenance</span>
+    </div>
+    <div class="ag-kpis">
+      <div class="ag-kpi"><div class="l">AST facts</div><div class="v">40K</div></div>
+      <div class="ag-kpi"><div class="l">Code graph (nodes / edges)</div><div class="v">11.7K / 38.8K</div></div>
+      <div class="ag-kpi"><div class="l">Benchmark composite</div><div class="v">0.977</div><div class="d">1st of 11 variants</div></div>
+      <div class="ag-kpi"><div class="l">Cost per query</div><div class="v">$0.076</div><div class="d">up to ~17× lower</div></div>
+    </div>
+    <div class="ag-cost">
+      <div class="r">
+        <span class="n">Costliest CLI variant</span>
+        <div><div class="b base"></div></div>
+        <span class="v">$1.32</span>
+      </div>
+      <div class="r">
+        <span class="n">Self-built orchestration</span>
+        <div><div class="b acc"></div></div>
+        <span class="v">$0.076</span>
+      </div>
+      <span class="ag-cap">Cost per query on the same 51-question eval set — up to ~17× lower.</span>
+    </div>
+  </section>
+</div>
+
+### Platform foundation
+
 - **RAG pipeline** — Parent-Child + contextual chunking, hybrid search (BM25 + vector), child→parent mapping, and reranking to suppress hallucination; a LangChain → LangGraph → Agentic 3-stage orchestration roadmap.
 - **Evaluation & MLOps** — LLM-as-judge auto-scoring (factuality, reasoning, out-of-scope, multi-turn) + architecture A/B benchmarking + metric logging for operations, cutting estimated cloud operating cost by **~32%**.
 

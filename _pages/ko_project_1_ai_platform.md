@@ -16,11 +16,123 @@ mermaid:
 
 도메인 특화 **멀티 에이전트 RAG 플랫폼**을 아키텍처부터 총괄 설계·구축하고, 단일 에이전트 파일럿에서 전사 과제로 확장했다 — 선행 [데이터 표준화 시스템](/ko/projects/2_data_standardization/)의 성공이 단일 에이전트 계획에서 멀티 에이전트 대형 과제로 승격된 프로젝트다. 파편화된 내부 지식을 인용 가능한 어시스턴트로 바꾸며, **지식 QnA·데이터 표준화 도우미·코드 분석** 등 여러 협업 sub-agent가 Azure 공유 인프라 위에서 동작한다. 현재 초기 현업 실무진 **~30명에 배포**되어 전사 확장 중이며, 3개 에이전트 중 2종을 목표 대비 **2개월 조기 완료**했다.
 
-### 주요 성과
+### 3대 에이전트
 
-- **지식 QnA 챗봇** — 9개 sub-agent **Self-RAG / CRAG** 루프 + 토큰 스트리밍 + 출처 인용. 질의 **151건** 운영 평가에서 10개 운영 지표 전수 통과: 사용자 만족도 ~98%, 평균 응답 **4.66초**, 인용률 96.9%, RAG 검색 성공률 95.6%, 시스템 성공률 100%. 50문항·4모델 **LLM-as-judge** 평가에서 사실성·추론 5.0/5.0(gpt-4.1).
-- **데이터 표준화 도우미 Agent** — Rule + ALBERT 분류기 + RAG 하이브리드(LangGraph Reflexion 루프)로 메타데이터 3종 자동 추천; 선행 [데이터 표준화 시스템](/ko/projects/2_data_standardization/)의 production 계승체다. 질의 101건 평가에서 10개 지표 전수 통과: 만족도 **90.4%**, 평균 3.75초, fallback 0%.
-- **코드 분석 Agent와 3-아키텍처 벤치마크** — 약 40만 줄 Python 코드베이스(32개 레포, 1,453 파일)를 **40K AST 사실**, 코드 그래프(**11,729 노드 / 38,783 엣지**), 42K 검색 인덱스로 그라운딩; **raw Claude Code vs Claude Code+메타데이터/스킬 하네스 vs 자체 오케스트레이션**(11개 변형)을 비교 — 결정론 우선·그라운딩 기반의 mini급 모델(GPT-5.4-mini) 자체 오케스트레이션이 **종합 1위(Composite 0.977)**, 건당 비용 **최대 ~17배 절감**, paired t-test / McNemar / Cohen's d / bootstrap CI 6지표 Composite로 검증; 현재 production 배포 임박.
+<style>
+.ag-tabs { margin: 1rem 0 1.5rem; }
+.ag-tabs > input { position: absolute; opacity: 0; pointer-events: none; }
+.ag-bar { display: flex; flex-wrap: wrap; gap: .25rem; border-bottom: 1px solid var(--global-divider-color); margin-bottom: 1rem; }
+.ag-bar label { padding: .45rem .9rem; cursor: pointer; font-size: .9rem; font-weight: 500; color: var(--global-text-color-light); border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.ag-bar label:hover { color: var(--global-text-color); }
+.ag-panel { display: none; }
+#ag-qna:checked ~ .ag-bar label[for="ag-qna"],
+#ag-std:checked ~ .ag-bar label[for="ag-std"],
+#ag-code:checked ~ .ag-bar label[for="ag-code"] { color: var(--global-text-color); font-weight: 600; border-bottom-color: var(--global-theme-color); }
+#ag-qna:focus-visible ~ .ag-bar label[for="ag-qna"],
+#ag-std:focus-visible ~ .ag-bar label[for="ag-std"],
+#ag-code:focus-visible ~ .ag-bar label[for="ag-code"] { outline: 2px solid var(--global-theme-color); outline-offset: 2px; }
+#ag-qna:checked ~ #ag-panel-qna,
+#ag-std:checked ~ #ag-panel-std,
+#ag-code:checked ~ #ag-panel-code { display: block; }
+.ag-flow { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem; margin: .9rem 0; }
+.ag-flow .s { border: 1px solid var(--global-divider-color); background: var(--global-card-bg-color); border-radius: 999px; padding: .22rem .7rem; font-size: .78rem; line-height: 1.35; color: var(--global-text-color); }
+.ag-flow .a { color: var(--global-text-color-light); font-size: .8rem; }
+.ag-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .6rem; margin: 1rem 0; }
+.ag-kpi { border: 1px solid var(--global-divider-color); background: var(--global-card-bg-color); border-radius: 8px; padding: .65rem .8rem; }
+.ag-kpi .l { font-size: .75rem; line-height: 1.3; color: var(--global-text-color-light); }
+.ag-kpi .v { font-size: 1.3rem; font-weight: 600; line-height: 1.25; color: var(--global-text-color); margin-top: .1rem; }
+.ag-kpi .d { font-size: .72rem; line-height: 1.3; color: var(--global-text-color-light); margin-top: .1rem; }
+.ag-cost { max-width: 560px; margin: 1rem 0 .25rem; }
+.ag-cost .r { display: grid; grid-template-columns: minmax(8em, 12em) 1fr 3.6em; align-items: center; gap: .55rem; margin: .4rem 0; }
+.ag-cost .n { font-size: .78rem; color: var(--global-text-color); text-align: right; line-height: 1.3; }
+.ag-cost .b { height: 14px; border-radius: 0 4px 4px 0; }
+.ag-cost .b.base { width: 100%; background: var(--global-text-color-light); }
+.ag-cost .b.acc { width: 5.8%; min-width: 4px; background: var(--global-theme-color); }
+.ag-cost .v { font-size: .78rem; font-weight: 600; color: var(--global-text-color); font-variant-numeric: tabular-nums; }
+.ag-cap { display: block; font-size: .74rem; color: var(--global-text-color-light); margin-top: .1rem; }
+@media print {
+  .ag-panel { display: block !important; }
+  .ag-bar { display: none; }
+}
+</style>
+
+<div class="ag-tabs">
+  <input type="radio" name="ag-tabs" id="ag-qna" checked>
+  <input type="radio" name="ag-tabs" id="ag-std">
+  <input type="radio" name="ag-tabs" id="ag-code">
+  <nav class="ag-bar" aria-label="플랫폼 에이전트">
+    <label for="ag-qna">지식 QnA</label>
+    <label for="ag-std">데이터 표준화</label>
+    <label for="ag-code">코드 분석</label>
+  </nav>
+
+  <section class="ag-panel" id="ag-panel-qna">
+    <p><strong>지식 QnA 챗봇</strong> — 9개 sub-agent <strong>Self-RAG / CRAG</strong> 루프 + 토큰 스트리밍 + 출처 인용. 질의 <strong>151건</strong> 운영 평가에서 <strong>10개 운영 지표 전수 통과</strong>; 50문항·4모델 <strong>LLM-as-judge</strong> 평가에서 사실성·추론 <strong>5.0 / 5.0</strong>(gpt-4.1).</p>
+    <div class="ag-flow">
+      <span class="s">사용자 질의</span><span class="a" aria-hidden="true">→</span>
+      <span class="s">하이브리드 검색</span><span class="a" aria-hidden="true">→</span>
+      <span class="s">Self-RAG / CRAG 자기검증 루프</span><span class="a" aria-hidden="true">→</span>
+      <span class="s">출처 인용 스트리밍 답변</span><span class="a" aria-hidden="true">→</span>
+      <span class="s">LLM-as-judge 채점</span>
+    </div>
+    <div class="ag-kpis">
+      <div class="ag-kpi"><div class="l">사용자 만족도</div><div class="v">~98%</div></div>
+      <div class="ag-kpi"><div class="l">평균 응답</div><div class="v">4.66초</div></div>
+      <div class="ag-kpi"><div class="l">출처 인용률</div><div class="v">96.9%</div></div>
+      <div class="ag-kpi"><div class="l">RAG 검색 성공률</div><div class="v">95.6%</div></div>
+      <div class="ag-kpi"><div class="l">시스템 성공률</div><div class="v">100%</div></div>
+      <div class="ag-kpi"><div class="l">LLM-judge 사실·추론</div><div class="v">5.0/5.0</div></div>
+    </div>
+  </section>
+
+  <section class="ag-panel" id="ag-panel-std">
+    <p><strong>데이터 표준화 도우미 Agent</strong> — Rule + ALBERT 분류기 + RAG 하이브리드(LangGraph Reflexion 루프)로 메타데이터 3종 자동 추천; 선행 <a href="/ko/projects/2_data_standardization/">데이터 표준화 시스템</a>의 production 계승체다. 질의 <strong>101건</strong> 평가에서 <strong>10개 운영 지표 전수 통과</strong>.</p>
+    <div class="ag-flow">
+      <span class="s">메타데이터 질의</span><span class="a" aria-hidden="true">→</span>
+      <span class="s">Rule 엔진 · ALBERT 분류기 · RAG 조회</span><span class="a" aria-hidden="true">→</span>
+      <span class="s">병합 추천 + 신뢰도 점수</span><span class="a" aria-hidden="true">→</span>
+      <span class="s">LangGraph Reflexion 검증</span>
+    </div>
+    <div class="ag-kpis">
+      <div class="ag-kpi"><div class="l">사용자 만족도</div><div class="v">90.4%</div></div>
+      <div class="ag-kpi"><div class="l">평균 응답</div><div class="v">3.75초</div></div>
+      <div class="ag-kpi"><div class="l">Fallback 비율</div><div class="v">0%</div></div>
+      <div class="ag-kpi"><div class="l">운영 지표 통과</div><div class="v">10/10</div></div>
+    </div>
+  </section>
+
+  <section class="ag-panel" id="ag-panel-code">
+    <p><strong>코드 분석 Agent</strong> — 약 40만 줄 Python 코드베이스(32개 레포, 1,453 파일)를 <strong>40K AST 사실</strong>, 코드 그래프(<strong>11,729 노드 / 38,783 엣지</strong>), 42K 검색 인덱스로 그라운딩. 3-아키텍처 벤치마크 — <strong>raw Claude Code vs Claude Code+메타데이터/스킬 하네스 vs 자체 오케스트레이션</strong>, 11개 변형 — 에서 결정론 우선·그라운딩 기반의 mini급 모델(GPT-5.4-mini) 자체 오케스트레이션이 <strong>종합 1위(Composite 0.977)</strong>, paired t-test / McNemar / Cohen's d / bootstrap CI 6지표 Composite로 검증; 현재 production 배포 임박. 상세 비교는 아래 사례 연구 참조.</p>
+    <div class="ag-flow">
+      <span class="s">약 40만 줄 코드베이스</span><span class="a" aria-hidden="true">→</span>
+      <span class="s">40K AST 사실 · 코드 그래프 · 42K 인덱스</span><span class="a" aria-hidden="true">→</span>
+      <span class="s">GPT-5.4-mini 그라운딩 파이프라인</span><span class="a" aria-hidden="true">→</span>
+      <span class="s">출처 포함 답변</span>
+    </div>
+    <div class="ag-kpis">
+      <div class="ag-kpi"><div class="l">AST 사실</div><div class="v">40K</div></div>
+      <div class="ag-kpi"><div class="l">코드 그래프 (노드 / 엣지)</div><div class="v">11.7K / 38.8K</div></div>
+      <div class="ag-kpi"><div class="l">벤치마크 Composite</div><div class="v">0.977</div><div class="d">11개 변형 중 1위</div></div>
+      <div class="ag-kpi"><div class="l">건당 비용</div><div class="v">$0.076</div><div class="d">최대 ~17배 절감</div></div>
+    </div>
+    <div class="ag-cost">
+      <div class="r">
+        <span class="n">최고 비용 CLI 변형</span>
+        <div><div class="b base"></div></div>
+        <span class="v">$1.32</span>
+      </div>
+      <div class="r">
+        <span class="n">자체 오케스트레이션</span>
+        <div><div class="b acc"></div></div>
+        <span class="v">$0.076</span>
+      </div>
+      <span class="ag-cap">동일 51문항 평가 셋 기준 건당 비용 — 최대 ~17배 절감.</span>
+    </div>
+  </section>
+</div>
+
+### 플랫폼 공통 기반
+
 - **RAG 파이프라인** — Parent-Child + Contextual Chunking, 하이브리드 검색(BM25 + Vector), Child→Parent 매핑, 리랭킹으로 환각 억제. LangChain → LangGraph → Agentic 3단계 오케스트레이션 로드맵.
 - **모델 평가·MLOps** — LLM-as-judge 자동 채점(사실·추론·범위외·멀티턴) + 아키텍처 A/B 벤치마크 + 메트릭 로깅. 클라우드 운영비 추정 대비 **~32% 절감**.
 
