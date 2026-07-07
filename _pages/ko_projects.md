@@ -4,63 +4,89 @@ title: 프로젝트
 permalink: /ko/projects/
 nav: false
 description: AI/LLM 엔지니어링과 데이터 사이언스 주요 작업. 운영 세부사항은 회사 IP 보호를 위해 추상화했다.
-toc:
-  sidebar: left
 ---
 
 <div style="text-align: right; margin-bottom: 1rem;"><a href="/projects/">English</a> · <strong>한국어</strong></div>
 
-> 아키텍처와 방법론은 상위 수준으로만 기술한다. 운영 코드와 내부 데이터는 비공개다.
-
-## 엔터프라이즈 멀티 에이전트 RAG 플랫폼
-
-*역할: 기술 리드 / 아키텍트 · 스택: Python, LangChain, LangGraph, Azure OpenAI, Azure AI Search, FastAPI*
-
-도메인 특화 **멀티 에이전트 RAG 지식 플랫폼**을 아키텍처부터 총괄 설계·구축하고, 단일 에이전트 파일럿에서 전사 과제로 확장했다(전사 확장 중). 플랫폼은 **지식 QnA·데이터 표준화 도우미·코드 분석** 등 여러 협업 sub-agent로 구성되며 Azure 공유 인프라 위에서 동작한다.
-
-- **지식 QnA 챗봇** — 9개 sub-agent Self-RAG/CRAG 루프 + 토큰 스트리밍 + 출처 인용. 10개 지표 전수 통과(만족도 ~98%, 4.66초, 인용률 96.9%, 성공률 100%), 4모델 LLM-as-judge에서 사실·추론 5.0/5.0.
-- **데이터 표준화 도우미 Agent** — Rule + ALBERT 분류기 + RAG 하이브리드(LangGraph Reflexion 루프)로 메타데이터 자동 추천. 10개 지표 전수 통과(만족도 90.4%, 평균 3.75초, fallback 0%).
-- **자체 오케스트레이션 vs 범용 CLI** — 최상위 구성에서 건당 비용 **최대 ~17배 절감**(paired t-test/McNemar/Cohen's d/bootstrap CI, 6지표 Composite).
-- **RAG 파이프라인** — Parent-Child + Contextual Chunking, 하이브리드 검색(BM25+Vector), Child→Parent 매핑, 리랭킹으로 환각 억제. LangChain → LangGraph → Agentic 3단계 로드맵.
-- **모델 평가·MLOps** — LLM-as-judge 자동 채점(사실·추론·범위외·멀티턴) + 아키텍처 A/B 벤치마크 + 메트릭 로깅, 클라우드 운영비 추정 대비 **~32% 절감**.
-- **자체 하네스 전략** — 벤더 Lock-in 대비 통제 코드 자체 개발. MS 워크숍 2회에서 기술 토론을 주도해 **MS 아키텍트·엔지니어 7명을 자체 오케스트레이션 방식으로 설득**.
-
-## NLP 기반 데이터 표준화 시스템
-
-*역할: 기술 리드(IT/BT 20여 명 멘토링) · 스택: PyTorch, Transformers, KLUE-RoBERTa, BiLSTM, HDBSCAN, RAG, pytest, Docker*
-
-현업 메타데이터 불일치 문제를 정의하고 Rule + 분류기 + RAG 하이브리드 시스템으로 해결, 파일럿 성공 후 전사 적용·후속 AI 플랫폼의 출발점이 되었다.
-
-- 검증 시간 **8시간 → 0.73초(99% 단축)**, 부서 간 문의 월 70 → 4건(94.3%↓), 일관성 8.4% → 98.7%, 완전성 29.6% → 100%.
-- **8개 모델 벤치마크**(14클래스, 7,698건, stratified, 95% CI, McNemar+Holm) — KLUE-RoBERTa 96.88% 최고, 5-fold CV로 671K BiLSTM이 110M 모델과 통계적 동급(p=0.73) 입증, 1.48ms 경량 배포안 도출.
-
-## 시계열 PCR 신호 baseline 보정
-
-*역할: 기술 리드 / Data Scientist · 스택: Python, Matlab, 혼합 기저함수 모델링, 경량 선형회귀*
-
-하드코딩 레거시 baseline 알고리즘을 **데이터 기반 혼합 기저함수 모델**로 재설계. 위음성률 **0.47% → 0.04%(91.49% 개선)**, 5종 경쟁 알고리즘 대비 잔여신호 백색잡음 근사도 1위(업계 1위 타사 Black Box 대비 직접 비교 포함). 기저함수 추가만으로 새 신호 패턴에 확장되는 유연한 구조, C++ 포팅 위해 외부 ML 프레임워크 없이 구현.
-
-## FDA 인허가용 진단 알고리즘 안전성 통계 분석
-
-*역할: 기술 리드 / Data Scientist(다학제 16명) · 스택: R, Matlab, Apache Airflow, Quarto, 통계적 검정*
-
-북미 진출을 위한 FDA Software Validation 대응 **통계 검증 파이프라인** 설계·자동화. 검증 기간 **6개월 → 3주(87.5% 단축)**, 통계 신뢰도 99.2%로 알고리즘 안전성 입증. 사내 고유 **Switch Model**(10시나리오 × 8모듈)로 모듈별 기여도 분리 검증, Airflow → R + Quarto로 200페이지 V&V 보고서 반자동 생성.
-
-## RT-PCR 알고리즘 Reverse Engineering & 통계 모델링 개선안
-
-*역할: Data Scientist(6인 팀) · 스택: Matlab, Python, 메카니스틱 + 통계 모델링, 결합추정*
-
-주석 없는 레거시 Matlab 알고리즘(10+단계, 50+ 파라미터)을 reverse engineering으로 **80% 해석·문서화**(C++ 포팅용 명세서 제공). 전처리 함수 3개 + RT-PCR kinetics 시그모이드 합성함수를 **결합추정(joint estimation)**으로 동시 최적화하는 hybrid 모델을 설계해 순차 보정의 systematic bias를 구조적으로 제거, 규제 대응 설명 가능성 확보.
-
-## 진단 장비 QC 자동화 및 장비 성능 분류
-
-*역할: 기술 리드 / Data Scientist(다학제 11명) · 스택: Python, R, PyTorch(LSTM), PCA/t-SNE/DBSCAN, R Shiny*
-
-수동 엑셀 QC를 **2단계 LSTM + 10개 성능 지표** 등급(A+/A/B/F) 시스템으로 대체(장비 2,201대·신호 61,248개). QC 시간 ~93% 단축(연간 운영비 약 13배 절감), 합/불 분류 94.5%, 등급 분류 82.7%. Step 1 데이터로 Step 2 예측, R Shiny 실시간 대시보드. **R&D President's Award** 및 제1발명가 특허 2건.
-
-## 알츠하이머 멀티 오믹스 바이오마커 발견
-
-*역할: Statistical Research Assistant, 컬럼비아 의대 Taub Institute · 스택: R, Cox/GEE, sPLS, Lasso/Ridge/RF/SVM/GBM*
-
-- 유전체·대사체·임상데이터 통합으로 약 3,000개 대사물질 중 **핵심 바이오마커 13개(p<0.01)** 발견, 8개월간 미발견 교란자 규명.
-- 고차원 소표본(변수 약 3,000개, 표본보다 변수가 훨씬 많은 환경), 10+ ML 비교 후 sPLS 선정(정확도 84% + 해석력), Cox/GEE로 20년 발병 위험 모델 구축. 연구 경진대회 top-3, Chair's Award, Taub Institute 정규직 제안.
+<div class="projects">
+<a id="work" href=".#work"><h2 class="category">실무</h2></a>
+<div class="row row-cols-1 row-cols-md-3">
+<div class="col">
+<a href="/ko/projects/1_ai_platform/">
+<div class="card h-100 hoverable">
+<figure><img src="/assets/img/projects/card_01_ai-agent-platform.svg" class="card-img-top" width="100%" height="auto" alt="엔터프라이즈 멀티 에이전트 RAG 플랫폼 썸네일" loading="eager"></figure>
+<div class="card-body">
+<h2 class="card-title">엔터프라이즈 멀티 에이전트 RAG 플랫폼</h2>
+<p class="card-text">여러 협업 LLM 에이전트로 구축한 전사 지식 플랫폼 — 근거·인용 기반, 지속 평가.</p>
+</div>
+</div>
+</a>
+</div>
+<div class="col">
+<a href="/ko/projects/2_data_standardization/">
+<div class="card h-100 hoverable">
+<figure><img src="/assets/img/projects/card_02_nlp-standardization.svg" class="card-img-top" width="100%" height="auto" alt="NLP 기반 데이터 표준화 시스템 썸네일" loading="eager"></figure>
+<div class="card-body">
+<h2 class="card-title">NLP 기반 데이터 표준화 시스템</h2>
+<p class="card-text">메타데이터를 자동 표준화하는 Rule + 분류기 + RAG 하이브리드 시스템과 그 뒤의 엄밀한 모델 벤치마크.</p>
+</div>
+</div>
+</a>
+</div>
+<div class="col">
+<a href="/ko/projects/3_pcr_baseline/">
+<div class="card h-100 hoverable">
+<figure><img src="/assets/img/projects/card_03_pcr-baseline.svg" class="card-img-top" width="100%" height="auto" alt="시계열 PCR 신호 baseline 보정 썸네일" loading="eager"></figure>
+<div class="card-body">
+<h2 class="card-title">시계열 PCR 신호 baseline 보정</h2>
+<p class="card-text">하드코딩 레거시 baseline 알고리즘을 데이터 기반 혼합 기저함수 모델로 재설계해 위음성률을 91% 낮춤.</p>
+</div>
+</div>
+</a>
+</div>
+<div class="col">
+<a href="/ko/projects/4_fda_validation/">
+<div class="card h-100 hoverable">
+<figure><img src="/assets/img/projects/card_04_fda-validation.svg" class="card-img-top" width="100%" height="auto" alt="FDA 인허가용 진단 알고리즘 안전성 통계 분석 썸네일" loading="eager"></figure>
+<div class="card-body">
+<h2 class="card-title">FDA 인허가용 진단 알고리즘 안전성 통계 분석</h2>
+<p class="card-text">FDA 인허가를 위한 알고리즘 안전성을 통계로 입증하고 검증 기간을 6개월에서 3주로 단축한 파이프라인.</p>
+</div>
+</div>
+</a>
+</div>
+<div class="col">
+<a href="/ko/projects/5_rtpcr_reverse/">
+<div class="card h-100 hoverable">
+<figure><img src="/assets/img/projects/card_05_rtpcr-reverse-eng.svg" class="card-img-top" width="100%" height="auto" alt="RT-PCR 알고리즘 Reverse Engineering 및 통계 모델링 썸네일" loading="eager"></figure>
+<div class="card-body">
+<h2 class="card-title">RT-PCR 알고리즘 Reverse Engineering &amp; 통계 모델링</h2>
+<p class="card-text">주석 없는 레거시 RT-PCR 알고리즘을 역공학하고, systematic bias를 제거하는 결합추정 hybrid 통계 모델을 설계.</p>
+</div>
+</div>
+</a>
+</div>
+<div class="col">
+<a href="/ko/projects/6_qc_grading/">
+<div class="card h-100 hoverable">
+<figure><img src="/assets/img/projects/card_06_qc-grading.svg" class="card-img-top" width="100%" height="auto" alt="진단 장비 QC 자동화 및 성능 등급 분류 썸네일" loading="eager"></figure>
+<div class="card-body">
+<h2 class="card-title">진단 장비 QC 자동화 및 성능 등급 분류</h2>
+<p class="card-text">수동 엑셀 QC를 2단계 LSTM과 10개 지표 등급으로 대체해 QC 시간을 ~93% 단축, R&amp;D 우수상 수상.</p>
+</div>
+</div>
+</a>
+</div>
+<div class="col">
+<a href="/ko/projects/7_alzheimers_omics/">
+<div class="card h-100 hoverable">
+<figure><img src="/assets/img/projects/card_07_alzheimer-biomarker.svg" class="card-img-top" width="100%" height="auto" alt="알츠하이머 다중오믹스 바이오마커 발굴 썸네일" loading="eager"></figure>
+<div class="card-body">
+<h2 class="card-title">알츠하이머 다중오믹스 바이오마커 발굴</h2>
+<p class="card-text">유전체·대사체·임상 데이터를 통합해 알츠하이머 후보 바이오마커를 규명(컬럼비아 Taub Institute).</p>
+</div>
+</div>
+</a>
+</div>
+</div>
+</div>

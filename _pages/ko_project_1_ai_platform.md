@@ -104,7 +104,7 @@ mermaid:
   </section>
 
   <section class="ag-panel" id="ag-panel-code">
-    <p><strong>코드 분석 Agent</strong> — 약 40만 줄 Python 코드베이스(32개 레포, 1,453 파일)를 <strong>40K AST 사실</strong>, 코드 그래프(<strong>11,729 노드 / 38,783 엣지</strong>), 42K 검색 인덱스로 그라운딩. 3-아키텍처 벤치마크 — <strong>raw Claude Code vs Claude Code+메타데이터/스킬 하네스 vs 자체 오케스트레이션</strong>, 11개 변형 — 에서 결정론 우선·그라운딩 기반의 mini급 모델(GPT-5.4-mini) 자체 오케스트레이션이 <strong>종합 1위(Composite 0.977)</strong>, paired t-test / McNemar / Cohen's d / bootstrap CI 6지표 Composite로 검증; 현재 production 배포 임박. 상세 비교는 아래 사례 연구 참조.</p>
+    <p><strong>코드 분석 Agent</strong> — 약 40만 줄 Python 코드베이스(32개 레포, 1,453 파일)를 <strong>40K AST 사실</strong>, 코드 그래프(<strong>11,729 노드 / 38,783 엣지</strong>), 42K 검색 인덱스로 그라운딩. 3-아키텍처 벤치마크 — <strong>raw Claude Code vs Claude Code+메타데이터/스킬 하네스 vs 자체 오케스트레이션</strong>, 9개 변형 — 에서 결정론 우선·그라운딩 기반의 mini급 모델(GPT-5.4-mini) 자체 오케스트레이션이 <strong>종합 1위(Composite 0.977)</strong>, paired t-test / McNemar / Cohen's d / bootstrap CI 6지표 Composite로 검증; 현재 production 배포 임박. 상세 비교는 아래 사례 연구 참조.</p>
     <div class="ag-flow">
       <span class="s">약 40만 줄 코드베이스</span><span class="a" aria-hidden="true">→</span>
       <span class="s">40K AST 사실 · 코드 그래프 · 42K 인덱스</span><span class="a" aria-hidden="true">→</span>
@@ -114,7 +114,7 @@ mermaid:
     <div class="ag-kpis">
       <div class="ag-kpi"><div class="l">AST 사실</div><div class="v">40K</div></div>
       <div class="ag-kpi"><div class="l">코드 그래프 (노드 / 엣지)</div><div class="v">11.7K / 38.8K</div></div>
-      <div class="ag-kpi"><div class="l">벤치마크 Composite</div><div class="v">0.977</div><div class="d">11개 변형 중 1위</div></div>
+      <div class="ag-kpi"><div class="l">벤치마크 Composite</div><div class="v">0.977</div><div class="d">9개 변형 중 1위</div></div>
       <div class="ag-kpi"><div class="l">건당 비용</div><div class="v">$0.076</div><div class="d">최대 ~17배 절감</div></div>
     </div>
     <div class="ag-cost">
@@ -159,17 +159,68 @@ flowchart TB
 
 오케스트레이션은 LangChain → LangGraph → Agentic 로드맵을 따라, 단일 프레임워크에 종속되지 않으면서 통제면(control plane)의 역량을 키운다.
 
+### 에이전트별 아키텍처
+
+세 에이전트는 RAG 공통 기반을 공유하되 오케스트레이션 전략이 다르다: QnA는 Corrective + Self-RAG, 표준화는 결정론적 Rule 엔진을 RAG 앞에 고정해 자율 판단을 최소화, 코드 분석은 Graph RAG 위에 Agentic RAG를 얹는다.
+
+**지식 QnA — Corrective + Self-RAG**
+
+```mermaid
+flowchart LR
+    Q[User query] --> R[Hybrid retrieval<br/>BM25 + vector]
+    R --> G{Relevance grade}
+    G -- fail --> RW[Rewrite /<br/>re-retrieve]
+    RW --> R
+    G -- pass --> A[Generate + cite]
+    A --> SC{Self-check}
+    SC -- revise --> A
+    SC -- ok --> OUT[Streamed, cited answer]
+```
+
+**데이터 표준화 — Rule + ALBERT + RAG 하이브리드**
+
+```mermaid
+flowchart LR
+    M[Metadata field] --> RULE[Rule engine<br/>300+ rules, abbrev dict]
+    M --> CLF[ALBERT domain classifier]
+    M --> RAG[RAG recommender]
+    RULE --> MRG[Merge + confidence]
+    CLF --> MRG
+    RAG --> MRG
+    MRG --> AUD{Domain auditor<br/>LangGraph corrective}
+    AUD -- revise --> RAG
+    AUD -- ok --> OUT[3 metadata recommendations]
+```
+
+**코드 분석 — 2-Layer RAG, Graph then Agentic**
+
+```mermaid
+flowchart LR
+    CB[~400K-line codebase] --> IDX[40K AST facts<br/>code graph, 11.7K nodes]
+    IDX --> L1[Layer 1: Graph RAG<br/>code relations]
+    L1 --> L2[Layer 2: Agentic RAG<br/>autonomous exploration]
+    L2 --> OUT[Grounded answer<br/>with provenance]
+```
+
 ### 사례 연구 — 자체 오케스트레이션 vs Claude Code
 
 **문제.** 범용 CLI 에이전트(Claude Code)도 내부 질의에 답할 수 있었지만, 건당 비용 프로파일이 전사 도입으로 확장되지 않았고, "체감상 낫다"는 플랫폼 의사결정의 근거가 될 수 없다.
 
-**바꾼 것.** **3개 아키텍처** — raw Claude Code, Claude Code+메타데이터/스킬 하네스, 그리고 통제면을 사내에 두는 RAG 파이프라인 전용 자체 오케스트레이션 — 를 **11개 변형**(최신 Claude Sonnet 5를 raw·메타데이터 하네스 양쪽 포함)으로 51문항 평가 셋·6지표 Composite에서 정면 비교했다 — 데모가 아니라 설계된 실험으로 다뤘다.
+**바꾼 것.** **3개 아키텍처** — raw Claude Code, Claude Code+메타데이터/스킬 하네스, 그리고 통제면을 사내에 두는 RAG 파이프라인 전용 자체 오케스트레이션 — 를 **9개 변형**(최신 Claude Sonnet 5 포함)으로 51문항 평가 셋·6지표 Composite에서 정면 비교했다 — 데모가 아니라 설계된 실험으로 다뤘다.
 
-| 아키텍처 | 결과 |
-|---|---|
-| Raw Claude Code | 유능한 기준선; 건당 비용이 전사 규모로 확장 불가(최고 비용 변형 $1.32) |
-| Claude Code + 메타데이터/스킬 하네스 | 동일 모델에서 raw 대비 응답 유용성 향상 — 실무자 블라인드 평가로 교차검증 |
-| 자체 오케스트레이션 | **Composite 0.977 — 11개 변형 중 종합 1위** · 11.6초 · **$0.076/건 (최대 ~17배 낮음)** — mini급 모델(GPT-5.4-mini) 위의 결정론 우선 그라운딩 |
+| 순위 | 아키텍처 | 모델(수집) | Composite | 지연(초) | 비용($) |
+|---|---|---|---|---|---|
+| 1 | **자체 오케스트레이션** | GPT-5.4-mini (API) | **0.977** | 11.6 | **0.076** |
+| 2 | Claude Code + 메타/스킬 | Sonnet 4.6 (sub) | 0.875 | 161.6 | 0.66 |
+| 3 | Claude Code (raw) | Opus 4.8 (sub) | 0.840 | 110.7 | 0.76 |
+| 4 | Claude Code + 메타/스킬 | Haiku 4.5 (sub) | 0.836 | 64.2 | 0.19 |
+| 5 | Claude Code (raw) | Sonnet 4.6 (sub) | 0.828 | 95.8 | 0.44 |
+| 6 | Claude Code + 메타/스킬 | Opus 4.8 (sub) | 0.823 | 169.2 | 1.32 |
+| 7 | Claude Code (raw) | Sonnet 5 (sub) | 0.815 | 108.8 | 0.50 |
+| 8 | Claude Code (raw) | Sonnet 5 (int) | 0.800 | — | — |
+| 9 | Claude Code (raw) | Haiku 4.5 (sub) | 0.758 | 51.8 | 0.136 |
+
+*Composite = 정확도·무환각·완전성·구조추적·관련성·인용의 가중합. 지연·비용은 질의당 실측이며, 괄호는 응답 수집 채널 — `sub` = 구독형 CLI, `API` = 직접 API, `int` = 인터랙티브(효율 미측정). 자체 오케스트레이션은 단일 그라운딩 API 호출로 응답해 최저 비용·최단 지연이면서 Composite 1위를 차지한다.*
 
 **결과.** 결정론 우선의 자체 오케스트레이션이 종합 우승했다 — 그라운딩된 mini급 모델이 프론티어 CLI 에이전트를 답변 품질에서 앞서면서 건당 비용 최대 ~17배 절감, 인상이 아니라 paired t-test · McNemar · Cohen's d · bootstrap CI로 격차를 입증했다 — 단일 에이전트 파일럿에서 전사 롤아웃으로 넘어가는 근거가 되었다. 우승 파이프라인은 현재 production 배포 임박 단계다.
 

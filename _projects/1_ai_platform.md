@@ -107,7 +107,7 @@ I architected an enterprise, domain-specific **multi-agent RAG platform** end-to
   </section>
 
   <section class="ag-panel" id="ag-panel-code">
-    <p><strong>Code-analysis agent</strong> — grounded a ~400K-line Python codebase (32 repos, 1,453 files) into <strong>40K AST facts</strong>, a code graph (<strong>11,729 nodes / 38,783 edges</strong>), and a 42K search index. A 3-architecture benchmark — <strong>raw Claude Code vs. Claude Code + a metadata/skill harness vs. self-built orchestration</strong>, 11 variants — put the self-built, determinism-first grounded pipeline on a mini-tier model (GPT-5.4-mini) <strong>1st (composite 0.977)</strong>, validated with paired t-test / McNemar / Cohen's d / bootstrap CI over a 6-metric composite; now nearing production deployment. Full comparison in the case study below.</p>
+    <p><strong>Code-analysis agent</strong> — grounded a ~400K-line Python codebase (32 repos, 1,453 files) into <strong>40K AST facts</strong>, a code graph (<strong>11,729 nodes / 38,783 edges</strong>), and a 42K search index. A 3-architecture benchmark — <strong>raw Claude Code vs. Claude Code + a metadata/skill harness vs. self-built orchestration</strong>, 9 variants — put the self-built, determinism-first grounded pipeline on a mini-tier model (GPT-5.4-mini) <strong>1st (composite 0.977)</strong>, validated with paired t-test / McNemar / Cohen's d / bootstrap CI over a 6-metric composite; now nearing production deployment. Full comparison in the case study below.</p>
     <div class="ag-flow">
       <span class="s">~400K-line codebase</span><span class="a" aria-hidden="true">→</span>
       <span class="s">40K AST facts · code graph · 42K index</span><span class="a" aria-hidden="true">→</span>
@@ -117,7 +117,7 @@ I architected an enterprise, domain-specific **multi-agent RAG platform** end-to
     <div class="ag-kpis">
       <div class="ag-kpi"><div class="l">AST facts</div><div class="v">40K</div></div>
       <div class="ag-kpi"><div class="l">Code graph (nodes / edges)</div><div class="v">11.7K / 38.8K</div></div>
-      <div class="ag-kpi"><div class="l">Benchmark composite</div><div class="v">0.977</div><div class="d">1st of 11 variants</div></div>
+      <div class="ag-kpi"><div class="l">Benchmark composite</div><div class="v">0.977</div><div class="d">1st of 9 variants</div></div>
       <div class="ag-kpi"><div class="l">Cost per query</div><div class="v">$0.076</div><div class="d">up to ~17× lower</div></div>
     </div>
     <div class="ag-cost">
@@ -162,17 +162,68 @@ flowchart TB
 
 Orchestration follows a deliberate LangChain → LangGraph → Agentic roadmap, so the control plane grows in capability without locking into a single framework.
 
+### Per-agent architecture
+
+The three agents share the RAG foundation but run different orchestration strategies: the QnA assistant is corrective + Self-RAG, the standardization assistant pins a deterministic rule engine ahead of RAG to minimize autonomous judgment, and the code-analysis agent stacks Graph RAG under Agentic RAG.
+
+**Knowledge QnA — corrective + Self-RAG**
+
+```mermaid
+flowchart LR
+    Q[User query] --> R[Hybrid retrieval<br/>BM25 + vector]
+    R --> G{Relevance grade}
+    G -- fail --> RW[Rewrite /<br/>re-retrieve]
+    RW --> R
+    G -- pass --> A[Generate + cite]
+    A --> SC{Self-check}
+    SC -- revise --> A
+    SC -- ok --> OUT[Streamed, cited answer]
+```
+
+**Data standardization — Rule + ALBERT + RAG hybrid**
+
+```mermaid
+flowchart LR
+    M[Metadata field] --> RULE[Rule engine<br/>300+ rules, abbrev dict]
+    M --> CLF[ALBERT domain classifier]
+    M --> RAG[RAG recommender]
+    RULE --> MRG[Merge + confidence]
+    CLF --> MRG
+    RAG --> MRG
+    MRG --> AUD{Domain auditor<br/>LangGraph corrective}
+    AUD -- revise --> RAG
+    AUD -- ok --> OUT[3 metadata recommendations]
+```
+
+**Code analysis — 2-layer RAG, Graph then Agentic**
+
+```mermaid
+flowchart LR
+    CB[~400K-line codebase] --> IDX[40K AST facts<br/>code graph, 11.7K nodes]
+    IDX --> L1[Layer 1: Graph RAG<br/>code relations]
+    L1 --> L2[Layer 2: Agentic RAG<br/>autonomous exploration]
+    L2 --> OUT[Grounded answer<br/>with provenance]
+```
+
 ### Case study — self-built orchestration vs. Claude Code
 
 **Problem.** A general-purpose CLI agent (Claude Code) could already answer internal questions, but its cost-per-query profile did not scale to company-wide adoption, and "it feels better" is not an argument a platform decision can rest on.
 
-**What changed.** I benchmarked **three architectures** head-to-head — raw Claude Code, Claude Code wrapped in a metadata/skill harness, and a dedicated self-built orchestration around the RAG pipeline that keeps the control plane in-house — across **11 variants** (including the latest Claude Sonnet 5 both raw and harnessed) on a 51-question eval set with a 6-metric composite, treating the comparison as a designed experiment rather than a demo.
+**What changed.** I benchmarked **three architectures** head-to-head — raw Claude Code, Claude Code wrapped in a metadata/skill harness, and a dedicated self-built orchestration around the RAG pipeline that keeps the control plane in-house — across **9 variants** (including the latest Claude Sonnet 5) on a 51-question eval set with a 6-metric composite, treating the comparison as a designed experiment rather than a demo.
 
-| Architecture | Outcome |
-|---|---|
-| Raw Claude Code | capable baseline; cost per query does not scale (costliest variant $1.32) |
-| Claude Code + metadata/skill harness | improved answer usefulness over raw on the same model — cross-validated by blind practitioner review |
-| Self-built orchestration | **composite 0.977 — 1st of 11 variants** · 11.6s · **$0.076/query (up to ~17× lower)** — determinism-first grounding on a mini-tier model (GPT-5.4-mini) |
+| Rank | Architecture | Model (channel) | Composite | Latency (s) | Cost ($) |
+|---|---|---|---|---|---|
+| 1 | **Self-built orchestration** | GPT-5.4-mini (API) | **0.977** | 11.6 | **0.076** |
+| 2 | Claude Code + meta/skills | Sonnet 4.6 (sub) | 0.875 | 161.6 | 0.66 |
+| 3 | Claude Code (raw) | Opus 4.8 (sub) | 0.840 | 110.7 | 0.76 |
+| 4 | Claude Code + meta/skills | Haiku 4.5 (sub) | 0.836 | 64.2 | 0.19 |
+| 5 | Claude Code (raw) | Sonnet 4.6 (sub) | 0.828 | 95.8 | 0.44 |
+| 6 | Claude Code + meta/skills | Opus 4.8 (sub) | 0.823 | 169.2 | 1.32 |
+| 7 | Claude Code (raw) | Sonnet 5 (sub) | 0.815 | 108.8 | 0.50 |
+| 8 | Claude Code (raw) | Sonnet 5 (int) | 0.800 | — | — |
+| 9 | Claude Code (raw) | Haiku 4.5 (sub) | 0.758 | 51.8 | 0.136 |
+
+*Composite = weighted sum of accuracy, no-hallucination, completeness, structure-traceability, relevance, and citation. Latency and cost are per query; the response-collection channel is in parentheses — `sub` = subscription CLI, `API` = direct API, `int` = interactive (efficiency not measured). The self-built orchestration answers in a single grounded API call, so it is both the cheapest and the fastest while topping the composite.*
 
 **Result.** The self-built, determinism-first orchestration won overall — a grounded mini-tier model leading frontier CLI agents on answer quality at up to ~17× lower cost per query, with the gap established by paired t-test · McNemar · Cohen's d · bootstrap CI rather than impression — the evidence that justified moving from a single-agent pilot to a company-wide rollout. The winning pipeline is now nearing production deployment.
 
