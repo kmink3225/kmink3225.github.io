@@ -2,7 +2,7 @@
 layout: page
 title: Enterprise Multi-Agent RAG Platform
 description: A company-wide knowledge platform built on multiple cooperating LLM agents — grounded, cited, and continuously evaluated.
-img: assets/img/1.jpg
+img: assets/img/projects/card_01_ai-agent-platform_en.svg
 importance: 1
 category: work
 related_publications: false
@@ -18,6 +18,8 @@ mermaid:
 **Role:** Technical Lead / Architect &nbsp;·&nbsp; **Period:** 2025.11 – Present &nbsp;·&nbsp; **Stack:** Python, LangChain, LangGraph, Azure OpenAI, Azure AI Search, FastAPI, React
 
 I architected an enterprise, domain-specific **multi-agent RAG platform** end-to-end, taking it from a single-agent pilot to a company-wide initiative — the program grew out of the success of the earlier [data-standardization system](/projects/2_data_standardization/), promoted from a single-agent plan into a multi-agent flagship project. The platform turns fragmented internal knowledge into a queryable, cited assistant, and comprises several cooperating sub-agents — a **knowledge QnA assistant**, a **data-standardization assistant**, and a **code-analysis agent** — over shared Azure infrastructure. It is live with **~30 practitioners** in the initial rollout and expanding company-wide; two of the three agents shipped **two months ahead of target**.
+
+{% include figure.liquid loading="eager" path="assets/img/projects/poster_01_ai-agent-platform_en.png" class="img-fluid rounded z-depth-1" zoomable=true alt="Enterprise Multi-Agent RAG Platform — project poster" %}
 
 ### The three agents
 

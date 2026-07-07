@@ -2,7 +2,7 @@
 layout: page
 title: NLP-Based Data Standardization System
 description: A hybrid Rule + classifier + RAG system that standardizes metadata automatically — and the rigorous model benchmark behind it.
-img: assets/img/2.jpg
+img: assets/img/projects/card_02_nlp-standardization_en.svg
 importance: 2
 category: work
 related_publications: false
@@ -18,6 +18,8 @@ mermaid:
 **Role:** Technical Lead — Data Architect through the framework-design phase (2024.06–09), then Data Scientist / AI Engineer for automation and operations; trained 20+ engineers across IT/BT &nbsp;·&nbsp; **Period:** 2024.06 – 2025.09 &nbsp;·&nbsp; **Stack:** Python, PyTorch, Transformers, KLUE-RoBERTa, BiLSTM, HDBSCAN, RAG, pytest, Docker
 
 I defined and led an **NLP-based data standardization system** to resolve cross-team metadata inconsistency — starting from problem definition, not from a handed-down requirement. A governance baseline diagnosis across three production systems put column-level naming compliance at **8.4%**, turning a vague pain point into a quantified mandate. A successful pilot was promoted to a company-wide rollout and became the starting point for the later [enterprise AI agent platform](/projects/1_ai_platform/).
+
+{% include figure.liquid loading="eager" path="assets/img/projects/poster_02_nlp-standardization_en.png" class="img-fluid rounded z-depth-1" zoomable=true alt="NLP-Based Data Standardization System — project poster" %}
 
 ### Highlights
 

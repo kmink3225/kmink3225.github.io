@@ -2,8 +2,8 @@
 layout: page
 title: Alzheimer's Multi-Omics Biomarker Discovery
 description: Integrating genomic, metabolomic, and clinical data at Columbia / Taub Institute to surface candidate Alzheimer's biomarkers.
-img: assets/img/4.jpg
-importance: 4
+img: assets/img/projects/card_07_alzheimer-biomarker_en.svg
+importance: 7
 category: work
 related_publications: false
 mermaid:
@@ -11,11 +11,13 @@ mermaid:
   zoomable: false
 ---
 
-<div style="text-align: right; margin-bottom: 1rem;"><strong>English</strong> · <a href="/ko/projects/4_alzheimers_omics/">한국어</a></div>
+<div style="text-align: right; margin-bottom: 1rem;"><strong>English</strong> · <a href="/ko/projects/7_alzheimers_omics/">한국어</a></div>
 
 **Role:** Statistical Research Assistant, Columbia University Irving Medical Center — Taub Institute &nbsp;·&nbsp; **Stack:** R, Cox / GEE, sPLS, Lasso/Ridge/RF/SVM/GBM, PCA/K-means/DBSCAN
 
 A graduate-level biostatistics project on **large-scale multi-omics analysis** for Alzheimer's disease biomarker discovery.
+
+{% include figure.liquid loading="eager" path="assets/img/projects/poster_07_alzheimer-biomarker_en.png" class="img-fluid rounded z-depth-1" zoomable=true alt="Alzheimer's Multi-Omics Biomarker Discovery — project poster" %}
 
 ### Highlights
 

@@ -34,12 +34,29 @@ toc:
 - 검증 시간 **8시간 → 0.73초(99% 단축)**, 부서 간 문의 월 70 → 4건(94.3%↓), 일관성 8.4% → 98.7%, 완전성 29.6% → 100%.
 - **8개 모델 벤치마크**(14클래스, 7,698건, stratified, 95% CI, McNemar+Holm) — KLUE-RoBERTa 96.88% 최고, 5-fold CV로 671K BiLSTM이 110M 모델과 통계적 동급(p=0.73) 입증, 1.48ms 경량 배포안 도출.
 
-## 진단 신호 모델링 & QC 자동화
+## 시계열 PCR 신호 baseline 보정
 
-*역할: 프로젝트 PM / Data Scientist · 스택: Python, R, LSTM, 기저함수 모델링, PCA/t-SNE/DBSCAN, R Shiny*
+*역할: 기술 리드 / Data Scientist · 스택: Python, Matlab, 혼합 기저함수 모델링, 경량 선형회귀*
 
-- **PCR 신호 baseline 보정** — 하드코딩 레거시를 데이터 기반 혼합 기저함수 모델로 재설계, 위음성률 **0.47% → 0.04%(91.49% 개선)**, 5종 경쟁 알고리즘 대비 백색잡음 근사도 1위.
-- **장비 QC 자동화** — 2단계 LSTM + 10개 지표(장비 2,201대·신호 61,248개), QC 시간 ~93% 단축(연간 운영비 약 13배 절감), 합/불 분류 94.5%. R&D President's Award 및 제1발명가 특허 2건.
+하드코딩 레거시 baseline 알고리즘을 **데이터 기반 혼합 기저함수 모델**로 재설계. 위음성률 **0.47% → 0.04%(91.49% 개선)**, 5종 경쟁 알고리즘 대비 잔여신호 백색잡음 근사도 1위(업계 1위 타사 Black Box 대비 직접 비교 포함). 기저함수 추가만으로 새 신호 패턴에 확장되는 유연한 구조, C++ 포팅 위해 외부 ML 프레임워크 없이 구현.
+
+## FDA 인허가용 진단 알고리즘 안전성 통계 분석
+
+*역할: 기술 리드 / Data Scientist(다학제 16명) · 스택: R, Matlab, Apache Airflow, Quarto, 통계적 검정*
+
+북미 진출을 위한 FDA Software Validation 대응 **통계 검증 파이프라인** 설계·자동화. 검증 기간 **6개월 → 3주(87.5% 단축)**, 통계 신뢰도 99.2%로 알고리즘 안전성 입증. 사내 고유 **Switch Model**(10시나리오 × 8모듈)로 모듈별 기여도 분리 검증, Airflow → R + Quarto로 200페이지 V&V 보고서 반자동 생성.
+
+## RT-PCR 알고리즘 Reverse Engineering & 통계 모델링 개선안
+
+*역할: Data Scientist(6인 팀) · 스택: Matlab, Python, 메카니스틱 + 통계 모델링, 결합추정*
+
+주석 없는 레거시 Matlab 알고리즘(10+단계, 50+ 파라미터)을 reverse engineering으로 **80% 해석·문서화**(C++ 포팅용 명세서 제공). 전처리 함수 3개 + RT-PCR kinetics 시그모이드 합성함수를 **결합추정(joint estimation)**으로 동시 최적화하는 hybrid 모델을 설계해 순차 보정의 systematic bias를 구조적으로 제거, 규제 대응 설명 가능성 확보.
+
+## 진단 장비 QC 자동화 및 장비 성능 분류
+
+*역할: 기술 리드 / Data Scientist(다학제 11명) · 스택: Python, R, PyTorch(LSTM), PCA/t-SNE/DBSCAN, R Shiny*
+
+수동 엑셀 QC를 **2단계 LSTM + 10개 성능 지표** 등급(A+/A/B/F) 시스템으로 대체(장비 2,201대·신호 61,248개). QC 시간 ~93% 단축(연간 운영비 약 13배 절감), 합/불 분류 94.5%, 등급 분류 82.7%. Step 1 데이터로 Step 2 예측, R Shiny 실시간 대시보드. **R&D President's Award** 및 제1발명가 특허 2건.
 
 ## 알츠하이머 멀티 오믹스 바이오마커 발견
 

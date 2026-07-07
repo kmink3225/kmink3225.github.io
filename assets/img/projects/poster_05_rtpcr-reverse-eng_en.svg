@@ -1,0 +1,73 @@
+<svg viewBox="0 0 1600 1000" xmlns="http://www.w3.org/2000/svg" font-family="'Pretendard','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic','Apple SD Gothic Neo',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FDFCF9"/><stop offset="1" stop-color="#F2EEE5"/></linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1600" height="12" fill="#A9761F"/>
+
+  <text x="70" y="80" font-size="19" letter-spacing="5" fill="#8A5E1E" font-weight="700">05 · REVERSE ENGINEERING · STATISTICAL MODELING</text>
+  <text x="68" y="140" font-size="48" font-weight="800" fill="#2E2A22">RT-PCR Reverse Engineering &amp; Statistical Redesign</text>
+  <text x="70" y="180" font-size="23" fill="#7A6A48">Interpreting an undocumented legacy and reformulating it as a joint-estimation hybrid.</text>
+  <text x="70" y="212" font-size="16" fill="#9A8A68">Seegene Diagnostics IT / Data Science · Data Scientist (analysis &amp; redesign) · DS team of 6 · 2021.10–2023.04</text>
+  <line x1="70" y1="236" x2="1530" y2="236" stroke="#E4DCCB" stroke-width="1.5"/>
+
+  <!-- LEFT -->
+  <text x="70" y="292" font-size="17" letter-spacing="2" fill="#8A5E1E" font-weight="700">PROBLEM</text>
+  <g>
+    <g transform="translate(70,308)"><rect width="260" height="72" rx="12" fill="#ffffff" stroke="#E4DCCB" stroke-width="1.5"/><rect width="5" height="72" rx="2.5" fill="#A9761F"/><text x="22" y="32" font-size="16" font-weight="700" fill="#2E2A22">No docs / comments</text><text x="22" y="56" font-size="13.5" fill="#6E5E3E">Low-readability names</text></g>
+    <g transform="translate(70,392)"><rect width="260" height="72" rx="12" fill="#ffffff" stroke="#E4DCCB" stroke-width="1.5"/><rect width="5" height="72" rx="2.5" fill="#C8912E"/><text x="22" y="32" font-size="16" font-weight="700" fill="#2E2A22">Hundreds of paths</text><text x="22" y="56" font-size="13.5" fill="#6E5E3E">10+ stages × 5+ conditions</text></g>
+    <g transform="translate(70,476)"><rect width="260" height="72" rx="12" fill="#ffffff" stroke="#E4DCCB" stroke-width="1.5"/><rect width="5" height="72" rx="2.5" fill="#D9A94A"/><text x="22" y="32" font-size="16" font-weight="700" fill="#2E2A22">Systematic bias</text><text x="22" y="56" font-size="13.5" fill="#6E5E3E">Non-linear interactions</text></g>
+    <g transform="translate(70,560)"><rect width="260" height="72" rx="12" fill="#ffffff" stroke="#E4DCCB" stroke-width="1.5"/><rect width="5" height="72" rx="2.5" fill="#E0BE72"/><text x="22" y="32" font-size="16" font-weight="700" fill="#2E2A22">Explainability required</text><text x="22" y="56" font-size="13.5" fill="#6E5E3E">For regulatory clearance</text></g>
+  </g>
+
+  <!-- CENTER -->
+  <text x="410" y="292" font-size="17" letter-spacing="2" fill="#8A5E1E" font-weight="700">REVERSE-ENGINEER → REFORMULATE</text>
+  <g transform="translate(410,304)">
+    <rect x="0" y="0" width="450" height="150" rx="14" fill="#F5F1E8" stroke="#DCCFAF" stroke-width="1.8"/>
+    <text x="20" y="30" font-size="16" font-weight="700" fill="#7A5A20">Legacy Matlab (undocumented)</text>
+    <path d="M40 78 C120 52 96 132 176 106 C246 84 200 150 300 122 C360 106 340 148 410 128" fill="none" stroke="#BFA163" stroke-width="2.5"/>
+    <path d="M40 118 C120 138 96 78 190 100 C260 116 240 150 330 128" fill="none" stroke="#D3BB85" stroke-width="2.5"/>
+    <text x="70" y="96" font-size="20" fill="#A07C3A" font-weight="800">?</text>
+    <text x="250" y="120" font-size="20" fill="#A07C3A" font-weight="800">?</text>
+  </g>
+  <g stroke="#A9761F" stroke-width="3" fill="#A9761F"><line x1="635" y1="458" x2="635" y2="480"/><polygon points="628,477 635,490 642,477"/></g>
+  <text x="660" y="476" font-size="14" font-weight="700" fill="#8A5E1E">80% reverse-engineered</text>
+  <g transform="translate(410,494)">
+    <rect x="0" y="0" width="450" height="178" rx="14" fill="#ffffff" stroke="#E4DCCB" stroke-width="1.8"/>
+    <text x="20" y="30" font-size="16" font-weight="700" fill="#2E2A22">Hybrid statistical model · Joint estimation</text>
+    <line x1="36" y1="128" x2="410" y2="128" stroke="#D8CFBB" stroke-width="1.8"/>
+    <line x1="36" y1="52" x2="36" y2="128" stroke="#D8CFBB" stroke-width="1.8"/>
+    <path d="M36 120 Q150 118 210 96 Q262 74 290 52 Q305 46 410 44" fill="none" stroke="#2E6BA6" stroke-width="3"/>
+    <circle cx="150" cy="116" r="5" fill="#48A878"/><circle cx="252" cy="74" r="5" fill="#C8912E"/><circle cx="380" cy="45" r="5" fill="#2E6BA6"/>
+    <text x="150" y="150" font-size="13" fill="#2E2A22" text-anchor="middle">f(x)=g3(g2(g1(x)))+sigmoid(x,β)</text>
+    <text x="345" y="150" font-size="13" fill="#6E5E3E" text-anchor="middle">joint optimization</text>
+  </g>
+
+  <!-- RIGHT -->
+  <text x="1030" y="292" font-size="18" letter-spacing="2" fill="#8A5E1E" font-weight="700">APPROACH</text>
+  <g>
+    <g transform="translate(1030,304)"><rect width="500" height="82" rx="12" fill="#ffffff" stroke="#E4DCCB" stroke-width="1.5"/><rect width="5" height="82" rx="2.5" fill="#A9761F"/><text x="24" y="34" font-size="19" font-weight="800" fill="#2E2A22">Legacy reverse-engineering + port</text><text x="24" y="60" font-size="15" fill="#6E5E3E">50+ parameter dependency analysis · C++ port spec</text></g>
+    <g transform="translate(1030,398)"><rect width="500" height="82" rx="12" fill="#ffffff" stroke="#E4DCCB" stroke-width="1.5"/><rect width="5" height="82" rx="2.5" fill="#C8912E"/><text x="24" y="34" font-size="19" font-weight="800" fill="#2E2A22">Mechanistic + statistical hybrid</text><text x="24" y="60" font-size="15" fill="#6E5E3E">RT-PCR kinetics sigmoid + composite function</text></g>
+    <g transform="translate(1030,492)"><rect width="500" height="82" rx="12" fill="#ffffff" stroke="#E4DCCB" stroke-width="1.5"/><rect width="5" height="82" rx="2.5" fill="#D9A94A"/><text x="24" y="34" font-size="19" font-weight="800" fill="#2E2A22">Joint estimation</text><text x="24" y="60" font-size="15" fill="#6E5E3E">Sequential bias → structurally removed, analytic gradient</text></g>
+  </g>
+  <g transform="translate(1030,594)"><rect width="500" height="78" rx="14" fill="#F5EEDD" stroke="#C8912E" stroke-width="1.8"/><text x="24" y="32" font-size="14" letter-spacing="2" fill="#8A5E1E" font-weight="700">LESSON LEARNED</text><text x="24" y="60" font-size="16" fill="#5A4A20" font-weight="600">Technical excellence ≠ adoption — buy-in matters</text></g>
+
+  <!-- METRICS -->
+  <rect x="70" y="720" width="1460" height="116" rx="16" fill="#F4F0E7" stroke="#E4DCCB" stroke-width="1.5"/>
+  <g text-anchor="middle">
+    <text x="252" y="778" font-size="38" font-weight="800" fill="#8A5E1E">80%</text><text x="252" y="810" font-size="15" fill="#6E5E3E">Legacy interpreted/documented</text>
+    <line x1="435" y1="748" x2="435" y2="808" stroke="#E0D6C0" stroke-width="1.5"/>
+    <text x="617" y="778" font-size="36" font-weight="800" fill="#A9761F">10+</text><text x="617" y="810" font-size="15" fill="#6E5E3E">Correction stages</text>
+    <line x1="800" y1="748" x2="800" y2="808" stroke="#E0D6C0" stroke-width="1.5"/>
+    <text x="982" y="778" font-size="36" font-weight="800" fill="#C8912E">50+</text><text x="982" y="810" font-size="15" fill="#6E5E3E">Empirical parameters</text>
+    <line x1="1165" y1="748" x2="1165" y2="808" stroke="#E0D6C0" stroke-width="1.5"/>
+    <text x="1347" y="778" font-size="32" font-weight="800" fill="#2E6BA6">Joint Est.</text><text x="1347" y="810" font-size="15" fill="#6E5E3E">Sequential → joint</text>
+  </g>
+
+  <!-- TECH -->
+  <text x="70" y="888" font-size="15" letter-spacing="3" fill="#9A8A68" font-weight="700">TECH STACK</text>
+  <g font-size="17" fill="#4C4230" font-weight="600">
+    <text x="70" y="928">Python</text><text x="185" y="928">Matlab</text><text x="300" y="928">NumPy</text><text x="410" y="928">pandas</text><text x="525" y="928">Mechanistic Modeling</text><text x="775" y="928">Joint Estimation</text><text x="960" y="928">Residual Analysis</text><text x="1155" y="928">White-noise Testing</text>
+  </g>
+  <g fill="#A9761F"><circle cx="58" cy="923" r="3"/><circle cx="173" cy="923" r="3"/><circle cx="288" cy="923" r="3"/><circle cx="398" cy="923" r="3"/><circle cx="513" cy="923" r="3"/><circle cx="763" cy="923" r="3"/><circle cx="948" cy="923" r="3"/><circle cx="1143" cy="923" r="3"/></g>
+</svg>

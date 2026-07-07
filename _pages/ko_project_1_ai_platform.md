@@ -16,6 +16,8 @@ mermaid:
 
 도메인 특화 **멀티 에이전트 RAG 플랫폼**을 아키텍처부터 총괄 설계·구축하고, 단일 에이전트 파일럿에서 전사 과제로 확장했다 — 선행 [데이터 표준화 시스템](/ko/projects/2_data_standardization/)의 성공이 단일 에이전트 계획에서 멀티 에이전트 대형 과제로 승격된 프로젝트다. 파편화된 내부 지식을 인용 가능한 어시스턴트로 바꾸며, **지식 QnA·데이터 표준화 도우미·코드 분석** 등 여러 협업 sub-agent가 Azure 공유 인프라 위에서 동작한다. 현재 초기 현업 실무진 **~30명에 배포**되어 전사 확장 중이며, 3개 에이전트 중 2종을 목표 대비 **2개월 조기 완료**했다.
 
+{% include figure.liquid loading="eager" path="assets/img/projects/poster_01_ai-agent-platform.png" class="img-fluid rounded z-depth-1" zoomable=true alt="엔터프라이즈 멀티 에이전트 RAG 플랫폼 — 프로젝트 포스터" %}
+
 ### 3대 에이전트
 
 <style>

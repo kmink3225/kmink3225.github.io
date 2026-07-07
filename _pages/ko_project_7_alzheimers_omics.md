@@ -1,18 +1,20 @@
 ---
 layout: page
 title: 알츠하이머 다중오믹스 바이오마커 발굴
-permalink: /ko/projects/4_alzheimers_omics/
+permalink: /ko/projects/7_alzheimers_omics/
 nav: false
 mermaid:
   enabled: true
   zoomable: false
 ---
 
-<div style="text-align: right; margin-bottom: 1rem;"><a href="/projects/4_alzheimers_omics/">English</a> · <strong>한국어</strong></div>
+<div style="text-align: right; margin-bottom: 1rem;"><a href="/projects/7_alzheimers_omics/">English</a> · <strong>한국어</strong></div>
 
 **역할:** 통계 연구원, Columbia University Irving Medical Center — Taub Institute &nbsp;·&nbsp; **스택:** R, Cox / GEE, sPLS, Lasso/Ridge/RF/SVM/GBM, PCA/K-means/DBSCAN
 
 알츠하이머병 바이오마커 발굴을 위한 **대규모 다중오믹스 분석** 대학원 생물통계 프로젝트.
+
+{% include figure.liquid loading="eager" path="assets/img/projects/poster_07_alzheimer-biomarker.png" class="img-fluid rounded z-depth-1" zoomable=true alt="알츠하이머 다중오믹스 바이오마커 발굴 — 프로젝트 포스터" %}
 
 ### 주요 성과
 

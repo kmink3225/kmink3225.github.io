@@ -1,0 +1,52 @@
+<svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" font-family="'Pretendard','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic','Apple SD Gothic Neo',sans-serif">
+  <defs>
+    <linearGradient id="bg7" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FBFAFE"/>
+      <stop offset="1" stop-color="#ECE8F6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg7)"/>
+  <rect x="0" y="0" width="10" height="720" fill="#5E48A8"/>
+  <text x="70" y="86" font-size="24" letter-spacing="3" fill="#5E48A8" font-weight="700">07 · METABOLOMICS / BIOMARKER</text>
+  <line x1="70" y1="104" x2="360" y2="104" stroke="#5E48A8" stroke-width="3"/>
+
+  <!-- scatter/volcano card -->
+  <g transform="translate(70,150)">
+    <rect x="0" y="0" width="600" height="300" rx="14" fill="#ffffff" stroke="#D8D0EC" stroke-width="2"/>
+    <text x="24" y="34" font-size="17" font-weight="700" fill="#3A2E63">대사체 유의성 (~3,000개 대사물질)</text>
+    <line x1="60" y1="270" x2="560" y2="270" stroke="#C7BEDD" stroke-width="2"/>
+    <line x1="60" y1="55" x2="60" y2="270" stroke="#C7BEDD" stroke-width="2"/>
+    <text x="34" y="160" font-size="13" fill="#8A7CB0" transform="rotate(-90 34 160)" text-anchor="middle">-log10(p)</text>
+    <!-- threshold -->
+    <line x1="60" y1="150" x2="560" y2="150" stroke="#7B1FA2" stroke-width="2" stroke-dasharray="7 6"/>
+    <text x="556" y="142" font-size="14" font-weight="800" fill="#7B1FA2" text-anchor="end">p &lt; 0.01</text>
+    <g transform="translate(60,0)"><circle cx="212" cy="174" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="356" cy="167" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="306" cy="193" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="96" cy="206" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="86" cy="199" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="101" cy="168" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="257" cy="234" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="124" cy="180" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="346" cy="245" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="324" cy="196" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="500" cy="164" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="448" cy="186" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="133" cy="171" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="206" cy="233" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="150" cy="212" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="351" cy="194" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="311" cy="166" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="96" cy="179" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="369" cy="198" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="208" cy="213" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="269" cy="187" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="420" cy="223" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="177" cy="212" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="301" cy="239" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="391" cy="186" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="501" cy="171" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="254" cy="228" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="137" cy="204" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="87" cy="220" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="406" cy="212" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="455" cy="188" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="376" cy="213" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="325" cy="201" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="440" cy="245" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="279" cy="220" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="97" cy="223" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="355" cy="249" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="432" cy="186" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="240" cy="220" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="80" cy="202" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="144" cy="171" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="96" cy="229" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="127" cy="182" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="242" cy="238" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="105" cy="200" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="312" cy="240" r="5" fill="#C7BEDD" opacity="0.8"/><circle cx="491" cy="122" r="6.5" fill="#7B1FA2" stroke="#fff" stroke-width="1.5"/><circle cx="472" cy="137" r="6.5" fill="#7B1FA2" stroke="#fff" stroke-width="1.5"/><circle cx="95" cy="120" r="6.5" fill="#7B1FA2" stroke="#fff" stroke-width="1.5"/><circle cx="81" cy="96" r="6.5" fill="#7B1FA2" stroke="#fff" stroke-width="1.5"/><circle cx="444" cy="117" r="6.5" fill="#7B1FA2" stroke="#fff" stroke-width="1.5"/><circle cx="112" cy="107" r="6.5" fill="#7B1FA2" stroke="#fff" stroke-width="1.5"/><circle cx="500" cy="104" r="6.5" fill="#7B1FA2" stroke="#fff" stroke-width="1.5"/><circle cx="451" cy="84" r="6.5" fill="#7B1FA2" stroke="#fff" stroke-width="1.5"/><circle cx="87" cy="87" r="6.5" fill="#7B1FA2" stroke="#fff" stroke-width="1.5"/><circle cx="140" cy="112" r="6.5" fill="#7B1FA2" stroke="#fff" stroke-width="1.5"/><circle cx="175" cy="132" r="6.5" fill="#7B1FA2" stroke="#fff" stroke-width="1.5"/><circle cx="416" cy="137" r="6.5" fill="#7B1FA2" stroke="#fff" stroke-width="1.5"/><circle cx="140" cy="131" r="6.5" fill="#7B1FA2" stroke="#fff" stroke-width="1.5"/></g>
+    <text x="330" y="292" font-size="13" fill="#8A7CB0" text-anchor="middle">effect size</text>
+  </g>
+
+  <!-- brain accent -->
+  <g transform="translate(720,175)" fill="none" stroke="#5E48A8" stroke-width="4" stroke-linecap="round">
+    <path d="M120 40 C70 20 25 45 30 90 C5 105 10 150 40 160 C45 200 100 210 130 185 C165 210 220 200 225 160 C255 150 260 105 235 90 C240 45 195 20 145 40 C138 25 128 25 120 40 Z" fill="#EFEAFA" stroke="#7B5FC2"/>
+    <path d="M130 40 L130 190" stroke="#B8A8E0" stroke-width="3"/>
+    <path d="M90 70 C110 85 100 110 120 120 M170 70 C150 90 165 110 145 125 M75 130 C100 130 110 150 130 150 M185 130 C160 132 150 152 132 152" stroke="#B8A8E0" stroke-width="3"/>
+  </g>
+  <text x="835" y="415" font-size="15" fill="#5E48A8" font-weight="700" text-anchor="middle">알츠하이머 전임상 바이오마커</text>
+
+  <text x="70" y="530" font-size="43" font-weight="800" fill="#2E2450">알츠하이머병 Biomarker 규명 &amp; ML 방법론 비교</text>
+  <text x="70" y="570" font-size="22" fill="#8175A5">유전체·대사체·임상 통합 · Sparse PLS/Cox/GEE · Columbia CUIMC · 2018.12–2020.05</text>
+
+  <g font-weight="800" text-anchor="middle">
+    <rect x="70" y="606" width="150" height="66" rx="10" fill="#2E2450"/>
+    <text x="145" y="642" font-size="26" fill="#ffffff">13개</text>
+    <text x="145" y="662" font-size="12" fill="#B8A8E0" font-weight="500">핵심 바이오마커 p&lt;0.01</text>
+    <rect x="232" y="606" width="180" height="66" rx="10" fill="#5E48A8"/>
+    <text x="322" y="642" font-size="23" fill="#ffffff">8개월→3주</text>
+    <text x="322" y="662" font-size="12" fill="#DCD4F2" font-weight="500">미발견 교란자 규명</text>
+    <rect x="424" y="606" width="150" height="66" rx="10" fill="#7B1FA2"/>
+    <text x="499" y="642" font-size="25" fill="#ffffff">84%</text>
+    <text x="499" y="662" font-size="12" fill="#E9D8F2" font-weight="500">Sparse PLS 정확도</text>
+    <rect x="586" y="606" width="150" height="66" rx="10" fill="#8E44AD"/>
+    <text x="661" y="642" font-size="24" fill="#ffffff">Top 3</text>
+    <text x="661" y="662" font-size="12" fill="#EBD8F2" font-weight="500">연구경진 · 학과장상</text>
+  </g>
+</svg>

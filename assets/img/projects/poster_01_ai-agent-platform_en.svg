@@ -1,0 +1,203 @@
+<svg viewBox="0 0 1600 1000" xmlns="http://www.w3.org/2000/svg" font-family="'Pretendard','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic','Apple SD Gothic Neo',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0A1424"/>
+      <stop offset="0.55" stop-color="#0B1B30"/>
+      <stop offset="1" stop-color="#0A1220"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#1E5A8C" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#0B1B30" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="hub" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2E7BC4"/>
+      <stop offset="1" stop-color="#14375C"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#38D6C8"/>
+      <stop offset="1" stop-color="#4FA3E3"/>
+    </linearGradient>
+    <linearGradient id="band" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0E2540"/>
+      <stop offset="1" stop-color="#102A47"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <ellipse cx="700" cy="500" rx="520" ry="360" fill="url(#glow)"/>
+  <!-- faint dot grid -->
+  <g fill="#1B3A5C" opacity="0.35">
+    <rect x="0" y="0" width="1600" height="1000" fill="none"/>
+  </g>
+
+  <!-- ===== HEADER ===== -->
+  <text x="70" y="72" font-size="20" letter-spacing="6" fill="#38D6C8" font-weight="700">ENTERPRISE AI · MULTI-AGENT RAG PLATFORM</text>
+  <text x="68" y="132" font-size="58" font-weight="800" fill="#FFFFFF">Enterprise AI Agent Knowledge Platform</text>
+  <text x="70" y="172" font-size="24" fill="#9FC4E6">One orchestrator, many specialists — fragmented org knowledge into grounded answers.</text>
+  <text x="70" y="205" font-size="17" fill="#5E7C99">Seegene SW Institute, Core Dev Team · Technical Lead / AI Architect · core team of 3 + Microsoft · 2025.11–Present</text>
+  <line x1="70" y1="228" x2="1530" y2="228" stroke="#1B3A5C" stroke-width="1.5"/>
+
+  <!-- ===== LEFT: INPUT SOURCES ===== -->
+  <text x="70" y="286" font-size="18" letter-spacing="3" fill="#7FA6C9" font-weight="700">INPUT · FRAGMENTED</text>
+  <g font-size="18" fill="#CFE0F0">
+    <g transform="translate(70,312)">
+      <rect x="0" y="0" width="230" height="52" rx="10" fill="#0F2842" stroke="#22456B" stroke-width="1.5"/>
+      <rect x="16" y="16" width="20" height="20" rx="4" fill="none" stroke="#4FA3E3" stroke-width="2.5"/>
+      <text x="52" y="33" font-weight="600">Miro · Notion · Loop</text>
+    </g>
+    <g transform="translate(70,376)">
+      <rect x="0" y="0" width="230" height="52" rx="10" fill="#0F2842" stroke="#22456B" stroke-width="1.5"/>
+      <path d="M26 16 a10 10 0 1 0 0.01 0 M20 40 q6 -8 12 0" fill="none" stroke="#4FA3E3" stroke-width="2.5"/>
+      <text x="52" y="33" font-weight="600">GitHub repos</text>
+    </g>
+    <g transform="translate(70,440)">
+      <rect x="0" y="0" width="230" height="52" rx="10" fill="#0F2842" stroke="#22456B" stroke-width="1.5"/>
+      <rect x="16" y="15" width="22" height="22" rx="3" fill="none" stroke="#4FA3E3" stroke-width="2.5"/>
+      <text x="52" y="33" font-weight="600">PPT · Excel</text>
+    </g>
+    <g transform="translate(70,504)">
+      <rect x="0" y="0" width="230" height="52" rx="10" fill="#0F2842" stroke="#22456B" stroke-width="1.5"/>
+      <path d="M18 14 h16 l6 6 v18 h-22 z" fill="none" stroke="#4FA3E3" stroke-width="2.5"/>
+      <text x="52" y="33" font-weight="600">Docs · dictionaries</text>
+    </g>
+    <g fill="#3A5D80"><circle cx="185" cy="582" r="3.5"/><circle cx="185" cy="596" r="3.5"/><circle cx="185" cy="610" r="3.5"/></g>
+  </g>
+  <!-- feed arrow -->
+  <g stroke="#38D6C8" stroke-width="2.5" fill="none" opacity="0.8">
+    <path d="M300 468 C360 468 360 460 405 460" stroke-dasharray="2 8" stroke-linecap="round"/>
+  </g>
+
+  <!-- ===== CENTER: ORCHESTRATION ===== -->
+  <g>
+    <!-- connections with glow -->
+    <g stroke="#2E7BC4" stroke-width="9" fill="none" opacity="0.20">
+      <path d="M700 460 L560 350"/><path d="M700 460 L840 350"/>
+      <path d="M700 460 L560 575"/><path d="M700 460 L840 575"/>
+    </g>
+    <g stroke="url(#accent)" stroke-width="2.5" fill="none" opacity="0.9">
+      <path d="M700 460 L560 350"/><path d="M700 460 L840 350"/>
+      <path d="M700 460 L560 575"/><path d="M700 460 L840 575"/>
+    </g>
+    <circle cx="630" cy="405" r="3.5" fill="#38D6C8"/><circle cx="770" cy="405" r="3.5" fill="#38D6C8"/>
+    <circle cx="630" cy="518" r="3.5" fill="#38D6C8"/><circle cx="770" cy="518" r="3.5" fill="#38D6C8"/>
+
+    <!-- hub -->
+    <polygon points="700,388 762,424 762,496 700,532 638,496 638,424" fill="url(#hub)" stroke="#4FA3E3" stroke-width="2"/>
+    <polygon points="700,404 748,432 748,488 700,516 652,488 652,432" fill="none" stroke="#8FD4F5" stroke-width="1.2" opacity="0.6"/>
+    <text x="700" y="455" font-size="22" font-weight="800" fill="#FFFFFF" text-anchor="middle">Orchestrator</text>
+    <text x="700" y="483" font-size="13" fill="#AED3F0" text-anchor="middle">Plan · route · ground</text>
+
+    <!-- agent cards -->
+    <!-- QnA top-left -->
+    <g transform="translate(438,296)">
+      <rect x="0" y="0" width="244" height="108" rx="14" fill="#0E2842" stroke="#2E6FA6" stroke-width="1.8"/>
+      <circle cx="34" cy="34" r="18" fill="#12395E" stroke="#4FA3E3" stroke-width="2"/>
+      <path d="M25 30 h18 M25 38 h12" stroke="#8FD4F5" stroke-width="2.5" stroke-linecap="round"/>
+      <text x="62" y="30" font-size="19" font-weight="800" fill="#FFFFFF">Knowledge QnA</text>
+      <text x="62" y="52" font-size="14" fill="#9FC4E6">Self-RAG / CRAG · cited</text>
+      <text x="20" y="90" font-size="12" letter-spacing="2" fill="#38D6C8" font-weight="700">RAG · STREAMING</text>
+    </g>
+    <!-- Data top-right -->
+    <g transform="translate(718,296)">
+      <rect x="0" y="0" width="244" height="108" rx="14" fill="#0E2842" stroke="#2E6FA6" stroke-width="1.8"/>
+      <g transform="translate(24,20)"><ellipse cx="10" cy="4" rx="14" ry="6" fill="none" stroke="#4FA3E3" stroke-width="2"/><path d="M-4 4 v16 a14 6 0 0 0 28 0 v-16" fill="none" stroke="#4FA3E3" stroke-width="2"/></g>
+      <text x="62" y="30" font-size="19" font-weight="800" fill="#FFFFFF">Data standardization</text>
+      <text x="62" y="52" font-size="14" fill="#9FC4E6">Rule + ALBERT + RAG</text>
+      <text x="20" y="90" font-size="12" letter-spacing="2" fill="#38D6C8" font-weight="700">HYBRID ENGINE</text>
+    </g>
+    <!-- Code bottom-left -->
+    <g transform="translate(438,520)">
+      <rect x="0" y="0" width="244" height="108" rx="14" fill="#0E2842" stroke="#7A5AC4" stroke-width="1.8"/>
+      <path d="M24 26 l-12 12 l12 12 M52 26 l12 12 l-12 12" fill="none" stroke="#B39DE8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="72" y="30" font-size="19" font-weight="800" fill="#FFFFFF">Code analysis</text>
+      <text x="72" y="52" font-size="14" fill="#C6B8EC">AST + graph grounding</text>
+      <text x="20" y="90" font-size="12" letter-spacing="2" fill="#B39DE8" font-weight="700">2-LAYER RAG</text>
+    </g>
+    <!-- Eval bottom-right -->
+    <g transform="translate(718,520)">
+      <rect x="0" y="0" width="244" height="108" rx="14" fill="#0E2842" stroke="#C88A2E" stroke-width="1.8"/>
+      <path d="M34 18 l16 6 c0 20 -8 32 -16 36 c-8 -4 -16 -16 -16 -36 z" fill="none" stroke="#F0B24E" stroke-width="2"/>
+      <path d="M27 34 l5 5 l10 -11" fill="none" stroke="#F0B24E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="62" y="30" font-size="19" font-weight="800" fill="#FFFFFF">Evaluation · Guardrail</text>
+      <text x="62" y="52" font-size="14" fill="#EBCB98">LLM-as-Judge auto-scoring</text>
+      <text x="20" y="90" font-size="12" letter-spacing="2" fill="#F0B24E" font-weight="700">EVALUATOR</text>
+    </g>
+
+    <text x="700" y="672" font-size="14" fill="#5E7C99" text-anchor="middle">Re-retrieves source per query — consistent grounded answers regardless of chat length</text>
+  </g>
+
+  <!-- ===== RIGHT: KEY + BENCHMARK ===== -->
+  <text x="1030" y="286" font-size="18" letter-spacing="3" fill="#7FA6C9" font-weight="700">KEY ARCHITECTURE</text>
+  <g>
+    <g transform="translate(1030,300)">
+      <rect x="0" y="0" width="500" height="86" rx="12" fill="#0E2842" stroke="#22456B" stroke-width="1.5"/>
+      <rect x="0" y="0" width="5" height="86" rx="2.5" fill="#38D6C8"/>
+      <text x="24" y="34" font-size="19" font-weight="800" fill="#FFFFFF">Self-RAG / CRAG loop</text>
+      <text x="24" y="62" font-size="15" fill="#9FC4E6">9 sub-agents self-retrieve, verify, correct, cite</text>
+    </g>
+    <g transform="translate(1030,398)">
+      <rect x="0" y="0" width="500" height="86" rx="12" fill="#0E2842" stroke="#22456B" stroke-width="1.5"/>
+      <rect x="0" y="0" width="5" height="86" rx="2.5" fill="#4FA3E3"/>
+      <text x="24" y="34" font-size="19" font-weight="800" fill="#FFFFFF">Hybrid engine</text>
+      <text x="24" y="62" font-size="15" fill="#9FC4E6">300+ rules + ALBERT domain classifier + RAG</text>
+    </g>
+    <g transform="translate(1030,496)">
+      <rect x="0" y="0" width="500" height="86" rx="12" fill="#0E2842" stroke="#22456B" stroke-width="1.5"/>
+      <rect x="0" y="0" width="5" height="86" rx="2.5" fill="#B39DE8"/>
+      <text x="24" y="34" font-size="19" font-weight="800" fill="#FFFFFF">2-Layer code RAG</text>
+      <text x="24" y="62" font-size="15" fill="#9FC4E6">Graph→Agentic RAG over 40K AST facts + code graph</text>
+    </g>
+  </g>
+
+  <!-- benchmark highlight -->
+  <g transform="translate(1030,600)">
+    <rect x="0" y="0" width="500" height="118" rx="14" fill="#0C3330" stroke="#2E8C84" stroke-width="1.8"/>
+    <text x="24" y="34" font-size="15" letter-spacing="2" fill="#38D6C8" font-weight="700">BENCHMARK · 9 VARIANTS COMPARED</text>
+    <text x="24" y="70" font-size="21" font-weight="800" fill="#FFFFFF">Self-built harness beats all larger models</text>
+    <text x="24" y="98" font-size="15" fill="#A9E4DC">GPT-5.4-mini · composite 0.977 · 11.6s · $0.076 — ~17× cheaper</text>
+  </g>
+
+  <!-- ===== METRICS BAND ===== -->
+  <rect x="70" y="742" width="1460" height="118" rx="16" fill="url(#band)" stroke="#1E4368" stroke-width="1.5"/>
+  <g text-anchor="middle">
+    <g>
+      <text x="216" y="800" font-size="40" font-weight="800" fill="#38D6C8">98.0%</text>
+      <text x="216" y="832" font-size="15" fill="#9FC4E6">QnA user satisfaction</text>
+    </g>
+    <line x1="362" y1="770" x2="362" y2="832" stroke="#1E4368" stroke-width="1.5"/>
+    <g>
+      <text x="508" y="800" font-size="40" font-weight="800" fill="#4FA3E3">4.66s</text>
+      <text x="508" y="832" font-size="15" fill="#9FC4E6">Avg response time</text>
+    </g>
+    <line x1="654" y1="770" x2="654" y2="832" stroke="#1E4368" stroke-width="1.5"/>
+    <g>
+      <text x="800" y="800" font-size="40" font-weight="800" fill="#FFFFFF">2 mo</text>
+      <text x="800" y="832" font-size="15" fill="#9FC4E6">Ahead of target</text>
+    </g>
+    <line x1="946" y1="770" x2="946" y2="832" stroke="#1E4368" stroke-width="1.5"/>
+    <g>
+      <text x="1092" y="800" font-size="40" font-weight="800" fill="#F0B24E">~17×</text>
+      <text x="1092" y="832" font-size="15" fill="#9FC4E6">Self-built cost saving</text>
+    </g>
+    <line x1="1238" y1="770" x2="1238" y2="832" stroke="#1E4368" stroke-width="1.5"/>
+    <g>
+      <text x="1384" y="800" font-size="40" font-weight="800" fill="#B39DE8">7</text>
+      <text x="1384" y="832" font-size="15" fill="#9FC4E6">MS engineers persuaded</text>
+    </g>
+  </g>
+
+  <!-- ===== TECH STRIP ===== -->
+  <text x="70" y="910" font-size="15" letter-spacing="3" fill="#5E7C99" font-weight="700">TECH STACK</text>
+  <g font-size="17" fill="#CFE0F0" font-weight="600">
+    <text x="70" y="950">LangGraph</text>
+    <text x="230" y="950">LangChain</text>
+    <text x="385" y="950">Azure OpenAI</text>
+    <text x="575" y="950">Azure AI Search</text>
+    <text x="790" y="950">FastAPI</text>
+    <text x="915" y="950">React</text>
+    <text x="1010" y="950">Cosmos DB</text>
+    <text x="1170" y="950">ALBERT</text>
+    <text x="1300" y="950">LLM-as-Judge</text>
+  </g>
+  <g fill="#38D6C8"><circle cx="58" cy="945" r="3"/><circle cx="218" cy="945" r="3"/><circle cx="373" cy="945" r="3"/><circle cx="563" cy="945" r="3"/><circle cx="778" cy="945" r="3"/><circle cx="903" cy="945" r="3"/><circle cx="998" cy="945" r="3"/><circle cx="1158" cy="945" r="3"/><circle cx="1288" cy="945" r="3"/></g>
+</svg>
