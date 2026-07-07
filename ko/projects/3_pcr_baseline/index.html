@@ -1,0 +1,168 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> 시계열 PCR 신호 baseline 보정 | Kwangmin Kim </title> <meta name="author" content="Kwangmin Kim"> <meta name="description" content="Kwangmin Kim — AI Engineer / Data Scientist. Enterprise AI platforms (RAG, LLM agents, NLP) backed by rigorous evaluation. "> <meta name="keywords" content="AI Engineer, Data Scientist, RAG, LLM agents, LangGraph, NLP, machine learning, biostatistics"> <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> <style>
+  :root {
+    --max-content-width: 930px;
+  }
+</style> <link rel="stylesheet" href="/assets/css/tailwind.css?v=50c64c15cbb9fd1ce6056fdb8bcb4b62"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.5/css/academicons.min.css" integrity="sha256-SzrCOBJbGVFMahewkgjwnApaV2+av1DwMAA+/QGLyZw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css" integrity="sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%F0%9F%A7%A0&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/assets/css/main.css?v=f0b101217084a90093badfe99ff9a7d1"> <link rel="canonical" href="https://kmink3225.github.io/ko/projects/3_pcr_baseline/"> <script src="/assets/js/theme.js?v=7af685e2ba20b37fef545c97b8064050"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> <span class="font-weight-bold">Kwangmin</span> Kim </a> <button class="navbar-toggler collapsed navbar-toggler-main" type="button" data-nav-toggle="navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav"> <ul class="navbar-nav navbar-menu-list flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">about </a> </li> <li class="nav-item active"> <a class="nav-link" href="/projects/">projects <span class="sr-only">(current)</span> </a> </li> <li class="nav-item "> <a class="nav-link" href="/cv/">CV </a> </li> <li class="nav-item"> <button id="search-toggle" type="button" title="Search" aria-label="Open search"> <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" type="button" title="Change theme" aria-label="Change color theme"> <i class="fa-half-sun-moon" id="light-toggle-system"></i> <i class="fa-solid fa-moon" id="light-toggle-dark"></i> <i class="fa-solid fa-sun" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">시계열 PCR 신호 baseline 보정</h1> <p class="post-description"></p> </header> <article> <div style="text-align: right; margin-bottom: 1rem;"> <a href="/projects/3_pcr_baseline/">English</a> · <strong>한국어</strong> </div> <p><strong>역할:</strong> 기술 리드 / 데이터 사이언티스트 (Data Scientist 3, Data Engineer 1)  ·  <strong>기간:</strong> 2024.01 – 2024.09  ·  <strong>스택:</strong> Python, Matlab, 혼합 기저함수 모델링, 경량 선형회귀</p> <p>하드코딩된 레거시 PCR 신호 보정 알고리즘을 <strong>데이터 기반 혼합 기저함수 모델</strong>로 재설계하는 과제를 총괄했다. 화학·광학·기계 반응이 섞인 PCR 신호는 단일 규칙으로 대응할 수 없어, 신호 종류마다 분기 조건이 누적되는 취약한 규칙 스택이었다. 게다가 표준화되지 않은 baseline fitting 알고리즘이 여러 벌 병존해 제품·팀 간 결과가 달랐다.</p> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/projects/poster_03_pcr-baseline-480.webp 480w,/assets/img/projects/poster_03_pcr-baseline-800.webp 800w,/assets/img/projects/poster_03_pcr-baseline-1400.webp 1400w," type="image/webp" sizes="95vw"></source> <img src="/assets/img/projects/poster_03_pcr-baseline.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" alt="시계열 PCR 신호 baseline 보정 — 프로젝트 포스터" data-zoomable="" loading="eager" onerror="this.onerror=null; document.querySelectorAll('.responsive-img-srcset').forEach(function (n) { n.remove(); });"> </picture> </figure> <h3 id="주요-성과">주요 성과</h3> <ul> <li> <strong>데이터 기반 혼합 기저함수 모델</strong> — Taylor Series 다항식 근사에서 착안해 다항식·지수·로그 등 혼합 기저함수로 신호를 변환하는 ‘특성방정식’ 알고리즘을 직접 설계하고, 경량 선형회귀로 baseline을 적합. 기저함수를 추가하는 것만으로 새로운 신호 패턴에 확장 가능 — 조건 분기 추가가 필요 없다.</li> <li> <strong>위음성률 0.47% → 0.04% (91.49% 개선)</strong> — 환자 안전성에 직결되는 거짓 음성을 한 자릿수 분의 일 수준으로 낮췄다.</li> <li> <strong>5종 경쟁 알고리즘 대비 잔여신호 백색잡음 근사도 1위</strong> — 업계 1위 타사 Black Box 알고리즘과의 직접 성능 비교까지 완료.</li> <li> <strong>최소 패키지 정책</strong> — C++ 포팅을 위해 외부 ML/DL 프레임워크 없이(NumPy/Pandas만) 구현, 로그 정규화 → 기저함수 특성 벡터 → 비용함수 → 모멘텀 경사하강 → 예측 → 역정규화 파이프라인 구성.</li> <li> <strong>직관적 성능 비교 시각화</strong>(복수 신호·단일 신호·신호 유형별)로 생물학자·임원까지 참여하는 객관적 의사결정을 지원.</li> </ul> <h3 id="접근">접근</h3> <p>측정 기반 데이터 주도 모델 하나가 하드코딩 baseline을 대체하고, 파편화된 fitting 알고리즘을 단일화하며, 동일 신호에서 경쟁 알고리즘 대비 품질을 검증한다.</p> <pre><code class="language-mermaid">flowchart TB
+    L[Hard-coded legacy algorithm] --&gt; D[Data-driven&lt;br/&gt;mixed-basis-function model]
+    D --&gt; OPT[Log norm, basis vectors,&lt;br/&gt;momentum gradient descent]
+    OPT --&gt; CMP[6-algorithm comparison&lt;br/&gt;+ visual validation]
+    CMP --&gt; FN[False-negative&lt;br/&gt;0.47% to 0.04%]
+    CMP --&gt; WN[#1 white-noise&lt;br/&gt;approximation of 5]
+</code></pre> </article> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Kwangmin Kim. Built with <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> and the <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme, hosted on <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. </div> </footer> <script>
+  window.alFolio = {
+    compatBootstrap: false
+  };
+</script> <script src="/assets/js/nav-toggle.js?v=141bd79a73ebc0f0b6ea58e440ae79fc"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/assets/js/masonry.js?v=e49affc7bd2646f6acdad1dbe02c2359" type="text/javascript"></script> <script defer src="https://cdn.jsdelivr.net/npm/mermaid@10.7.0/dist/mermaid.min.js" integrity="sha256-TtLOdUA8mstPoO6sGvHIGx2ceXrrX4KgIItO06XOn8A=" crossorigin="anonymous"></script> <script defer src="/assets/al_charts/js/mermaid-setup.js" type="text/javascript"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/assets/al_math/js/mathjax-setup.js"></script> <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script> <script src="/assets/js/tooltips-setup.js?v=fe487e99db6c43751e6e7bdb2d6a0611"></script> <script src="/assets/js/no_defer.js?v=53b1b1a645525975c963ce8bf8bfefcf"></script> <script defer src="/assets/js/common.js?v=87baac90f765f2f3362dcf6aaf312a8a"></script> <script defer src="/assets/js/copy_code.js?v=c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?v=896d254890d9b47f0281f63bfccf0dee"></script> <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script> <script async src="https://badge.dimensions.ai/badge.js"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/al_img_tools/js/zoom.js"></script> <script defer src="/assets/js/progress-bar.js?v=499464c5c63ced6cf7ad62509f1e2610" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js" integrity="sha256-uMJJ3EoTyfRBoTbR+lrfu1uRQ87RZG8AR3cVNuQVeFg=" crossorigin="anonymous"></script> <script>
+    addBackToTop();
+  </script> <script type="module" src="/assets/al_search/js/search/ninja-keys.min.js"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/assets/al_search/js/search-setup.js"></script> <script>
+// get the ninja-keys element
+const ninja = document.querySelector('ninja-keys');
+
+// add the home and posts menu items
+ninja.data = [{
+    id: "nav-about",
+    title: "about",
+    section: "Navigation",
+    handler: () => {
+      window.location.href = "/";
+    },
+  },{id: "nav-projects",
+          title: "projects",
+          description: "Selected work in AI/LLM engineering and data science. Production details are abstracted to respect employer IP.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/projects/";
+          },
+        },{id: "nav-cv",
+          title: "CV",
+          description: "Curriculum vitae — Kwangmin Kim, AI Engineer / Data Scientist.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/cv/";
+          },
+        },{id: "post-google-gemini-updates-flash-1-5-gemma-2-and-project-astra",
+        
+          title: 'Google Gemini updates: Flash 1.5, Gemma 2 and Project Astra <svg width="1.2rem" height="1.2rem" top=".5rem" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+        
+        description: "We’re sharing updates across our Gemini family of models and a glimpse of Project Astra, our vision for the future of AI assistants.",
+        section: "Posts",
+        handler: () => {
+          
+            window.open("https://blog.google/technology/ai/google-gemini-update-flash-ai-assistant-io-2024/", "_blank");
+          
+        },
+      },{id: "post-displaying-external-posts-on-your-al-folio-blog",
+        
+          title: 'Displaying External Posts on Your al-folio Blog <svg width="1.2rem" height="1.2rem" top=".5rem" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.open("https://medium.com/@al-folio/displaying-external-posts-on-your-al-folio-blog-b60a1d241a0a?source=rss-17feae71c3c4------2", "_blank");
+          
+        },
+      },{id: "projects-enterprise-multi-agent-rag-platform",
+          title: 'Enterprise Multi-Agent RAG Platform',
+          description: "A company-wide knowledge platform built on multiple cooperating LLM agents — grounded, cited, and continuously evaluated.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/1_ai_platform/";
+            },},{id: "projects-nlp-based-data-standardization-system",
+          title: 'NLP-Based Data Standardization System',
+          description: "A hybrid Rule + classifier + RAG system that standardizes metadata automatically — and the rigorous model benchmark behind it.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/2_data_standardization/";
+            },},{id: "projects-pcr-signal-baseline-correction",
+          title: 'PCR Signal Baseline Correction',
+          description: "Redesigning a hard-coded legacy baseline algorithm into a data-driven mixed-basis-function model that cut the false-negative rate by 91%.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/3_pcr_baseline/";
+            },},{id: "projects-fda-software-validation-statistical-analysis",
+          title: 'FDA Software-Validation Statistical Analysis',
+          description: "A statistical validation pipeline that proved diagnostic-algorithm safety for FDA clearance and cut the validation cycle from six months to three weeks.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/4_fda_validation/";
+            },},{id: "projects-rt-pcr-algorithm-reverse-engineering-amp-statistical-redesign",
+          title: 'RT-PCR Algorithm Reverse Engineering &amp;amp; Statistical Redesign',
+          description: "Reverse-engineering an undocumented legacy RT-PCR algorithm and designing a joint-estimation hybrid statistical model to remove systematic bias.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/5_rtpcr_reverse/";
+            },},{id: "projects-diagnostic-equipment-qc-automation-amp-performance-grading",
+          title: 'Diagnostic-Equipment QC Automation &amp;amp; Performance Grading',
+          description: "Replacing manual Excel QC with a two-stage LSTM and 10 graded metrics that cut QC time ~93% and won an R&amp;D President&#39;s Award.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/6_qc_grading/";
+            },},{id: "projects-alzheimer-39-s-multi-omics-biomarker-discovery",
+          title: 'Alzheimer&amp;#39;s Multi-Omics Biomarker Discovery',
+          description: "Integrating genomic, metabolomic, and clinical data at Columbia / Taub Institute to surface candidate Alzheimer&#39;s biomarkers.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/7_alzheimers_omics/";
+            },},{id: "teachings-data-science-fundamentals",
+          title: 'Data Science Fundamentals',
+          description: "This course covers the foundational aspects of data science, including data collection, cleaning, analysis, and visualization. Students will learn practical skills for working with real-world datasets.",
+          section: "Teachings",handler: () => {
+              window.location.href = "/teachings/data-science-fundamentals/";
+            },},{id: "teachings-introduction-to-machine-learning",
+          title: 'Introduction to Machine Learning',
+          description: "This course provides an introduction to machine learning concepts, algorithms, and applications. Students will learn about supervised and unsupervised learning, model evaluation, and practical implementations.",
+          section: "Teachings",handler: () => {
+              window.location.href = "/teachings/introduction-to-machine-learning/";
+            },},{
+        id: 'social-email',
+        title: 'email',
+        section: 'Socials',
+        handler: () => {
+          window.open("mailto:%6B%6D%69%6E%6B%33%32%32%35@%67%6D%61%69%6C.%63%6F%6D", "_blank");
+        },
+      },{
+        id: 'social-github',
+        title: 'GitHub',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://github.com/kmink3225", "_blank");
+        },
+      },{
+        id: 'social-linkedin',
+        title: 'LinkedIn',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.linkedin.com/in/kwangmin-kim-a5241b200", "_blank");
+        },
+      },{
+        id: 'social-rss',
+        title: 'RSS Feed',
+        section: 'Socials',
+        handler: () => {
+          window.open("/feed.xml", "_blank");
+        },
+      },{
+      id: 'light-theme',
+      title: 'Change theme to light',
+      description: 'Change the theme of the site to Light',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("light");
+      },
+    },
+    {
+      id: 'dark-theme',
+      title: 'Change theme to dark',
+      description: 'Change the theme of the site to Dark',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("dark");
+      },
+    },
+    {
+      id: 'system-theme',
+      title: 'Use system default theme',
+      description: 'Change the theme of the site to System Default',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("system");
+      },
+    },];
+
+</script> <script src="/assets/al_search/js/shortcut-key.js"></script> </body> </html>

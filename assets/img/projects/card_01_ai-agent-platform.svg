@@ -1,0 +1,63 @@
+<svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" font-family="'Pretendard','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic','Apple SD Gothic Neo',sans-serif">
+  <defs>
+    <linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FBFCFE"/>
+      <stop offset="1" stop-color="#EAF1F8"/>
+    </linearGradient>
+    <linearGradient id="hub1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2E6BA6"/>
+      <stop offset="1" stop-color="#16324F"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg1)"/>
+  <rect x="0" y="0" width="10" height="720" fill="#2E6BA6"/>
+  <text x="70" y="86" font-size="24" letter-spacing="3" fill="#2E6BA6" font-weight="700">01 · AI AGENT / MULTI-RAG</text>
+  <line x1="70" y1="104" x2="270" y2="104" stroke="#2E6BA6" stroke-width="3"/>
+  <g stroke="#9CB6CE" stroke-width="2.5" fill="none" opacity="0.9">
+    <path d="M640 300 L430 210"/>
+    <path d="M640 300 L430 390"/>
+    <path d="M640 300 L860 210"/>
+    <path d="M640 300 L860 390"/>
+  </g>
+  <g fill="none" stroke="#3FA7A0" stroke-width="2.5" stroke-dasharray="6 7">
+    <path d="M285 300 L560 300"/>
+  </g>
+  <g transform="translate(180,250)">
+    <rect x="0" y="0" width="80" height="100" rx="8" fill="#ffffff" stroke="#3FA7A0" stroke-width="3"/>
+    <rect x="12" y="-12" width="80" height="100" rx="8" fill="#ffffff" stroke="#3FA7A0" stroke-width="3"/>
+    <rect x="24" y="-24" width="80" height="100" rx="8" fill="#EAF7F5" stroke="#3FA7A0" stroke-width="3"/>
+    <line x1="38" y1="4" x2="90" y2="4" stroke="#3FA7A0" stroke-width="3"/>
+    <line x1="38" y1="22" x2="90" y2="22" stroke="#8FCBC5" stroke-width="3"/>
+    <line x1="38" y1="40" x2="78" y2="40" stroke="#8FCBC5" stroke-width="3"/>
+    <text x="52" y="118" font-size="17" fill="#2E8C84" text-anchor="middle" font-weight="600">지식 소스</text>
+  </g>
+  <g font-size="18" font-weight="700" text-anchor="middle">
+    <circle cx="430" cy="210" r="46" fill="#ffffff" stroke="#2E6BA6" stroke-width="3"/>
+    <text x="430" y="205" fill="#16324F">QnA</text>
+    <text x="430" y="227" fill="#7C8B99" font-size="13" font-weight="500">Chatbot</text>
+    <circle cx="430" cy="390" r="46" fill="#ffffff" stroke="#2E6BA6" stroke-width="3"/>
+    <text x="430" y="386" fill="#16324F">표준화</text>
+    <text x="430" y="407" fill="#7C8B99" font-size="13" font-weight="500">Agent</text>
+    <circle cx="860" cy="210" r="46" fill="#ffffff" stroke="#2E6BA6" stroke-width="3"/>
+    <text x="860" y="205" fill="#16324F">코드</text>
+    <text x="860" y="227" fill="#7C8B99" font-size="13" font-weight="500">분석</text>
+    <circle cx="860" cy="390" r="46" fill="#ffffff" stroke="#E8912D" stroke-width="3"/>
+    <text x="860" y="386" fill="#16324F">Eval</text>
+    <text x="860" y="407" fill="#7C8B99" font-size="13" font-weight="500">Judge</text>
+  </g>
+  <g>
+    <polygon points="640,236 695,268 695,332 640,364 585,332 585,268" fill="url(#hub1)"/>
+    <text x="640" y="296" font-size="30" font-weight="800" fill="#ffffff" text-anchor="middle">RAG</text>
+    <text x="640" y="322" font-size="14" fill="#B9D2E8" text-anchor="middle">Orchestrator</text>
+  </g>
+  <text x="70" y="560" font-size="46" font-weight="800" fill="#16324F">엔터프라이즈 AI Agent 지식 플랫폼</text>
+  <text x="70" y="600" font-size="22" fill="#7C8B99">멀티 Agent RAG · Self-RAG/CRAG · LangGraph · 2025.11–현재</text>
+  <g font-weight="800" text-anchor="middle">
+    <rect x="70" y="628" width="150" height="58" rx="10" fill="#16324F"/>
+    <text x="145" y="662" font-size="26" fill="#ffffff">98.0%</text>
+    <text x="145" y="680" font-size="12" fill="#9CB6CE" font-weight="500">QnA 만족도</text>
+    <rect x="232" y="628" width="150" height="58" rx="10" fill="#2E6BA6"/>
+    <text x="307" y="662" font-size="26" fill="#ffffff">~17배</text>
+    <text x="307" y="680" font-size="12" fill="#CFE0EF" font-weight="500">비용 절감</text>
+  </g>
+</svg>

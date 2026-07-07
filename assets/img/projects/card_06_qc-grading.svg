@@ -1,0 +1,84 @@
+<svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" font-family="'Pretendard','Noto Sans KR','Noto Sans CJK KR','Malgun Gothic','Apple SD Gothic Neo',sans-serif">
+  <defs>
+    <linearGradient id="bg6" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FBFCFE"/>
+      <stop offset="1" stop-color="#E6EEF6"/>
+    </linearGradient>
+    <linearGradient id="lstm6" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2E6BA6"/>
+      <stop offset="1" stop-color="#16324F"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg6)"/>
+  <rect x="0" y="0" width="10" height="720" fill="#2E6BA6"/>
+  <text x="70" y="86" font-size="24" letter-spacing="3" fill="#2E6BA6" font-weight="700">06 · QC AUTOMATION / GRADING</text>
+  <line x1="70" y1="104" x2="360" y2="104" stroke="#2E6BA6" stroke-width="3"/>
+
+  <!-- LSTM chain -->
+  <g transform="translate(70,175)">
+    <text x="0" y="20" font-size="17" font-weight="700" fill="#16324F">QC Step1 신호</text>
+    <g transform="translate(0,40)">
+      <rect x="0" y="0" width="34" height="120" rx="6" fill="#DCE8F4" stroke="#9CB6CE" stroke-width="1.5"/>
+      <rect x="44" y="20" width="34" height="100" rx="6" fill="#DCE8F4" stroke="#9CB6CE" stroke-width="1.5"/>
+      <rect x="88" y="10" width="34" height="110" rx="6" fill="#DCE8F4" stroke="#9CB6CE" stroke-width="1.5"/>
+    </g>
+    <!-- LSTM cells -->
+    <g transform="translate(150,55)">
+      <rect x="0" y="0" width="70" height="90" rx="10" fill="url(#lstm6)"/>
+      <rect x="90" y="0" width="70" height="90" rx="10" fill="url(#lstm6)"/>
+      <rect x="180" y="0" width="70" height="90" rx="10" fill="url(#lstm6)"/>
+      <text x="35" y="52" font-size="16" font-weight="800" fill="#fff" text-anchor="middle">LSTM</text>
+      <text x="125" y="52" font-size="16" font-weight="800" fill="#fff" text-anchor="middle">LSTM</text>
+      <text x="215" y="52" font-size="16" font-weight="800" fill="#fff" text-anchor="middle">LSTM</text>
+      <path d="M70 45 L90 45 M160 45 L180 45" stroke="#B9D2E8" stroke-width="3"/>
+    </g>
+    <g fill="#16324F" stroke="#16324F">
+      <line x1="122" y1="100" x2="145" y2="100" stroke-width="3"/>
+      <polygon points="145,93 160,100 145,107"/>
+    </g>
+    <text x="220" y="185" font-size="14" fill="#7C8B99" text-anchor="middle">Step1 → Step2 결과 예측</text>
+  </g>
+
+  <!-- grade bars -->
+  <g transform="translate(560,150)">
+    <rect x="0" y="0" width="560" height="300" rx="14" fill="#ffffff" stroke="#D4DEEA" stroke-width="2"/>
+    <text x="24" y="36" font-size="17" font-weight="700" fill="#16324F">장비 성능 등급 분포 (2,201대)</text>
+    <line x1="60" y1="250" x2="536" y2="250" stroke="#B7C6D6" stroke-width="2"/>
+    <!-- bars: A+ 7.01, A 12.91, B 75.72, F 4.36 ; scale 75.72->170 -->
+    <g text-anchor="middle" font-weight="800">
+      <rect x="90" y="234" width="80" height="16" fill="#2E7D32"/>
+      <text x="130" y="224" font-size="15" fill="#2E7D32">7.0%</text>
+      <text x="130" y="274" font-size="17" fill="#3A4A5A">A+</text>
+
+      <rect x="210" y="221" width="80" height="29" fill="#2E6BA6"/>
+      <text x="250" y="211" font-size="15" fill="#2E6BA6">12.9%</text>
+      <text x="250" y="274" font-size="17" fill="#3A4A5A">A</text>
+
+      <rect x="330" y="80" width="80" height="170" fill="#E8912D"/>
+      <text x="370" y="70" font-size="15" fill="#B07A2B">75.7%</text>
+      <text x="370" y="274" font-size="17" fill="#3A4A5A">B</text>
+
+      <rect x="450" y="240" width="80" height="10" fill="#C0392B"/>
+      <text x="490" y="230" font-size="15" fill="#C0392B">4.4%</text>
+      <text x="490" y="274" font-size="17" fill="#3A4A5A">F</text>
+    </g>
+  </g>
+
+  <text x="70" y="530" font-size="44" font-weight="800" fill="#16324F">진단 장비 QC 자동화 &amp; 성능 등급 분류</text>
+  <text x="70" y="570" font-size="22" fill="#7C8B99">LSTM 2단계 예측 · A+/A/B/F 등급 · R&amp;D 우수상 · 특허 2건 · 2020.12–2021.09</text>
+
+  <g font-weight="800" text-anchor="middle">
+    <rect x="70" y="606" width="160" height="66" rx="10" fill="#16324F"/>
+    <text x="150" y="642" font-size="25" fill="#ffffff">93% ↓</text>
+    <text x="150" y="662" font-size="12" fill="#9CB6CE" font-weight="500">QC 400h→28h</text>
+    <rect x="242" y="606" width="150" height="66" rx="10" fill="#2E6BA6"/>
+    <text x="317" y="642" font-size="25" fill="#ffffff">13배</text>
+    <text x="317" y="662" font-size="12" fill="#CFE0EF" font-weight="500">연 운영비 절감</text>
+    <rect x="404" y="606" width="150" height="66" rx="10" fill="#2E7D32"/>
+    <text x="479" y="642" font-size="25" fill="#ffffff">94.5%</text>
+    <text x="479" y="662" font-size="12" fill="#D6ECD8" font-weight="500">합·불합격 정확도</text>
+    <rect x="566" y="606" width="160" height="66" rx="10" fill="#E8912D"/>
+    <text x="646" y="642" font-size="24" fill="#ffffff">61,248</text>
+    <text x="646" y="662" font-size="12" fill="#FBEBD5" font-weight="500">신호 데이터</text>
+  </g>
+</svg>
