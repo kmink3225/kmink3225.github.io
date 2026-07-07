@@ -1,0 +1,9 @@
+<style>
+.lang-switch { display: flex; justify-content: flex-end; margin: 0 0 1.5rem; }
+.lang-switch .seg { display: inline-flex; border: 1px solid var(--global-divider-color); border-radius: 2rem; overflow: hidden; font-size: 0.8rem; font-weight: 600; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); }
+.lang-switch .seg > a, .lang-switch .seg > span { padding: 0.4rem 1.1rem; line-height: 1.15; text-decoration: none; letter-spacing: 0.01em; transition: background 0.15s ease, color 0.15s ease; }
+.lang-switch .seg .on { background: var(--global-theme-color); color: #fff; }
+.lang-switch .seg .off { color: var(--global-text-color-light); }
+.lang-switch .seg .off:hover { color: var(--global-theme-color); background: rgba(127, 127, 127, 0.14); }
+</style>
+<div class="lang-switch"><div class="seg">{% if include.active == 'ko' %}<a class="off" href="{{ include.en }}">English</a><span class="on">한국어</span>{% else %}<span class="on">English</span><a class="off" href="{{ include.ko }}">한국어</a>{% endif %}</div></div>

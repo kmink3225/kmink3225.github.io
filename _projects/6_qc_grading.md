@@ -11,7 +11,7 @@ mermaid:
   zoomable: false
 ---
 
-<div style="text-align: right; margin-bottom: 1rem;"><strong>English</strong> · <a href="/ko/projects/6_qc_grading/">한국어</a></div>
+{% include lang_toggle.liquid active='en' ko='/ko/projects/6_qc_grading/' %}
 
 **Role:** Technical Lead / Data Scientist — 11-person cross-functional team (Data Scientist 1, Full-stack 3, mechanical engineers 4, patent 3) &nbsp;·&nbsp; **Period:** 2020.12 – 2021.09 &nbsp;·&nbsp; **Stack:** Python, R, PyTorch (LSTM), PCA/t-SNE/DBSCAN, Isolation Forest, R Shiny
 

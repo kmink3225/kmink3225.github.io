@@ -11,7 +11,7 @@ mermaid:
   zoomable: false
 ---
 
-<div style="text-align: right; margin-bottom: 1rem;"><strong>English</strong> · <a href="/ko/projects/7_alzheimers_omics/">한국어</a></div>
+{% include lang_toggle.liquid active='en' ko='/ko/projects/7_alzheimers_omics/' %}
 
 **Role:** Statistical Research Assistant, Columbia University Irving Medical Center — Taub Institute &nbsp;·&nbsp; **Stack:** R, Cox / GEE, sPLS, Lasso/Ridge/RF/SVM/GBM, PCA/K-means/DBSCAN
 

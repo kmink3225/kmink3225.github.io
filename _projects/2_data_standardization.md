@@ -11,7 +11,7 @@ mermaid:
   zoomable: false
 ---
 
-<div style="text-align: right; margin-bottom: 1rem;"><strong>English</strong> · <a href="/ko/projects/2_data_standardization/">한국어</a></div>
+{% include lang_toggle.liquid active='en' ko='/ko/projects/2_data_standardization/' %}
 
 > Architecture and methodology are described at a high level; production code and internal data are proprietary.
 

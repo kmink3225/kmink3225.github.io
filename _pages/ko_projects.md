@@ -6,7 +6,7 @@ nav: false
 description: AI/LLM 엔지니어링과 데이터 사이언스 주요 작업. 운영 세부사항은 회사 IP 보호를 위해 추상화했다.
 ---
 
-<div style="text-align: right; margin-bottom: 1rem;"><a href="/projects/">English</a> · <strong>한국어</strong></div>
+{% include lang_toggle.liquid active='ko' en='/projects/' %}
 
 <div class="projects">
 <a id="work" href=".#work"><h2 class="category">실무</h2></a>

@@ -27,7 +27,7 @@ latest_posts:
   limit: 3
 ---
 
-<div style="text-align: right; margin-bottom: 1rem;"><a href="/">English</a> · <strong>한국어</strong></div>
+{% include lang_toggle.liquid active='ko' en='/' %}
 
 7년 이상 경력의 **AI Engineer / Data Scientist** 다. RAG, LLM 에이전트, NLP 기반의 **엔터프라이즈 AI 플랫폼을 아키텍처부터 설계·구축**하고, 이를 **통계적으로 엄밀한 평가**로 뒷받침한다. 진단 분야에 적용된 생물통계(컬럼비아 석사)가 토대라, 시스템을 *만드는 것*만큼 *측정하는 것*을 중요하게 여긴다.
 

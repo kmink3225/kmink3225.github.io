@@ -9,7 +9,7 @@ display_categories: [work]
 horizontal: false
 ---
 
-<div style="text-align: right; margin-bottom: 1rem;"><strong>English</strong> · <a href="/ko/projects/">한국어</a></div>
+{% include lang_toggle.liquid active='en' ko='/ko/projects/' %}
 
 <!-- pages/projects.md -->
 <div class="projects">

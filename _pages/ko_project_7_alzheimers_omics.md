@@ -8,7 +8,7 @@ mermaid:
   zoomable: false
 ---
 
-<div style="text-align: right; margin-bottom: 1rem;"><a href="/projects/7_alzheimers_omics/">English</a> · <strong>한국어</strong></div>
+{% include lang_toggle.liquid active='ko' en='/projects/7_alzheimers_omics/' %}
 
 **역할:** 통계 연구원, Columbia University Irving Medical Center — Taub Institute &nbsp;·&nbsp; **스택:** R, Cox / GEE, sPLS, Lasso/Ridge/RF/SVM/GBM, PCA/K-means/DBSCAN
 

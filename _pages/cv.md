@@ -9,7 +9,7 @@ toc:
   sidebar: left
 ---
 
-<div style="text-align: right; margin-bottom: 1rem;"><strong>English</strong> · <a href="/ko/cv/">한국어</a></div>
+{% include lang_toggle.liquid active='en' ko='/ko/cv/' %}
 
 **Kwangmin Kim (김광민)** · AI Engineer / Data Scientist · Seoul, South Korea
 [kmink3225@gmail.com](mailto:kmink3225@gmail.com) · [GitHub](https://github.com/kmink3225) · [LinkedIn](https://www.linkedin.com/in/kwangmin-kim-a5241b200/)

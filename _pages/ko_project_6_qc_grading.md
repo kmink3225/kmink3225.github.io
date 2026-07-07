@@ -8,7 +8,7 @@ mermaid:
   zoomable: false
 ---
 
-<div style="text-align: right; margin-bottom: 1rem;"><a href="/projects/6_qc_grading/">English</a> · <strong>한국어</strong></div>
+{% include lang_toggle.liquid active='ko' en='/projects/6_qc_grading/' %}
 
 **역할:** 기술 리드 / 데이터 사이언티스트 — 다학제 11명(Data Scientist 1, Full-stack 3, 기계공학 4, 특허 3) &nbsp;·&nbsp; **기간:** 2020.12 – 2021.09 &nbsp;·&nbsp; **스택:** Python, R, PyTorch (LSTM), PCA/t-SNE/DBSCAN, Isolation Forest, R Shiny
 

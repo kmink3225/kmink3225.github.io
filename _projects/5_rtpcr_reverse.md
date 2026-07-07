@@ -11,7 +11,7 @@ mermaid:
   zoomable: false
 ---
 
-<div style="text-align: right; margin-bottom: 1rem;"><strong>English</strong> · <a href="/ko/projects/5_rtpcr_reverse/">한국어</a></div>
+{% include lang_toggle.liquid active='en' ko='/ko/projects/5_rtpcr_reverse/' %}
 
 **Role:** Data Scientist — algorithm analysis & redesign (6-person Data Science team) &nbsp;·&nbsp; **Period:** 2021.10 – 2023.04 &nbsp;·&nbsp; **Stack:** Matlab, Python, mechanistic + statistical modeling, joint parameter estimation, residual analysis
 

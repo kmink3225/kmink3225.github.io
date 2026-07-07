@@ -8,7 +8,7 @@ mermaid:
   zoomable: false
 ---
 
-<div style="text-align: right; margin-bottom: 1rem;"><a href="/projects/4_fda_validation/">English</a> · <strong>한국어</strong></div>
+{% include lang_toggle.liquid active='ko' en='/projects/4_fda_validation/' %}
 
 **역할:** 기술 리드 / 데이터 사이언티스트 — 다학제 16명(Data Scientist 3, Data Engineer 2, 생물학자 8, 특허 3) &nbsp;·&nbsp; **기간:** 2023.05 – 2023.12 &nbsp;·&nbsp; **스택:** R, Matlab, Apache Airflow, Quarto, 통계적 검정
 

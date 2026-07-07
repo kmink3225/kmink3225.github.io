@@ -11,7 +11,7 @@ mermaid:
   zoomable: false
 ---
 
-<div style="text-align: right; margin-bottom: 1rem;"><strong>English</strong> · <a href="/ko/projects/3_pcr_baseline/">한국어</a></div>
+{% include lang_toggle.liquid active='en' ko='/ko/projects/3_pcr_baseline/' %}
 
 **Role:** Technical Lead / Data Scientist (Data Scientist 3, Data Engineer 1) &nbsp;·&nbsp; **Period:** 2024.01 – 2024.09 &nbsp;·&nbsp; **Stack:** Python, Matlab, mixed-basis-function modeling, lightweight linear regression
 

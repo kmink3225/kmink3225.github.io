@@ -8,7 +8,7 @@ mermaid:
   zoomable: false
 ---
 
-<div style="text-align: right; margin-bottom: 1rem;"><a href="/projects/3_pcr_baseline/">English</a> · <strong>한국어</strong></div>
+{% include lang_toggle.liquid active='ko' en='/projects/3_pcr_baseline/' %}
 
 **역할:** 기술 리드 / 데이터 사이언티스트 (Data Scientist 3, Data Engineer 1) &nbsp;·&nbsp; **기간:** 2024.01 – 2024.09 &nbsp;·&nbsp; **스택:** Python, Matlab, 혼합 기저함수 모델링, 경량 선형회귀
 

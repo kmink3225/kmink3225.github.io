@@ -11,7 +11,7 @@ mermaid:
   zoomable: false
 ---
 
-<div style="text-align: right; margin-bottom: 1rem;"><strong>English</strong> · <a href="/ko/projects/4_fda_validation/">한국어</a></div>
+{% include lang_toggle.liquid active='en' ko='/ko/projects/4_fda_validation/' %}
 
 **Role:** Technical Lead / Data Scientist — 16-person cross-functional team (Data Scientist 3, Data Engineer 2, biologists 8, patent 3) &nbsp;·&nbsp; **Period:** 2023.05 – 2023.12 &nbsp;·&nbsp; **Stack:** R, Matlab, Apache Airflow, Quarto, statistical testing
 

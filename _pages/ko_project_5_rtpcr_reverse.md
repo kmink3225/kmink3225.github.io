@@ -8,7 +8,7 @@ mermaid:
   zoomable: false
 ---
 
-<div style="text-align: right; margin-bottom: 1rem;"><a href="/projects/5_rtpcr_reverse/">English</a> · <strong>한국어</strong></div>
+{% include lang_toggle.liquid active='ko' en='/projects/5_rtpcr_reverse/' %}
 
 **역할:** 데이터 사이언티스트 — 알고리즘 분석·개선안 설계(6인 Data Science 팀) &nbsp;·&nbsp; **기간:** 2021.10 – 2023.04 &nbsp;·&nbsp; **스택:** Matlab, Python, 메카니스틱 + 통계 모델링, 결합추정, 잔차 분석
 
