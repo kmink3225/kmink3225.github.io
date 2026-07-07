@@ -12,7 +12,10 @@ mermaid:
 
 **역할:** 기술 리드 / 데이터 사이언티스트 — 다학제 11명(Data Scientist 1, Full-stack 3, 기계공학 4, 특허 3) &nbsp;·&nbsp; **기간:** 2020.12 – 2021.09 &nbsp;·&nbsp; **스택:** Python, R, PyTorch (LSTM), PCA/t-SNE/DBSCAN, Isolation Forest, R Shiny
 
-PCR 시약을 타사 장비에 탑재할 때 2단계 QC 프로세스로 장비 성능을 평가한다. 기존 프로세스는 지표 2종·약 100회 표본 일괄평가(신호 1개라도 불합격이면 장비 불합격)의 **수동 엑셀 검사**로, 휴먼 에러에 취약했고 기계 결함과 휴먼 에러를 구별하지 못했다. 나는 이 프로세스의 자동화를 총괄하고 장비를 A+/A/B/F 차등 등급으로 재분류했다.
+PCR 시약을 타사 장비에 탑재할 때 2단계 QC 프로세스로 장비 성능을 평가한다. 나는 이 프로세스의 자동화를 총괄하고 장비를 A+/A/B/F 차등 등급으로 재분류했다.
+
+- **기존 프로세스** — 지표 2종·약 100회 표본 일괄평가의 **수동 엑셀 검사**로, 신호 1개라도 불합격이면 장비 전체가 불합격이었다.
+- **실패 양상** — 휴먼 에러에 취약했고, 기계 결함과 휴먼 에러를 구별하지 못했다.
 
 {% include figure.liquid loading="eager" path="assets/img/projects/poster_06_qc-grading.png" class="img-fluid rounded z-depth-1" zoomable=true alt="진단 장비 QC 자동화 및 장비 성능 분류 — 프로젝트 포스터" %}
 

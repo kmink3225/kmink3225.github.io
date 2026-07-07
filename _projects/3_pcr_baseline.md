@@ -15,7 +15,10 @@ mermaid:
 
 **Role:** Technical Lead / Data Scientist (Data Scientist 3, Data Engineer 1) &nbsp;·&nbsp; **Period:** 2024.01 – 2024.09 &nbsp;·&nbsp; **Stack:** Python, Matlab, mixed-basis-function modeling, lightweight linear regression
 
-I led the redesign of a hard-coded legacy PCR signal-correction algorithm into a **data-driven mixed-basis-function model**, replacing a brittle rule stack that had to branch for every new noise pattern. The signal mixes chemical, optical, and mechanical responses, so a single deterministic rule could not cover it — and multiple non-standard baseline-fitting algorithms coexisted, producing inconsistent results across products and teams.
+Led the redesign of a hard-coded legacy PCR signal-correction algorithm into a **data-driven mixed-basis-function model**. The legacy stack was brittle for two reasons:
+
+- **Signal complexity** — chemical, optical, and mechanical responses mix, so no single deterministic rule covers it; conditional branches piled up for every new noise pattern.
+- **Fragmented tooling** — multiple non-standard baseline-fitting algorithms coexisted, giving inconsistent results across products and teams.
 
 {% include figure.liquid loading="eager" path="assets/img/projects/poster_03_pcr-baseline_en.png" class="img-fluid rounded z-depth-1" zoomable=true alt="PCR Signal Baseline Correction — project poster" %}
 

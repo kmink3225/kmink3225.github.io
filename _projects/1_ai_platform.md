@@ -17,7 +17,12 @@ mermaid:
 
 **Role:** Technical Lead / Architect &nbsp;·&nbsp; **Period:** 2025.11 – Present &nbsp;·&nbsp; **Stack:** Python, LangChain, LangGraph, Azure OpenAI, Azure AI Search, FastAPI, React
 
-I architected an enterprise, domain-specific **multi-agent RAG platform** end-to-end, taking it from a single-agent pilot to a company-wide initiative — the program grew out of the success of the earlier [data-standardization system](/projects/2_data_standardization/), promoted from a single-agent plan into a multi-agent flagship project. The platform turns fragmented internal knowledge into a queryable, cited assistant, and comprises several cooperating sub-agents — a **knowledge QnA assistant**, a **data-standardization assistant**, and a **code-analysis agent** — over shared Azure infrastructure. It is live with **~30 practitioners** in the initial rollout and expanding company-wide; two of the three agents shipped **two months ahead of target**.
+I architected an enterprise, domain-specific **multi-agent RAG platform** end-to-end, taking it from a single-agent pilot to a company-wide initiative.
+
+- **Origin** — grew out of the earlier [data-standardization system](/projects/2_data_standardization/), promoted from a single-agent plan into a multi-agent flagship.
+- **What it does** — turns fragmented internal knowledge into a queryable, cited assistant over shared Azure infrastructure.
+- **Three cooperating sub-agents** — a **knowledge QnA assistant**, a **data-standardization assistant**, and a **code-analysis agent**.
+- **Status** — live with **~30 practitioners** and expanding company-wide; two of the three agents shipped **two months ahead of target**.
 
 {% include figure.liquid loading="eager" path="assets/img/projects/poster_01_ai-agent-platform_en.png" class="img-fluid rounded z-depth-1" zoomable=true alt="Enterprise Multi-Agent RAG Platform — project poster" %}
 
@@ -229,4 +234,10 @@ flowchart LR
 
 ### Why it matters
 
-A self-built harness keeps the control plane in-house: vendor flexibility, cost control, and knowledge captured as a durable asset rather than rented from a single provider. I made this case beyond my own team, too: across two Microsoft workshops I led the technical discussion and persuaded a Microsoft architect and seven engineers of the self-built orchestration approach over a general-purpose Copilot CLI.
+A self-built harness keeps the control plane in-house — three payoffs:
+
+- **Vendor flexibility** — models are borrowed, but the control code is ours, so we are not locked to one provider's stack.
+- **Cost control** — determinism-first grounding runs on a cheap mini-tier model.
+- **Knowledge as a durable asset** — captured in-house rather than rented from a single provider.
+
+I made this case beyond my own team, too: across two Microsoft workshops I led the technical discussion and persuaded a Microsoft architect and seven engineers of the self-built orchestration approach over a general-purpose Copilot CLI.

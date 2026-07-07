@@ -17,7 +17,10 @@ mermaid:
 
 **Role:** Technical Lead — Data Architect through the framework-design phase (2024.06–09), then Data Scientist / AI Engineer for automation and operations; trained 20+ engineers across IT/BT &nbsp;·&nbsp; **Period:** 2024.06 – 2025.09 &nbsp;·&nbsp; **Stack:** Python, PyTorch, Transformers, KLUE-RoBERTa, BiLSTM, HDBSCAN, RAG, pytest, Docker
 
-I defined and led an **NLP-based data standardization system** to resolve cross-team metadata inconsistency — starting from problem definition, not from a handed-down requirement. A governance baseline diagnosis across three production systems put column-level naming compliance at **8.4%**, turning a vague pain point into a quantified mandate. A successful pilot was promoted to a company-wide rollout and became the starting point for the later [enterprise AI agent platform](/projects/1_ai_platform/).
+I defined and led an **NLP-based data standardization system** to resolve cross-team metadata inconsistency — starting from problem definition, not a handed-down requirement.
+
+- **Quantified the problem** — a governance baseline across three production systems put column-level naming compliance at **8.4%**, turning a vague pain point into a mandate.
+- **Scaled it** — a successful pilot was promoted company-wide and became the starting point for the later [enterprise AI agent platform](/projects/1_ai_platform/).
 
 {% include figure.liquid loading="eager" path="assets/img/projects/poster_02_nlp-standardization_en.png" class="img-fluid rounded z-depth-1" zoomable=true alt="NLP-Based Data Standardization System — project poster" %}
 
@@ -31,7 +34,12 @@ I defined and led an **NLP-based data standardization system** to resolve cross-
 
 ### Why build instead of buy
 
-Commercial data-governance solutions — Databricks, Snowflake, MS Purview — were evaluated first. All of them turned out to be *application* tools: they enforce and operate a standardization framework you already have, and none supply the organization-specific naming rules, controlled vocabulary, and domain dictionaries that were precisely what was missing. Working through that gap produced the project's central, inductively-reached conclusion: **the backbone of the solution is the standardization framework itself.**
+Commercial data-governance solutions — Databricks, Snowflake, MS Purview — were evaluated first, but all turned out to be *application* tools:
+
+- They **enforce and operate** a standardization framework you already have.
+- None supply the **organization-specific naming rules, controlled vocabulary, and domain dictionaries** — precisely what was missing.
+
+That gap produced the project's central, inductively-reached conclusion: **the backbone of the solution is the standardization framework itself.**
 
 So the framework came first — naming rules and word/term/domain dictionaries designed as an explicit governance artifact (2024.06–09) — and automation followed it: a deterministic rule-based standardization engine (2024.09–10), then NLP assistance layered on top.
 
@@ -74,4 +82,9 @@ flowchart LR
 
 ### Why it matters
 
-Automation only works when the thing being automated is well defined. The durable asset here is the standardization framework — the rules, dictionaries, and governance process that 20+ engineers across IT/BT were trained on — and the NLP system is its delivery mechanism. Framing the problem that way is what let a pilot scale into a company-wide rollout, and later seed the enterprise AI agent platform.
+Automation only works when the thing being automated is well defined.
+
+- **The durable asset** is the standardization framework — the rules, dictionaries, and governance process that 20+ IT/BT engineers were trained on.
+- **The NLP system** is its delivery mechanism.
+
+Framing the problem that way is what let a pilot scale into a company-wide rollout, and later seed the enterprise AI agent platform.

@@ -15,7 +15,10 @@ mermaid:
 
 **Role:** Data Scientist — algorithm analysis & redesign (6-person Data Science team) &nbsp;·&nbsp; **Period:** 2021.10 – 2023.04 &nbsp;·&nbsp; **Stack:** Matlab, Python, mechanistic + statistical modeling, joint parameter estimation, residual analysis
 
-I reverse-engineered an **undocumented legacy Matlab algorithm** (10+ correction stages, 50+ empirical parameters) and designed a statistically rigorous redesign. The deterministic rule stack grew exponentially with every added noise pattern, and its stage-by-stage sequential correction accumulated **systematic bias** with non-linear interactions that made sensitivity analysis impossible. Regulatory clearance demanded explainability, so I reframed the problem as a **mechanistic + statistical hybrid** rather than a deep-learning black box.
+Reverse-engineered an **undocumented legacy Matlab algorithm** (10+ correction stages, 50+ empirical parameters) and designed a statistically rigorous replacement.
+
+- **Legacy pain** — the deterministic rule stack grew exponentially with each new noise pattern; stage-by-stage sequential correction accumulated **systematic bias** with non-linear interactions, making sensitivity analysis impossible.
+- **Design constraint** — regulatory clearance demanded explainability, so I reframed the problem as a **mechanistic + statistical hybrid** rather than a deep-learning black box.
 
 {% include figure.liquid loading="eager" path="assets/img/projects/poster_05_rtpcr-reverse-eng_en.png" class="img-fluid rounded z-depth-1" zoomable=true alt="RT-PCR Algorithm Reverse Engineering & Statistical Redesign — project poster" %}
 

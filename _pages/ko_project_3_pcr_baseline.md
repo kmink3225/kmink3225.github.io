@@ -12,7 +12,10 @@ mermaid:
 
 **역할:** 기술 리드 / 데이터 사이언티스트 (Data Scientist 3, Data Engineer 1) &nbsp;·&nbsp; **기간:** 2024.01 – 2024.09 &nbsp;·&nbsp; **스택:** Python, Matlab, 혼합 기저함수 모델링, 경량 선형회귀
 
-하드코딩된 레거시 PCR 신호 보정 알고리즘을 **데이터 기반 혼합 기저함수 모델**로 재설계하는 과제를 총괄했다. 화학·광학·기계 반응이 섞인 PCR 신호는 단일 규칙으로 대응할 수 없어, 신호 종류마다 분기 조건이 누적되는 취약한 규칙 스택이었다. 게다가 표준화되지 않은 baseline fitting 알고리즘이 여러 벌 병존해 제품·팀 간 결과가 달랐다.
+하드코딩된 레거시 PCR 신호 보정 알고리즘을 **데이터 기반 혼합 기저함수 모델**로 재설계하는 과제를 총괄했다. 레거시 스택이 취약했던 이유는 둘이다:
+
+- **신호 복잡성** — 화학·광학·기계 반응이 섞여 단일 결정론 규칙으로 대응할 수 없고, 신호 종류마다 조건 분기가 누적됐다.
+- **파편화된 도구** — 표준화되지 않은 baseline fitting 알고리즘이 여러 벌 병존해 제품·팀 간 결과가 달랐다.
 
 {% include figure.liquid loading="eager" path="assets/img/projects/poster_03_pcr-baseline.png" class="img-fluid rounded z-depth-1" zoomable=true alt="시계열 PCR 신호 baseline 보정 — 프로젝트 포스터" %}
 

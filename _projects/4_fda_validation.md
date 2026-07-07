@@ -15,7 +15,11 @@ mermaid:
 
 **Role:** Technical Lead / Data Scientist — 16-person cross-functional team (Data Scientist 3, Data Engineer 2, biologists 8, patent 3) &nbsp;·&nbsp; **Period:** 2023.05 – 2023.12 &nbsp;·&nbsp; **Stack:** R, Matlab, Apache Airflow, Quarto, statistical testing
 
-To take a diagnostic product into the North American market, the algorithm's safety had to be **proven statistically**, not just tested at the software-engineering level — FDA clearance required advanced testing beyond the prior process. As statistical-analysis lead I built the validation pipeline, developed the in-house **Switch Model** methodology, and led FDA-regulation training that raised the BT and IT teams' regulatory literacy.
+To take a diagnostic product into the North American market, the algorithm's safety had to be **proven statistically** — FDA clearance demanded advanced testing beyond the prior software-engineering process. As statistical-analysis lead I:
+
+- **built** the statistical validation pipeline end-to-end;
+- **developed** the in-house **Switch Model** ablation methodology;
+- **led** FDA-regulation training that raised the BT and IT teams' regulatory literacy.
 
 {% include figure.liquid loading="eager" path="assets/img/projects/poster_04_fda-validation_en.png" class="img-fluid rounded z-depth-1" zoomable=true alt="FDA Software-Validation Statistical Analysis — project poster" %}
 

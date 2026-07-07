@@ -12,7 +12,10 @@ mermaid:
 
 **역할:** 데이터 사이언티스트 — 알고리즘 분석·개선안 설계(6인 Data Science 팀) &nbsp;·&nbsp; **기간:** 2021.10 – 2023.04 &nbsp;·&nbsp; **스택:** Matlab, Python, 메카니스틱 + 통계 모델링, 결합추정, 잔차 분석
 
-주석 없는 **레거시 Matlab 알고리즘**(10+단계 보정, 50+ 경험적 파라미터)을 reverse engineering으로 해석하고 통계적으로 엄밀한 개선안을 설계했다. 결정론적 규칙 스택은 노이즈 패턴이 추가될 때마다 조건 분기가 기하급수적으로 늘었고, 단계별 순차 보정은 **systematic bias**를 누적시키며 비선형 상호작용 탓에 민감도 분석이 불가능했다. 규제가 요구하는 설명 가능성을 확보하기 위해 딥러닝 블랙박스 대신 **메카니스틱 + 통계 hybrid**로 재정식화했다.
+주석 없는 **레거시 Matlab 알고리즘**(10+단계 보정, 50+ 경험적 파라미터)을 reverse engineering으로 해석하고 통계적으로 엄밀한 개선안을 설계했다.
+
+- **레거시의 문제** — 결정론적 규칙 스택은 노이즈 패턴이 추가될 때마다 조건 분기가 기하급수적으로 늘었고, 단계별 순차 보정은 **systematic bias**를 누적시키며 비선형 상호작용 탓에 민감도 분석이 불가능했다.
+- **설계 제약** — 규제가 요구하는 설명 가능성을 확보하기 위해 딥러닝 블랙박스 대신 **메카니스틱 + 통계 hybrid**로 재정식화했다.
 
 {% include figure.liquid loading="eager" path="assets/img/projects/poster_05_rtpcr-reverse-eng.png" class="img-fluid rounded z-depth-1" zoomable=true alt="RT-PCR 진단 알고리즘 Reverse Engineering 및 통계 모델링 개선안 설계 — 프로젝트 포스터" %}
 

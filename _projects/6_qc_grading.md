@@ -15,7 +15,10 @@ mermaid:
 
 **Role:** Technical Lead / Data Scientist — 11-person cross-functional team (Data Scientist 1, Full-stack 3, mechanical engineers 4, patent 3) &nbsp;·&nbsp; **Period:** 2020.12 – 2021.09 &nbsp;·&nbsp; **Stack:** Python, R, PyTorch (LSTM), PCA/t-SNE/DBSCAN, Isolation Forest, R Shiny
 
-When PCR reagents are deployed onto third-party instruments, a two-stage QC process gauges device performance. The legacy process was **manual Excel inspection** with only two metrics and a ~100-sample batch pass/fail (a single failing signal failed the whole device) — fragile to human error, unable to separate machine defects from operator mistakes. I led its automation and re-graded devices on a differentiated A+/A/B/F scale.
+When PCR reagents are deployed onto third-party instruments, a two-stage QC process gauges device performance. I led its automation and re-graded devices on a differentiated A+/A/B/F scale.
+
+- **Legacy process** — **manual Excel inspection**, only two metrics, ~100-sample batch pass/fail where a single failing signal failed the whole device.
+- **Failure modes** — fragile to human error, and unable to separate machine defects from operator mistakes.
 
 {% include figure.liquid loading="eager" path="assets/img/projects/poster_06_qc-grading_en.png" class="img-fluid rounded z-depth-1" zoomable=true alt="Diagnostic-Equipment QC Automation & Performance Grading — project poster" %}
 
